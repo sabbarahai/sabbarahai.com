@@ -219,7 +219,6 @@ contactForm?.addEventListener("submit", async (event) => {
   if (!contactForm.reportValidity()) return;
 
   if (!CONTACT_WEBHOOK_URL) {
-    formStatus.textContent = "النموذج جاهز للربط مع ، لكنه غير مفعّل للإرسال حاليًا.";
     return;
   }
 
