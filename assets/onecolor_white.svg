@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+    <defs><mask id="dotMask"><rect width="1000" height="1000" fill="white"/>
+          <circle cx="505" cy="500" r="13" fill="black"/>
+          <circle cx="505" cy="548" r="15" fill="black"/>
+          <circle cx="505" cy="596" r="15" fill="black"/>
+          <circle cx="505" cy="644" r="15" fill="black"/>
+        </mask></defs>
+    
+    <circle cx="500" cy="500" r="452" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+    <g>
+      
+      <path d="M452 171 L500 123 L548 171" fill="none" stroke="#FFFFFF" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="500" cy="224" r="38" fill="#FFFFFF"/>
+    
+      
+      <path fill="#FFFFFF" mask="url(#dotMask)" d="M318 328 C291 328 270 349 270 376 L270 576 C270 603 291 624 318 624 L478 624 L478 639 C478 655 491 668 507 668 L694 668 C721 668 742 647 742 620 L742 458 C742 431 721 410 694 410 C667 410 646 431 646 458 L646 572 L536 572 L536 529 C536 513 523 500 507 500 C491 500 478 513 478 529 L478 528 L366 528 L366 376 C366 349 345 328 318 328 Z"/>
+    
+      
+      
+      <g stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" fill="none">
+        <path d="M500 745 L500 826"/>
+        <path d="M360 826 L640 826"/>
+      </g>
+      <circle cx="360" cy="826" r="24" fill="#FFFFFF"/>
+      <circle cx="640" cy="826" r="24" fill="#FFFFFF"/>
+    
+    </g>
+    </svg>
