@@ -11,6 +11,134 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/zahra.css">
   <link rel="stylesheet" href="css/glow.css">
+
+<style>
+/* ============ فحص صبّارة (matched to the solutions rhythm) ============ */
+#scan{padding-top:clamp(20px,2.4vw,34px)}
+.scan-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+  flex-wrap:wrap;margin-bottom:clamp(22px,2.4vw,30px)}
+.scan-head .section-heading{margin-bottom:0}
+.scan-head__badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;
+  color:var(--muted);border:1px solid var(--line-strong);border-radius:999px;padding:8px 15px}
+.scan-head__badge b{color:var(--ink);font-weight:600}
+.scan{position:relative;border:1px solid var(--line-strong);border-radius:var(--radius-lg);
+  background:linear-gradient(150deg,rgba(20,46,41,.55),rgba(6,18,17,.6));
+  box-shadow:0 40px 110px -70px rgba(22,201,154,.55);
+  padding:clamp(22px,2.6vw,34px);min-height:376px;display:flex;flex-direction:column}
+.scan__stage[hidden]{display:none}
+.scan__stage{animation:fade .35s ease both;flex:1}
+/* intro is a 2-column panel so the card is never a tall empty box */
+.scan__intro{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(22px,3vw,44px);
+  align-items:center;height:100%}
+.scan__intro-copy h3{font-size:clamp(22px,2.4vw,30px)}
+.scan__intro-copy p{margin-top:14px;color:var(--muted);font-size:15.4px;max-width:42ch}
+.scan__intro-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}
+.scan__hint{font-size:13px;color:var(--muted-dim)}
+.scan__preview{border:1px solid var(--line);border-radius:var(--radius);
+  background:rgba(4,14,13,.5);padding:20px}
+.scan__preview b{display:block;font-size:12.8px;color:var(--muted-dim);font-weight:600;
+  letter-spacing:.02em;margin-bottom:14px}
+.scan__preview ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.scan__preview li{display:flex;gap:11px;align-items:flex-start;font-size:14.4px;color:#cfe0db}
+.scan__preview li i{flex:0 0 22px;height:22px;border-radius:8px;background:rgba(22,201,154,.12);
+  border:1px solid rgba(22,201,154,.25);color:var(--mint);font-style:normal;font-size:11.5px;
+  font-weight:700;display:grid;place-items:center;margin-top:3px;font-family:var(--ff-lat)}
+/* quiz */
+.scan__progress{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--muted)}
+.scan__bar{flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.scan__bar i{display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--teal),var(--mint));transition:width .4s ease}
+.scan__question{margin-top:24px;font-size:clamp(20px,2.1vw,26px)}
+.scan__options{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
+.scan__opt{text-align:start;padding:15px 17px;border-radius:var(--radius);
+  border:1px solid var(--line-strong);background:rgba(255,255,255,.02);color:#dbe9e5;
+  font-size:15px;cursor:pointer;transition:.22s ease}
+.scan__opt:hover{border-color:rgba(63,232,182,.45);background:rgba(22,201,154,.09);
+  transform:translateY(-2px)}
+.scan__options--wide{grid-template-columns:repeat(3,1fr)}
+.scan__opt.is-picked{border-color:rgba(63,232,182,.5);background:rgba(22,201,154,.10)}
+.scan__back{margin-top:20px;background:none;border:0;color:var(--muted);font-size:13.5px;
+  cursor:pointer;padding:0}
+.scan__back:hover{color:var(--mint)}
+/* analyzing */
+.scan__stage--center{display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:22px;text-align:center;color:var(--muted)}
+.scan__radar{width:96px;height:96px;border-radius:50%;border:1px solid rgba(63,232,182,.25);
+  display:grid;place-items:center;position:relative}
+.scan__radar::before,.scan__radar::after{content:"";position:absolute;inset:0;border-radius:50%;
+  border:1px solid rgba(63,232,182,.35);animation:radar 2s ease-out infinite}
+.scan__radar::after{animation-delay:1s}
+@keyframes radar{from{transform:scale(.5);opacity:.9}to{transform:scale(1.15);opacity:0}}
+.scan__radar i{width:12px;height:12px;border-radius:50%;background:var(--mint)}
+/* result — توصية واحدة بارزة، والباقي يسندها */
+.scan__lead{border:1px solid rgba(63,232,182,.45);border-radius:var(--radius);
+  padding:clamp(22px,2.6vw,30px);display:flex;flex-direction:column;align-items:flex-start;gap:12px;
+  background:radial-gradient(120% 150% at 100% 0%,rgba(22,201,154,.16),transparent 62%),
+             linear-gradient(150deg,rgba(18,44,39,.7),rgba(4,14,13,.45));
+  box-shadow:0 26px 70px -50px rgba(22,201,154,.85)}
+.scan__lead>span{font-size:13px;font-weight:600;color:var(--mint)}
+.scan__lead b{font-size:clamp(23px,2.9vw,33px);line-height:1.32;color:#fff}
+.scan__badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);
+  border:1px solid var(--line-strong);border-radius:999px;padding:6px 14px;background:rgba(4,14,13,.4)}
+.scan__badge b{font-size:13px;color:var(--mint);font-weight:600}
+.scan__why{margin-top:18px;font-size:15.2px;color:#d7e6e1;line-height:1.8}
+.scan__why b{color:var(--mint);font-weight:600}
+.scan__human{margin-top:14px;font-size:13.6px;color:var(--muted-dim)}
+.scan__human b{color:#cfe0db;font-weight:600}
+/* المقارنة: وضعك الآن / مع صبّارة */
+.compare{margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
+.compare__title{font-size:clamp(18px,1.9vw,22px)}
+.compare__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--grid-gap);margin-top:18px}
+.compare__col{border:1px solid var(--line);border-radius:var(--radius);
+  background:rgba(4,14,13,.35);padding:18px 20px}
+.compare__col>span{display:block;font-size:13px;font-weight:600;color:var(--muted);
+  padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.compare__col--next{border-color:rgba(63,232,182,.26);
+  background:linear-gradient(160deg,rgba(22,201,154,.07),rgba(4,14,13,.35))}
+.compare__col--next>span{color:var(--mint)}
+.cbars{display:grid;gap:15px}
+.cbar{display:grid;grid-template-columns:1fr auto;gap:7px 12px;font-size:13.8px}
+.cbar b{font-weight:600;color:#cfe0db}
+.cbar span{font-size:12.8px}
+.cbar i{grid-column:1/-1;height:6px;border-radius:99px;background:rgba(255,255,255,.06);
+  display:block;overflow:hidden}
+.cbar i::after{content:"";display:block;height:100%;width:var(--v,0%);border-radius:99px;
+  transition:width 1s cubic-bezier(.2,.8,.2,1)}
+/* وضعك الآن — احتكاك بالذهبي، وما هو مرتاح يبقى أخضر هادئ */
+.compare__col--now .cbar span{color:var(--gold)}
+.compare__col--now .cbar i::after{background:linear-gradient(90deg,rgba(242,207,74,.3),var(--gold))}
+.compare__col--now .cbar--ok span{color:var(--mint)}
+.compare__col--now .cbar--ok i::after{background:linear-gradient(90deg,rgba(22,201,154,.35),var(--mint))}
+/* مع صبّارة — كله بلون صبّارة */
+.compare__col--next .cbar span{color:var(--mint)}
+.compare__col--next .cbar i::after{background:linear-gradient(90deg,rgba(22,201,154,.4),var(--mint))}
+.compare__col--next .cbar--focus b{color:#fff}
+.compare__col--next .cbar--focus i::after{background:linear-gradient(90deg,var(--teal),var(--mint));
+  box-shadow:0 0 12px rgba(63,232,182,.45)}
+.compare__note{margin-top:14px;font-size:13px;color:var(--muted-dim)}
+.map-card{margin-top:24px;border:1px solid rgba(242,207,74,.28);border-radius:var(--radius);
+  background:linear-gradient(140deg,rgba(242,207,74,.07),rgba(6,18,17,.2));padding:22px}
+.map-card__label{font-size:12.6px;color:var(--gold);font-weight:600}
+.map-card h3{margin-top:8px;font-size:20px}
+.map-card p{margin-top:10px;color:var(--muted);font-size:14.6px;max-width:70ch}
+.map-card__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+
+
+
+/* فحص صبّارة — responsive overrides */
+@media (max-width:1024px){
+  #scan .scan__intro{grid-template-columns:1fr}
+  #scan .compare__grid{grid-template-columns:1fr}
+  #scan .scan__options--wide{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  #scan .scan__options,
+  #scan .scan__options--wide{grid-template-columns:1fr}
+  #scan .map-card__actions .button,
+  #scan .scan__intro-actions .button{width:100%}
+}
+
+</style>
 </head>
 <body>
 
@@ -225,16 +353,24 @@
 
         <!-- result -->
         <div class="scan__stage" id="scanResult" hidden>
-          <div class="scan__headline">
-            <div class="scan__start"><span>أول موضع يستاهل الأتمتة عندك</span><b id="scanTop">—</b></div>
-            <div class="scan__verdict"><span>أولوية الأتمتة عندك</span><b id="scanPriority">—</b></div>
+          <div class="scan__lead">
+            <span>أول موضع يستاهل الأتمتة عندك</span>
+            <b id="scanTop">—</b>
+            <span class="scan__badge">أولوية الأتمتة: <b id="scanPriority">—</b></span>
           </div>
 
-          <div class="scan__indicators" id="scanIndicators"></div>
+          <p class="scan__why" id="scanWhy"></p>
+
           <p class="scan__human" id="scanHuman"></p>
 
-          <div class="scan__diagnosis" id="scanDiagnosis"></div>
-          <p class="scan__norecipe">هذا تشخيص أولي بناءً على إجاباتك — مو خطة تنفيذ.</p>
+          <section class="compare" aria-labelledby="cmpTitle">
+            <h4 class="compare__title" id="cmpTitle">الفرق اللي ممكن تصنعه صبّارة</h4>
+            <div class="compare__grid">
+              <div class="compare__col compare__col--now"><span>وضعك الآن</span><div class="cbars" id="cmpNow"></div></div>
+              <div class="compare__col compare__col--next"><span>المستهدف مع صبّارة</span><div class="cbars" id="cmpNext"></div></div>
+            </div>
+            <p class="compare__note">تصور مبدئي بناءً على إجاباتك، ويتحدد الأثر الفعلي بعد تصميم الحل.</p>
+          </section>
 
           <div class="map-card">
             <span class="map-card__label">المرحلة التالية بعد فحص صبّارة</span>
@@ -338,7 +474,294 @@
 
 <script src="js/main.js" defer></script>
 <script src="js/glow.js" defer></script>
-<script src="js/scan.js" defer></script>
 <script src="js/assistant.js" defer></script>
+
+<script>
+/* ============ فحص صبّارة — rule-based diagnostic (v1) ============ */
+(function(){
+  /* ---------- 1) إعدادات أنواع النشاط: عدّل هنا بدون لمس المنطق ----------
+     (opener: نص القطاع — محفوظ للاستخدام لاحقًا، وغير معروض حاليًا لتقصير التشخيص) */
+  var TYPES={
+    ecom:{label:'متجر إلكتروني',
+      opener:'توجد فرصة واضحة لتحسين انتقال العميل من الاستفسار إلى الشراء.',
+      start:{comm:'الرد على استفسارات المنتجات والطلبات',
+             leak:'متابعة العميل اللي سأل وما أكمل الطلب',
+             manual:'متابعة الطلبات والتقارير اليومية',
+             frag:'نقل بيانات الطلبات بين أدواتك'}},
+    clinic:{label:'عيادة / مركز طبي',
+      opener:'توجد فرصة لتقليل العمل اليدوي في الحجز والتذكير والمتابعة.',
+      start:{comm:'الرد على استفسارات الحجز والأسعار',
+             leak:'تذكير ومتابعة المواعيد',
+             manual:'تنظيم الحجوزات والتقارير اليومية',
+             frag:'نقل بيانات المراجعين بين الأنظمة'}},
+    restaurant:{label:'مطعم / كافيه',
+      opener:'توجد فرصة لتخفيف الاستفسارات المتكررة وتنظيم الطلبات والمتابعة.',
+      start:{comm:'الرد على الاستفسارات المتكررة',
+             leak:'متابعة الحجوزات والطلبات المفتوحة',
+             manual:'تنظيم الطلبات والتقارير اليومية',
+             frag:'ربط الطلبات مع بقية أدواتك'}},
+    realestate:{label:'عقارات',
+      opener:'توجد فرصة لتحسين تأهيل العملاء ومتابعة الفرص قبل أن تبرد.',
+      start:{comm:'الرد على استفسارات العروض والمعاينات',
+             leak:'متابعة العميل المحتمل',
+             manual:'تنظيم بيانات العروض والتقارير',
+             frag:'نقل بيانات العملاء بين الأنظمة'}},
+    b2b:{label:'خدمات B2B',
+      opener:'توجد فرصة لتقليل الوقت بين دخول العميل المحتمل وتحويله إلى فرصة جاهزة للفريق.',
+      start:{comm:'استقبال الطلبات الواردة وتأهيلها',
+             leak:'متابعة العميل المحتمل',
+             manual:'التقارير التشغيلية والمتابعة الداخلية',
+             frag:'نقل البيانات بين الأنظمة'}},
+    services:{label:'شركة / مكتب خدمات',
+      opener:'توجد فرصة لتقليل العمل اليدوي من استقبال الطلب حتى إغلاقه.',
+      start:{comm:'الرد على الاستفسارات المتكررة',
+             leak:'متابعة الطلبات المفتوحة',
+             manual:'التقارير التشغيلية والعمل الإداري',
+             frag:'نقل البيانات بين الأنظمة'}},
+    other:{label:'نشاط آخر',
+      opener:'توجد فرصة لتقليل العمل المتكرر وتنظيم متابعة العملاء.',
+      start:{comm:'الرد على الاستفسارات المتكررة',
+             leak:'متابعة العميل المحتمل',
+             manual:'العمل الإداري المتكرر والتقارير',
+             frag:'نقل البيانات بين الأنظمة'}}
+  };
+
+  /* ليش يستاهل هذا الموضع — مشكلة عمل، مو حل تقني */
+  var WHY={
+    comm:'نفس الأسئلة تتكرر يوميًا وتأخذ وقت الفريق، وتأخر الرد ممكن يخلي العميل يروح لمكان ثاني.',
+    leak:'المتابعة تعتمد اليوم على التذكر، وبعض الفرص تضيع قبل ما تكمل رحلتها.',
+    manual:'جزء من يومك يروح في شغل متكرر ما يضيف قيمة، وهو وقت كان ممكن يروح للشغل المهم.',
+    frag:'المعلومة تتنقل يدويًا بين أكثر من مكان، وهذا يفتح باب التأخير وتكرار الإدخال والخطأ.'
+  };
+
+
+
+  var BAND=['منخفضة','متوسطة','مرتفعة','مرتفعة جدًا'];
+
+  /* ---------- «الفرق اللي ممكن تصنعه صبّارة» ----------
+     كل الأشرطة تمثّل حجم الاحتكاك: أقصر = أفضل.
+     العمود الأيسر هو «المستهدف» — أقوى تحسّن يكون في المحاور اللي يعالجها
+     الموضع الموصى به، وبقية المحاور تبقى كما هي أو تتحسن قليلًا. ---------- */
+  var TARGET={
+    repetitiveQuestions:{comm:'low',      leak:'medium',  manual:'low',    frag:'unchanged'},
+    followUp:           {comm:'medium',   leak:'low',     manual:'low',    frag:'unchanged'},
+    reporting:          {comm:'slight',   leak:'slight',  manual:'low',    frag:'low'},
+    appointments:       {comm:'low',      leak:'medium',  manual:'low',    frag:'depends'},
+    systemIntegration:  {comm:'unchanged',leak:'depends', manual:'low',    frag:'low'}
+  };
+
+  /* أي نموذج أثر يناسب الموضع الموصى به */
+  function targetKey(top,type){
+    if(top==='leak'&&(type==='clinic'||type==='restaurant'))return 'appointments';
+    if(top==='comm')return 'repetitiveQuestions';
+    if(top==='leak')return 'followUp';
+    if(top==='manual')return 'reporting';
+    return 'systemIntegration';
+  }
+
+  /* الهدف لا يكون أسوأ من الوضع الحالي أبدًا */
+  function targetLevel(rule,cur){
+    switch(rule){
+      case 'low':      return 0;
+      case 'medium':   return Math.min(cur,1);
+      case 'slight':   return cur>=2 ? cur-1 : cur;   /* أثر جانبي بسيط */
+      case 'depends':  return cur>=2 ? cur-1 : cur;   /* يتحسن فقط لو كان فيه احتكاك فعلي */
+      default:         return cur;                    /* unchanged — ما نوعد بشي */
+    }
+  }
+
+  /* ---------- 2) الأسئلة السبعة ---------- */
+  /* كل خيار: [النص, التأثير] — التأثير يغذّي أبعاد داخلية فقط */
+  var Q=[
+    {q:'وش نوع نشاطك؟',wide:true,
+     a:[['متجر إلكتروني',{type:'ecom'}],
+        ['عيادة / مركز طبي',{type:'clinic'}],
+        ['مطعم / كافيه',{type:'restaurant'}],
+        ['عقارات',{type:'realestate'}],
+        ['خدمات B2B',{type:'b2b'}],
+        ['شركة / مكتب خدمات',{type:'services'}],
+        ['نشاط آخر',{type:'other'}]]},
+
+    {q:'ما أكثر شيء يستهلك وقتك يوميًا؟',
+     a:[['الرد على الاستفسارات المتكررة',{comm:2,pain:'comm'}],
+        ['متابعة العملاء والمواعيد',{leak:2,pain:'leak'}],
+        ['التقارير وإدخال البيانات',{manual:2,pain:'manual'}],
+        ['تنسيق الطلبات والعمليات اليومية',{manual:1,frag:1,pain:'frag'}]]},
+
+    {q:'من وين توصلك الاستفسارات، وكم تقريبًا؟',
+     a:[['قناة وحدة وعدد محدود',{comm:1}],
+        ['قناة وحدة وعدد كبير يوميًا',{comm:3}],
+        ['أكثر من قناة وعدد متوسط',{comm:3,frag:1}],
+        ['أكثر من قناة وصعب نلحق عليها',{comm:4,frag:1}]]},
+
+    {q:'هل تتابعون العميل إذا سأل وما أكمل؟',
+     a:[['نعم، متابعة منظمة ومسجّلة',{leak:1}],
+        ['نتابع، بس حسب الوقت والتذكر',{leak:3}],
+        ['نادرًا',{leak:4}],
+        ['ما نتابع أصلًا',{leak:4}]]},
+
+    {q:'كم من شغلك اليومي يتكرر يدويًا (تعبئة، نسخ، تجهيز تقارير)؟',
+     a:[['شي بسيط',{manual:1}],
+        ['ربع اليوم تقريبًا',{manual:2}],
+        ['نص اليوم تقريبًا',{manual:3}],
+        ['أغلب اليوم',{manual:4}]]},
+
+    {q:'هل تنقلون معلومات يدويًا بين أكثر من نظام أو ملف؟',
+     a:[['لا، أنظمتنا مربوطة',{frag:1}],
+        ['أحيانًا وفي حالات محددة',{frag:2}],
+        ['نعم، بشكل شبه يومي',{frag:4}],
+        ['نشتغل على ملفات وواتساب بدون نظام',{frag:4,manual:1}]]},
+
+    {q:'وين تحتاجون قرار موظف بشري؟',
+     a:[['أغلب القرارات تحتاج موظف',{human:4}],
+        ['في الحالات الحساسة فقط (تسعير، شكاوى، استثناءات)',{human:2}],
+        ['نادرًا — أغلب الطلبات متشابهة',{human:1}],
+        ['ما هو واضح عندنا',{human:2}]]}
+  ];
+
+  /* ---------- 3) محرك القواعد ---------- */
+  var DIMS=['comm','leak','manual','frag'];
+  var NAMES={comm:'ضغط التواصل',leak:'فقدان الفرص',manual:'العمل المتكرر',frag:'ضعف ترابط الأنظمة'};
+
+  function levelOf(v){                       /* منخفض → مرتفع جدًا */
+    if(v<=1)return 0; if(v<=2)return 1; if(v<=4)return 2; return 3;
+  }
+  var LEVEL_TEXT=['منخفض','متوسط','مرتفع','مرتفع جدًا'];
+  var LEVEL_BAR=[28,52,78,95];
+  var HUMAN_TEXT={1:'محدود',2:'مهم في نقاط محددة',4:'ضروري في القرارات الحساسة'};
+
+  function evaluate(answers){
+    var d={comm:0,leak:0,manual:0,frag:0,human:2},type='other',pain=null;
+    answers.forEach(function(e){
+      if(!e)return;
+      if(e.type)type=e.type;
+      if(e.pain)pain=e.pain;
+      DIMS.concat(['human']).forEach(function(k){ if(e[k])d[k]=(k==='human')?e[k]:d[k]+e[k]; });
+    });
+    var cfg=TYPES[type]||TYPES.other;
+
+    /* أولوية الأتمتة: مجموع الأبعاد الأربعة (4 → 18) */
+    var total=d.comm+d.leak+d.manual+d.frag;
+    var band = total<=7?0 : total<=11?1 : total<=15?2 : 3;
+
+    /* أول موضع يستاهل الأتمتة: أعلى بُعد، والتعادل يُحسم بأكثر شي يستهلك الوقت */
+    var order=[pain,'leak','comm','manual','frag'];
+    var top=DIMS.slice().sort(function(a,b){
+      if(d[b]!==d[a])return d[b]-d[a];
+      return order.indexOf(a)-order.indexOf(b);
+    })[0];
+
+    /* المقارنة البصرية: نفس المحاور الأربعة — الآن مقابل المستهدف */
+    function state(k,lv,focus){
+      return {key:k,name:NAMES[k],label:LEVEL_TEXT[lv],bar:LEVEL_BAR[lv],
+              ok:lv<=1,focus:!!focus};
+    }
+    var tKey=targetKey(top,type),rules=TARGET[tKey];
+    var compare={model:tKey,now:[],next:[]};
+    DIMS.forEach(function(k){
+      var cur=levelOf(d[k]),tgt=targetLevel(rules[k],cur);
+      compare.now.push(state(k,cur));
+      compare.next.push(state(k,tgt,(cur-tgt)>=2));   /* إبراز خفيف لأقوى تحسّن */
+    });
+
+    return {
+      type:type,typeLabel:cfg.label,
+      compare:compare,
+      priority:BAND[band],
+      topKey:top,
+      topLabel:cfg.start[top],
+      why:WHY[top],
+      human:HUMAN_TEXT[d.human]||'مهم في نقاط محددة',
+      _debug:{total:total,dims:d}
+    };
+  }
+
+  if(typeof module!=='undefined'&&module.exports){module.exports={Q:Q,evaluate:evaluate};}
+
+  /* ---------- 4) الربط بالواجهة ---------- */
+  var panel=(typeof document!=='undefined')&&document.getElementById('scanPanel');
+  if(!panel)return;
+
+  var stages={intro:document.getElementById('scanIntro'),quiz:document.getElementById('scanQuiz'),
+              load:document.getElementById('scanAnalyzing'),res:document.getElementById('scanResult')};
+  var elStep=document.getElementById('scanStep'),elBar=document.getElementById('scanBarFill'),
+      elQ=document.getElementById('scanQuestion'),elOpts=document.getElementById('scanOptions'),
+      elBack=document.getElementById('scanBack'),elPhase=document.getElementById('scanPhase'),
+      elPriority=document.getElementById('scanPriority'),elTop=document.getElementById('scanTop'),
+      elHuman=document.getElementById('scanHuman'),
+      elWhy=document.getElementById('scanWhy'),elBadge=document.querySelector('.scan-head__badge'),
+      elNow=document.getElementById('cmpNow'),elNext=document.getElementById('cmpNext');
+  var idx=0,answers=[];
+
+  function drawBars(box,rows){
+    box.innerHTML='';
+    rows.forEach(function(r){
+      var w=document.createElement('div');
+      w.className='cbar'+(r.ok?' cbar--ok':'')+(r.focus?' cbar--focus':'');
+      w.innerHTML='<b>'+r.name+'</b><span>'+r.label+'</span><i></i>';
+      box.appendChild(w);
+      var bar=w.querySelector('i');
+      requestAnimationFrame(function(){bar.style.setProperty('--v',r.bar+'%')});
+    });
+  }
+
+  function stage(name){
+    Object.keys(stages).forEach(function(k){stages[k].hidden=k!==name});
+    if(elBadge)elBadge.hidden=(name!=='intro');   /* الشارة للتمهيد فقط */
+  }
+
+  function render(){
+    elStep.textContent='السؤال '+(idx+1)+' من '+Q.length;
+    elBar.style.width=(idx/Q.length*100)+'%';
+    elQ.textContent=Q[idx].q;
+    elOpts.className='scan__options'+(Q[idx].wide?' scan__options--wide':'');
+    elOpts.innerHTML='';
+    Q[idx].a.forEach(function(opt){
+      var b=document.createElement('button');
+      b.type='button';b.className='scan__opt';b.textContent=opt[0];
+      if(answers[idx]===opt[1])b.classList.add('is-picked');
+      b.addEventListener('click',function(){answers[idx]=opt[1];next()});
+      elOpts.appendChild(b);
+    });
+    elBack.hidden=idx===0;
+  }
+
+  function next(){
+    if(idx<Q.length-1){idx++;render()}
+    else{elBar.style.width='100%';analyze()}
+  }
+
+  function analyze(){
+    stage('load');
+    var phases=['صبّارة ترتب إجاباتك…','تبحث عن أكثر نقاط العمل المتكرر…',
+                'تراجع أين تضيع الفرص…','تحدد لك أفضل مكان تبدأ منه…'];
+    var p=0;elPhase.textContent=phases[0];
+    var iv=setInterval(function(){p++;if(p<phases.length)elPhase.textContent=phases[p]},760);
+    setTimeout(function(){clearInterval(iv);show(evaluate(answers))},3000);
+  }
+
+  function show(r){
+    stage('res');
+    elPriority.textContent=r.priority;
+    elTop.textContent=r.topLabel;
+    elWhy.innerHTML='<b>ليش؟</b> '+r.why;
+    elHuman.innerHTML='التدخل البشري: <b>'+r.human+'</b>';
+    drawBars(elNow,r.compare.now);
+    drawBars(elNext,r.compare.next);
+  }
+
+  document.getElementById('scanStart').addEventListener('click',function(){
+    idx=0;answers=[];stage('quiz');render();
+    panel.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+  elBack.addEventListener('click',function(){if(idx>0){idx--;render()}});
+  document.getElementById('scanRestart').addEventListener('click',function(){
+    idx=0;answers=[];stage('intro');
+    panel.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+})();
+
+
+</script>
 </body>
 </html>
