@@ -138,6 +138,27 @@
   #scan .scan__intro-actions .button{width:100%}
 }
 
+
+/* ============ صبّارة للأفراد — بعد حذف الهوية المهنية ============ */
+#panelInd .sol-grid--2{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:var(--grid-gap);
+}
+
+#panelInd .sol-card--soon{
+  min-height:180px;
+}
+
+#panelInd .ind-flag{
+  padding:clamp(24px,2.4vw,32px);
+}
+
+@media (max-width:640px){
+  #panelInd .sol-grid--2{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -280,12 +301,8 @@
           </div>
         </article>
 
-        <div class="sol-grid sol-grid--3">
-         <!-- <article class="sol-card sol-card--soon">
-            <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.1 4.6 5 .6-3.7 3.4 1 4.9-4.4-2.5-4.4 2.5 1-4.9L4.9 8.7l5-.6L12 3.5Z"/></svg></span><span class="tag tag--soon">قريبًا</span></span>
-            <h3>الهوية المهنية</h3>
-            <p>رتّب كيف تقدم نفسك مهنيًا، من تعريفك وتخصصك إلى طريقة عرض خبرتك.</p>
-          </article> -->
+        <div class="sol-grid sol-grid--2">
+
           <article class="sol-card sol-card--soon">
             <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h9l4 4V20.5H6z"/><path d="M14.5 3.5V8H19"/><path d="M9 12.5h6M9 16h4"/></svg></span><span class="tag tag--soon">قريبًا</span></span>
             <h3>مساعد التقديم</h3>
