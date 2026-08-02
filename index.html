@@ -109,7 +109,7 @@
 .compare__col--now .cbar i::after{background:linear-gradient(90deg,rgba(242,207,74,.3),var(--gold))}
 .compare__col--now .cbar--ok span{color:var(--mint)}
 .compare__col--now .cbar--ok i::after{background:linear-gradient(90deg,rgba(22,201,154,.35),var(--mint))}
-/* مع صبّارة — كله بلون صبّارة */
+/* وضعك مع صبّارة — كله بلون صبّارة */
 .compare__col--next .cbar span{color:var(--mint)}
 .compare__col--next .cbar i::after{background:linear-gradient(90deg,rgba(22,201,154,.4),var(--mint))}
 .compare__col--next .cbar--focus b{color:#fff}
@@ -415,9 +415,9 @@
             <h4 class="compare__title" id="cmpTitle">الفرق اللي ممكن تصنعه صبّارة</h4>
             <div class="compare__grid">
               <div class="compare__col compare__col--now"><span>وضعك الآن</span><div class="cbars" id="cmpNow"></div></div>
-              <div class="compare__col compare__col--next"><span>المستهدف مع صبّارة</span><div class="cbars" id="cmpNext"></div></div>
+              <div class="compare__col compare__col--next"><span>وضعك مع صبّارة</span><div class="cbars" id="cmpNext"></div></div>
             </div>
-            <p class="compare__note">تصور مبدئي بناءً على إجاباتك، ويتحدد الأثر الفعلي بعد تصميم الحل.</p>
+            <p class="compare__note">تصور مستهدف بناءً على إجاباتك، ويتحدد الأثر الفعلي بعد تصميم الحل.</p>
           </section>
 
           <div class="map-card">
@@ -588,14 +588,16 @@
 
   /* ---------- «الفرق اللي ممكن تصنعه صبّارة» ----------
      كل الأشرطة تمثّل حجم الاحتكاك: أقصر = أفضل.
-     العمود الأيسر هو «المستهدف» — أقوى تحسّن يكون في المحاور اللي يعالجها
-     الموضع الموصى به، وبقية المحاور تبقى كما هي أو تتحسن قليلًا. ---------- */
-  var TARGET={
-    repetitiveQuestions:{comm:'low',      leak:'medium',  manual:'low',    frag:'unchanged'},
-    followUp:           {comm:'medium',   leak:'low',     manual:'low',    frag:'unchanged'},
-    reporting:          {comm:'slight',   leak:'slight',  manual:'low',    frag:'low'},
-    appointments:       {comm:'low',      leak:'medium',  manual:'low',    frag:'depends'},
-    systemIntegration:  {comm:'unchanged',leak:'depends', manual:'low',    frag:'low'}
+     المنطق هنا تسويقي مستهدف:
+     - كل مؤشر يتحسن درجتين متى كان ذلك ممكنًا.
+     - المؤشرات التي يعالجها الحل مباشرة تصل إلى أفضل مستوى.
+     - إذا كان المؤشر منخفضًا أصلًا، يبقى منخفضًا. ---------- */
+  var FOCUS_DIMS={
+    repetitiveQuestions:['comm','manual'],
+    followUp:['leak','manual'],
+    reporting:['manual','frag'],
+    appointments:['comm','leak','manual'],
+    systemIntegration:['frag','manual']
   };
 
   /* أي نموذج أثر يناسب الموضع الموصى به */
@@ -607,15 +609,14 @@
     return 'systemIntegration';
   }
 
-  /* الهدف لا يكون أسوأ من الوضع الحالي أبدًا */
-  function targetLevel(rule,cur){
-    switch(rule){
-      case 'low':      return 0;
-      case 'medium':   return Math.min(cur,1);
-      case 'slight':   return cur>=2 ? cur-1 : cur;   /* أثر جانبي بسيط */
-      case 'depends':  return cur>=2 ? cur-1 : cur;   /* يتحسن فقط لو كان فيه احتكاك فعلي */
-      default:         return cur;                    /* unchanged — ما نوعد بشي */
-    }
+  /* المنطق التسويقي:
+     - المؤشر المرتبط مباشرة بالحل يصل إلى "منخفض".
+     - بقية المؤشرات تتحسن درجتين متى كان ذلك ممكنًا.
+     - النتيجة لا تصبح أسوأ من الوضع الحالي. */
+  function targetLevel(currentLevel,isFocus){
+    if(currentLevel<=0)return 0;
+    if(isFocus)return 0;
+    return Math.max(0,currentLevel-2);
   }
 
   /* ---------- 2) الأسئلة السبعة ---------- */
@@ -704,12 +705,17 @@
       return {key:k,name:NAMES[k],label:LEVEL_TEXT[lv],bar:LEVEL_BAR[lv],
               ok:lv<=1,focus:!!focus};
     }
-    var tKey=targetKey(top,type),rules=TARGET[tKey];
+    var tKey=targetKey(top,type);
+    var focusDims=FOCUS_DIMS[tKey]||[];
     var compare={model:tKey,now:[],next:[]};
+
     DIMS.forEach(function(k){
-      var cur=levelOf(d[k]),tgt=targetLevel(rules[k],cur);
+      var cur=levelOf(d[k]);
+      var isFocus=focusDims.indexOf(k)!==-1;
+      var tgt=targetLevel(cur,isFocus);
+
       compare.now.push(state(k,cur));
-      compare.next.push(state(k,tgt,(cur-tgt)>=2));   /* إبراز خفيف لأقوى تحسّن */
+      compare.next.push(state(k,tgt,isFocus||(cur-tgt)>=2));
     });
 
     return {
