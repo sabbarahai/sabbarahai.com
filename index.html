@@ -159,6 +159,37 @@
   }
 }
 
+
+/* ============ توحيد محاذاة بطاقات حلول الأعمال ============ */
+#panelBiz .sol-card{
+  min-height:280px;
+}
+
+/* نحجز مساحة سطرين للعناوين حتى تبدأ الأوصاف من نفس المستوى */
+#panelBiz .sol-card h3{
+  min-height:3.1em;
+  display:flex;
+  align-items:flex-end;
+  line-height:1.45;
+}
+
+/* نحجز مساحة متقاربة للجملة التعريفية القصيرة */
+#panelBiz .sol-card .sol-card__line{
+  min-height:3.15em;
+}
+
+/* على الجوال لا نحتاج المساحات الثابتة */
+@media (max-width:640px){
+  #panelBiz .sol-card{
+    min-height:auto;
+  }
+
+  #panelBiz .sol-card h3,
+  #panelBiz .sol-card .sol-card__line{
+    min-height:0;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -261,23 +292,26 @@
           <a class="sol-card" href="#scan">
             <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 16.5l5.5-5.5 4 4L20 7.5"/><path d="M15 7.5h5v5"/></svg></span></span>
             <h3>وكيل ذكاء اصطناعي لخدمة العملاء</h3>
-            <p>يرد على استفسارات العملاء، يساعد في الطلبات والشكاوى، ويحوّل الحالات المعقدة أو الحساسة إلى فريقك.</p>
+            <p class="sol-card__line">يخدم عملاءك قبل وبعد البيع.</p>
+            <p>يرد على الاستفسارات، يساعد في الطلبات والشكاوى، ويحوّل الحالات المعقدة أو الحساسة إلى فريقك.</p>
           </a>
           <a class="sol-card" href="#scan">
             <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 7.4v4.9l3.1 1.9"/></svg></span></span>
             <h3>وكيل ذكاء اصطناعي للمبيعات والحجوزات</h3>
-            <p>يفهم احتياج العميل، يؤهله، يحجز له موعدًا أو يوصله إلى فريق المبيعات ويتابع الفرصة.</p>
+            <p class="sol-card__line">يحوّل الاستفسارات إلى فرص وخطوات فعلية.</p>
+            <p>يفهم احتياج العميل، يؤهله، يحجز له موعدًا أو يوصله إلى فريق المبيعات، ويتابع الفرصة.</p>
           </a>
           <a class="sol-card" href="#scan">
             <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3.5a1.5 1.5 0 0 0 1.5 1.5H7v-5H4ZM20 13v3.5a1.5 1.5 0 0 1-1.5 1.5H17v-5h3Z"/><path d="M17.5 18v.8a2.2 2.2 0 0 1-2.2 2.2H12.8"/></svg></span></span>
             <h3>مساعد مهني متخصص بالذكاء الاصطناعي</h3>
-            <p class="sol-card__line">مساعد ذكي يُبنى لمهنة أو دور وظيفي محدد</p>
-            <p>ينظم المعلومات، يحلل المدخلات، يقترح الخطوات ويجهز المخرجات اليومية.</p>
+            <p class="sol-card__line">مساعد ذكي يُبنى لمهنة أو دور وظيفي محدد.</p>
+            <p>ينظم المعلومات، يحلل المدخلات، يقترح الخطوات، ويجهز المخرجات اليومية.</p>
           </a>
           <a class="sol-card" href="#scan">
             <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 3 5 13.5h6L11 21l8-10.5h-6L13 3Z"/></svg></span></span>
             <h3>أتمتة العمليات وسير العمل</h3>
-            <p class="sol-card__line">نؤتمت المهام المتكررة، ونربط البيانات والمتابعات والتنبيهات والتقارير ضمن مسار عمل واضح.</p>
+            <p class="sol-card__line">تخلّي الشغل يمشي بين أنظمتك بدون متابعة يدوية في كل خطوة.</p>
+            <p>نؤتمت المهام المتكررة، ونربط البيانات والمتابعات والتنبيهات والتقارير ضمن مسار عمل واضح.</p>
           </a>
         </div>
         <p class="solutions__note">ما لقيت اللي يشبه شغلك؟ نبني لك حلًا مخصصًا حسب عمليات نشاطك. <a href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener">صمّم الحل على عملياتك</a></p>
