@@ -3,211 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>صبّارة AI | شغلك كثير؟ خلّ صبّارة تشتغل معك</title>
-<meta name="description" content="صبّارة AI تبني وكلاء ذكاء اصطناعي وحلول أتمتة — للأعمال وللأفراد — مع الأمان والخصوصية والحوكمة مدمجة من البداية.">
+<title data-en="SABBARAH AI | Too much on your plate? Let Sabbarah work with you">صبّارة AI | شغلك كثير؟ خلّ صبّارة تشتغل معك</title>
+<meta name="description"
+      content="صبّارة AI تبني وكلاء ذكاء اصطناعي وحلول أتمتة — حلول مخصصة على عملياتك ومنتجات جاهزة بسعر ثابت — مع الأمان والخصوصية والحوكمة مدمجة من البداية."
+      data-en-content="SABBARAH AI builds AI agents and automation — custom solutions shaped around your operations and ready products at a fixed price — with security, privacy, and governance built in from day one.">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<!-- اللغة المحفوظة تُطبّق قبل الرسم لمنع وميض النص -->
+<script>
+(function(){
+  var d=document.documentElement;
+  try{
+    var l=localStorage.getItem('sabbarah-lang')==='en'?'en':'ar';
+    d.setAttribute('data-lang',l);
+    if(l==='en'){d.lang='en';d.dir='ltr';setTimeout(function(){d.classList.add('i18n-ready')},900);}
+    else{d.classList.add('i18n-ready');}
+  }catch(e){d.classList.add('i18n-ready');}
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/zahra.css">
-  <link rel="stylesheet" href="css/glow.css">
-
-<style>
-/* ============ فحص صبّارة (matched to the solutions rhythm) ============ */
-#scan{padding-top:clamp(20px,2.4vw,34px)}
-.scan-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
-  flex-wrap:wrap;margin-bottom:clamp(22px,2.4vw,30px)}
-.scan-head .section-heading{margin-bottom:0}
-.scan-head__badge{display:inline-flex;align-items:center;gap:9px;font-size:13px;
-  color:var(--muted);border:1px solid var(--line-strong);border-radius:999px;padding:8px 15px}
-.scan-head__badge b{color:var(--ink);font-weight:600}
-.scan{position:relative;border:1px solid var(--line-strong);border-radius:var(--radius-lg);
-  background:linear-gradient(150deg,rgba(20,46,41,.55),rgba(6,18,17,.6));
-  box-shadow:0 40px 110px -70px rgba(22,201,154,.55);
-  padding:clamp(22px,2.6vw,34px);min-height:376px;display:flex;flex-direction:column}
-.scan__stage[hidden]{display:none}
-.scan__stage{animation:fade .35s ease both;flex:1}
-/* intro is a 2-column panel so the card is never a tall empty box */
-.scan__intro{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(22px,3vw,44px);
-  align-items:center;height:100%}
-.scan__intro-copy h3{font-size:clamp(22px,2.4vw,30px)}
-.scan__intro-copy p{margin-top:14px;color:var(--muted);font-size:15.4px;max-width:42ch}
-.scan__intro-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}
-.scan__hint{font-size:13px;color:var(--muted-dim)}
-.scan__preview{border:1px solid var(--line);border-radius:var(--radius);
-  background:rgba(4,14,13,.5);padding:20px}
-.scan__preview b{display:block;font-size:12.8px;color:var(--muted-dim);font-weight:600;
-  letter-spacing:.02em;margin-bottom:14px}
-.scan__preview ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.scan__preview li{display:flex;gap:11px;align-items:flex-start;font-size:14.4px;color:#cfe0db}
-.scan__preview li i{flex:0 0 22px;height:22px;border-radius:8px;background:rgba(22,201,154,.12);
-  border:1px solid rgba(22,201,154,.25);color:var(--mint);font-style:normal;font-size:11.5px;
-  font-weight:700;display:grid;place-items:center;margin-top:3px;font-family:var(--ff-lat)}
-/* quiz */
-.scan__progress{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--muted)}
-.scan__bar{flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
-.scan__bar i{display:block;height:100%;width:0;border-radius:99px;
-  background:linear-gradient(90deg,var(--teal),var(--mint));transition:width .4s ease}
-.scan__question{margin-top:24px;font-size:clamp(20px,2.1vw,26px)}
-.scan__options{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
-.scan__opt{text-align:start;padding:15px 17px;border-radius:var(--radius);
-  border:1px solid var(--line-strong);background:rgba(255,255,255,.02);color:#dbe9e5;
-  font-size:15px;cursor:pointer;transition:.22s ease}
-.scan__opt:hover{border-color:rgba(63,232,182,.45);background:rgba(22,201,154,.09);
-  transform:translateY(-2px)}
-.scan__options--wide{grid-template-columns:repeat(3,1fr)}
-.scan__opt.is-picked{border-color:rgba(63,232,182,.5);background:rgba(22,201,154,.10)}
-.scan__back{margin-top:20px;background:none;border:0;color:var(--muted);font-size:13.5px;
-  cursor:pointer;padding:0}
-.scan__back:hover{color:var(--mint)}
-/* analyzing */
-.scan__stage--center{display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:22px;text-align:center;color:var(--muted)}
-.scan__radar{width:96px;height:96px;border-radius:50%;border:1px solid rgba(63,232,182,.25);
-  display:grid;place-items:center;position:relative}
-.scan__radar::before,.scan__radar::after{content:"";position:absolute;inset:0;border-radius:50%;
-  border:1px solid rgba(63,232,182,.35);animation:radar 2s ease-out infinite}
-.scan__radar::after{animation-delay:1s}
-@keyframes radar{from{transform:scale(.5);opacity:.9}to{transform:scale(1.15);opacity:0}}
-.scan__radar i{width:12px;height:12px;border-radius:50%;background:var(--mint)}
-/* result — توصية واحدة بارزة، والباقي يسندها */
-.scan__lead{border:1px solid rgba(63,232,182,.45);border-radius:var(--radius);
-  padding:clamp(22px,2.6vw,30px);display:flex;flex-direction:column;align-items:flex-start;gap:12px;
-  background:radial-gradient(120% 150% at 100% 0%,rgba(22,201,154,.16),transparent 62%),
-             linear-gradient(150deg,rgba(18,44,39,.7),rgba(4,14,13,.45));
-  box-shadow:0 26px 70px -50px rgba(22,201,154,.85)}
-.scan__lead>span{font-size:13px;font-weight:600;color:var(--mint)}
-.scan__lead b{font-size:clamp(23px,2.9vw,33px);line-height:1.32;color:#fff}
-.scan__badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);
-  border:1px solid var(--line-strong);border-radius:999px;padding:6px 14px;background:rgba(4,14,13,.4)}
-.scan__badge b{font-size:13px;color:var(--mint);font-weight:600}
-.scan__why{margin-top:18px;font-size:15.2px;color:#d7e6e1;line-height:1.8}
-.scan__why b{color:var(--mint);font-weight:600}
-.scan__human{margin-top:14px;font-size:13.6px;color:var(--muted-dim)}
-.scan__human b{color:#cfe0db;font-weight:600}
-/* المقارنة: وضعك الآن / مع صبّارة */
-.compare{margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
-.compare__title{font-size:clamp(18px,1.9vw,22px)}
-.compare__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--grid-gap);margin-top:18px}
-.compare__col{border:1px solid var(--line);border-radius:var(--radius);
-  background:rgba(4,14,13,.35);padding:18px 20px}
-.compare__col>span{display:block;font-size:13px;font-weight:600;color:var(--muted);
-  padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line)}
-.compare__col--next{border-color:rgba(63,232,182,.26);
-  background:linear-gradient(160deg,rgba(22,201,154,.07),rgba(4,14,13,.35))}
-.compare__col--next>span{color:var(--mint)}
-.cbars{display:grid;gap:15px}
-.cbar{display:grid;grid-template-columns:1fr auto;gap:7px 12px;font-size:13.8px}
-.cbar b{font-weight:600;color:#cfe0db}
-.cbar span{font-size:12.8px}
-.cbar i{grid-column:1/-1;height:6px;border-radius:99px;background:rgba(255,255,255,.06);
-  display:block;overflow:hidden}
-.cbar i::after{content:"";display:block;height:100%;width:var(--v,0%);border-radius:99px;
-  transition:width 1s cubic-bezier(.2,.8,.2,1)}
-/* وضعك الآن — احتكاك بالذهبي، وما هو مرتاح يبقى أخضر هادئ */
-.compare__col--now .cbar span{color:var(--gold)}
-.compare__col--now .cbar i::after{background:linear-gradient(90deg,rgba(242,207,74,.3),var(--gold))}
-.compare__col--now .cbar--ok span{color:var(--mint)}
-.compare__col--now .cbar--ok i::after{background:linear-gradient(90deg,rgba(22,201,154,.35),var(--mint))}
-/* مع صبّارة — كله بلون صبّارة */
-.compare__col--next .cbar span{color:var(--mint)}
-.compare__col--next .cbar i::after{background:linear-gradient(90deg,rgba(22,201,154,.4),var(--mint))}
-.compare__col--next .cbar--focus b{color:#fff}
-.compare__col--next .cbar--focus i::after{background:linear-gradient(90deg,var(--teal),var(--mint));
-  box-shadow:0 0 12px rgba(63,232,182,.45)}
-.compare__note{margin-top:14px;font-size:13px;color:var(--muted-dim)}
-.map-card{margin-top:24px;border:1px solid rgba(242,207,74,.28);border-radius:var(--radius);
-  background:linear-gradient(140deg,rgba(242,207,74,.07),rgba(6,18,17,.2));padding:22px}
-.map-card__label{font-size:12.6px;color:var(--gold);font-weight:600}
-.map-card h3{margin-top:8px;font-size:20px}
-.map-card p{margin-top:10px;color:var(--muted);font-size:14.6px;max-width:70ch}
-.map-card__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
-
-
-
-/* فحص صبّارة — responsive overrides */
-@media (max-width:1024px){
-  #scan .scan__intro{grid-template-columns:1fr}
-  #scan .compare__grid{grid-template-columns:1fr}
-  #scan .scan__options--wide{grid-template-columns:repeat(2,1fr)}
-}
-@media (max-width:640px){
-  #scan .scan__options,
-  #scan .scan__options--wide{grid-template-columns:1fr}
-  #scan .map-card__actions .button,
-  #scan .scan__intro-actions .button{width:100%}
-}
-
-
-/* ============ صبّارة للأفراد — بعد حذف الهوية المهنية ============ */
-#panelInd .sol-grid--2{
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:var(--grid-gap);
-}
-
-#panelInd .sol-card--soon{
-  min-height:180px;
-}
-
-#panelInd .ind-flag{
-  padding:clamp(24px,2.4vw,32px);
-}
-
-@media (max-width:640px){
-  #panelInd .sol-grid--2{
-    grid-template-columns:1fr;
-  }
-}
-
-/* ============ توحيد بطاقات حلول الأعمال بدون دفع المحتوى للأسفل ============ */
-#panelBiz .sol-card{
-  min-height:280px;
-  display:flex;
-  flex-direction:column;
-  align-items:stretch;
-}
-
-/* نلغي الـ auto الذي كان يخلق فراغًا كبيرًا تحت الأيقونة */
-#panelBiz .sol-card__top{
-  margin-bottom:22px;
-}
-
-#panelBiz .sol-card__icon{
-  margin-bottom:0;
-}
-
-/* مساحة موحّدة للعناوين فقط، مع بقاء النص في الأعلى */
-#panelBiz .sol-card h3{
-  min-height:3.15em;
-  display:block;
-  margin-top:0;
-  line-height:1.45;
-}
-
-/* الجملة التعريفية تبدأ مباشرة بعد العنوان */
-#panelBiz .sol-card .sol-card__line{
-  min-height:3.15em;
-  margin-top:10px;
-}
-
-/* الشرح الأخير يبقى متقاربًا ومتناسقًا */
-#panelBiz .sol-card > p:last-child{
-  margin-top:8px;
-}
-
-/* على الجوال نرجع للارتفاع الطبيعي */
-@media (max-width:640px){
-  #panelBiz .sol-card{
-    min-height:auto;
-  }
-
-  #panelBiz .sol-card h3,
-  #panelBiz .sol-card .sol-card__line{
-    min-height:0;
-  }
-}
-
-</style>
+<link rel="stylesheet" href="css/glow.css">
 </head>
 <body>
 
@@ -246,20 +65,32 @@
 <!-- ============ HEADER ============ -->
 <header class="site-header" id="top">
   <div class="container nav">
-    <a class="brand" href="#top" aria-label="صبّارة AI — الرئيسية">
+    <a class="brand" href="index.html" aria-label="صبّارة AI — الرئيسية" data-en-aria-label="SABBARAH AI — Home">
       <svg class="brand__icon" aria-hidden="true"><use href="#logo"/></svg>
-      <span class="brand__text"><strong>صبّارة AI</strong><em>SABBARAH AI</em></span>
+      <span class="brand__text">
+        <strong data-en="SABBARAH AI">صبّارة AI</strong>
+        <em data-en="صبّارة AI">SABBARAH AI</em>
+      </span>
     </a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="فتح القائمة"><span></span><span></span><span></span></button>
-    <nav class="nav-menu" id="navMenu" aria-label="التنقل الرئيسي">
-      <a href="#top">الرئيسية</a>
-      <a href="#business" data-aud="biz">للأعمال</a>
-      <a href="#business" data-aud="ind">للأفراد</a>
-      <a href="#scan">فحص صبّارة</a>
-      <a href="#process">كيف نعمل</a>
-      <a href="#contact">تواصل معنا</a>
+
+    <nav class="nav-menu" id="navMenu" aria-label="التنقل الرئيسي" data-en-aria-label="Main navigation">
+      <a href="#top" data-en="Home">الرئيسية</a>
+      <a href="#custom-solutions" data-en="Custom Solutions">الحلول المخصصة</a>
+      <a href="#ready-products" data-en="Ready Products">المنتجات الجاهزة</a>
+      <a href="#scan" data-en="Sabbarah Scan">فحص صبّارة</a>
+      <a href="pricing.html" data-en="Pricing">الأسعار</a>
+      <a href="#process" data-nav-optional data-en="How We Work">كيف نعمل</a>
+      <a href="#contact" data-en="Contact">تواصل معنا</a>
     </nav>
-    <a class="button button--outline" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener">احجز استشارة</a>
+
+    <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="اللغة" data-en-aria-label="Language">
+        <button type="button" data-lang-btn="ar" aria-pressed="true" lang="ar">ع</button>
+        <button type="button" data-lang-btn="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+      <a class="button button--outline" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Book a consultation">احجز استشارة</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="فتح القائمة" data-en-aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </header>
 
@@ -268,102 +99,119 @@
   <section class="hero">
     <div class="container hero__grid">
       <div class="hero__copy">
-        <span class="kicker">صبّارة AI · ذكاء اصطناعي وأتمتة للأعمال</span>
-        <h1>شغلك كثير؟<span>خلّ صبّارة تشتغل معك.</span></h1>
-        <p>نبني وكلاء ذكاء اصطناعي وأنظمة أتمتة تساعد أعمالك ترد، تتابع، وتنجز — مع الأمان والخصوصية والحوكمة مدمجة من البداية.</p>
+        <span class="kicker" data-en="SABBARAH AI · AI and automation">صبّارة AI · ذكاء اصطناعي وأتمتة</span>
+        <h1 data-en="Too much on your plate?<span>Let Sabbarah work with you.</span>">شغلك كثير؟<span>خلّ صبّارة تشتغل معك.</span></h1>
+        <p data-en="We build AI agents and automation systems that help your business reply, follow up, and get things done — with security, privacy, and governance built in from the start.">نبني وكلاء ذكاء اصطناعي وأنظمة أتمتة تساعد أعمالك ترد، تتابع، وتنجز — مع الأمان والخصوصية والحوكمة مدمجة من البداية.</p>
         <div class="hero__actions">
-          <a class="button button--primary" href="#scan">افحص نشاطك مجانًا</a>
-          <a class="button button--ghost" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener">احجز استشارة</a>
+          <a class="button button--primary" href="#scan" data-en="Run your free check">افحص نشاطك مجانًا</a>
+          <a class="button button--ghost" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Book a consultation">احجز استشارة</a>
         </div>
-        <p class="trust-line">خصوصية من التصميم <i>•</i> إشراف بشري <i>•</i> حوكمة واضحة</p>
+        <p class="trust-line" data-en="Privacy by design <i>•</i> Human oversight <i>•</i> Clear governance">خصوصية من التصميم <i>•</i> إشراف بشري <i>•</i> حوكمة واضحة</p>
       </div>
 
       <div class="hero__demo">
-        <div class="demo" aria-label="مثال حي لتفاعل صبّارة مع عميل">
-          <div class="demo__head"><span class="demo__dot"></span> صبّارة ترد الآن <span class="demo__tag">مثال حي</span></div>
+        <div class="demo" aria-label="مثال حي لتفاعل صبّارة مع عميل" data-en-aria-label="A live example of Sabbarah interacting with a customer">
+          <div class="demo__head">
+            <span class="demo__dot"></span>
+            <span data-en="Sabbarah is replying">صبّارة ترد الآن</span>
+            <span class="demo__tag" data-en="Live example">مثال حي</span>
+          </div>
           <div class="demo__body" id="demoBody"></div>
-          <div class="demo__flow" aria-hidden="true">فهم السؤال ← اقتراح الخطوة ← التقاط العميل ← متابعة تلقائية</div>
+          <div class="demo__flow" aria-hidden="true" data-en="Understand the question → Suggest the next step → Capture the lead → Automatic follow-up">فهم السؤال ← اقتراح الخطوة ← التقاط العميل ← متابعة تلقائية</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ حلول صبّارة (للأعمال / للأفراد) ============ -->
-  <section class="section" id="business">
+  <!-- ============ الحلول المخصصة ============ -->
+  <section class="section" id="custom-solutions">
     <div class="container">
-      <div class="section-heading reveal" id="solHeading">
-        <span class="eyebrow" id="solEyebrow">صبّارة للأعمال</span>
-        <h2 id="solTitle">حلول ذكية لأعمالك</h2>
-        <p id="solSub">من خدمة العميل إلى متابعة الفرص وتشغيل المهام اليومية — حلول جاهزة، ونبني لك حلًا مخصصًا حسب احتياج نشاطك.</p>
+      <div class="section-heading reveal">
+        <span class="eyebrow" data-en="Custom Solutions">الحلول المخصصة</span>
+        <h2 data-en="AI and automation solutions built around the way you work">حلول ذكاء اصطناعي وأتمتة تُبنى على طريقة عملك</h2>
+        <p data-en="We understand the process, design the solution, connect the systems, and run it with you — with privacy, controls, and human oversight from day one.">نفهم العملية، نصمم الحل، نربط الأنظمة، ونشغّله معك — مع الخصوصية والضوابط والإشراف البشري من البداية.</p>
       </div>
 
-      <div class="aud-switch reveal" role="tablist" aria-label="اختر فئتك">
-        <span class="aud-switch__thumb" aria-hidden="true"></span>
-        <button class="aud-switch__btn is-active" id="tabBiz" type="button" role="tab" aria-selected="true" aria-controls="panelBiz">للأعمال</button>
-        <button class="aud-switch__btn" id="tabInd" type="button" role="tab" aria-selected="false" aria-controls="panelInd" tabindex="-1">للأفراد</button>
-      </div>
+      <div class="sol-grid sol-grid--2 reveal">
 
-      <!-- للأعمال -->
-      <div class="aud-panel reveal" id="panelBiz" role="tabpanel" aria-labelledby="tabBiz">
-        <div class="sol-grid sol-grid--2">
-          <a class="sol-card" href="#scan">
-            <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 16.5l5.5-5.5 4 4L20 7.5"/><path d="M15 7.5h5v5"/></svg></span></span>
-            <h3>وكيل ذكاء اصطناعي لخدمة العملاء</h3>
-            <p class="sol-card__line">يخدم عملاءك قبل وبعد البيع.</p>
-            <p>يرد على الاستفسارات، يساعد في الطلبات والشكاوى، ويحوّل الحالات المعقدة أو الحساسة إلى فريقك.</p>
-          </a>
-          <a class="sol-card" href="#scan">
-            <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M12 7.4v4.9l3.1 1.9"/></svg></span></span>
-            <h3>وكيل ذكاء اصطناعي للمبيعات والحجوزات</h3>
-            <p class="sol-card__line">يحوّل الاستفسارات إلى فرص وخطوات فعلية.</p>
-            <p>يفهم احتياج العميل، يؤهله، يحجز له موعدًا أو يوصله إلى فريق المبيعات، ويتابع الفرصة.</p>
-          </a>
-          <a class="sol-card" href="#scan">
-            <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3.5a1.5 1.5 0 0 0 1.5 1.5H7v-5H4ZM20 13v3.5a1.5 1.5 0 0 1-1.5 1.5H17v-5h3Z"/><path d="M17.5 18v.8a2.2 2.2 0 0 1-2.2 2.2H12.8"/></svg></span></span>
-            <h3>مساعد مهني متخصص بالذكاء الاصطناعي</h3>
-            <p class="sol-card__line">مساعد ذكي يُبنى لمهنة أو دور وظيفي محدد.</p>
-            <p>ينظم المعلومات، يحلل المدخلات، يقترح الخطوات، ويجهز المخرجات اليومية.</p>
-          </a>
-          <a class="sol-card" href="#scan">
-            <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 3 5 13.5h6L11 21l8-10.5h-6L13 3Z"/></svg></span></span>
-            <h3>أتمتة العمليات وسير العمل</h3>
-            <p class="sol-card__line"> تربط خطوات العمل والأنظمة ضمن مسار واضح ومتكامل.</p>
-            <p>نؤتمت المهام المتكررة، ونربط البيانات والمتابعات والتنبيهات والتقارير ضمن مسار عمل واضح.</p>
-          </a>
-        </div>
-        <p class="solutions__note">ما لقيت اللي يشبه شغلك؟ نبني لك حلًا مخصصًا حسب عمليات نشاطك. <a href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener">صمّم الحل على عملياتك</a></p>
-      </div>
-
-      <!-- للأفراد -->
-      <div class="aud-panel reveal" id="panelInd" role="tabpanel" aria-labelledby="tabInd" hidden>
-        <article class="ind-flag">
-          <div class="ind-flag__top">
-            <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M7 16c.8-1.6 2-2.4 3.6-2.4S13.4 14.4 14 16M15 8h2M15 11h2"/></svg></span>
-            <span class="tag tag--now">متاح الآن</span>
-          </div>
-          <h3>البورتفوليو الذكي</h3>
-          <p class="ind-flag__lead">موقع مهني تفاعلي يعرض خبرتك ومشاريعك، ومعه مساعد ذكي يجيب عنك</p>
-          <p>يجمع خبرتك ومهاراتك ومشاريعك في مكان واحد، ويتيح للزائر استكشاف معلوماتك المهنية وسؤال المساعد الذكي عنها.</p>
-          <div class="ind-flag__actions">
-            <a class="button button--primary" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener">اكتشف البورتفوليو الذكي</a>
+        <!-- A — وكيل ذكاء اصطناعي لخدمة العملاء -->
+        <article class="sol-card sol-card--priced">
+          <span class="sol-card__top">
+            <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3.5a1.5 1.5 0 0 0 1.5 1.5H7v-5H4ZM20 13v3.5a1.5 1.5 0 0 1-1.5 1.5H17v-5h3Z"/><path d="M17.5 18v.8a2.2 2.2 0 0 1-2.2 2.2H12.8"/></svg></span>
+          </span>
+          <h3 data-en="AI Customer Service Agent">وكيل ذكاء اصطناعي لخدمة العملاء</h3>
+          <p data-en="Answers customer inquiries, helps with orders, and hands complex or sensitive cases to your team.">يرد على استفسارات العملاء، يساعد في الطلبات، ويحوّل الحالات المعقدة أو الحساسة إلى فريقك.</p>
+          <div class="price-block">
+            <div class="price-block__rule"></div>
+            <p class="price-block__main" data-en="From SAR 9,900">يبدأ من 9,900 ريال</p>
+            <p class="price-block__sub" data-en="Operation and management from SAR 1,900/month">التشغيل والإدارة من 1,900 ريال شهريًا</p>
+            <a class="price-block__cta" href="pricing.html#customer-service-agent" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
           </div>
         </article>
 
-        <div class="sol-grid sol-grid--2">
+        <!-- B — وكيل ذكاء اصطناعي للمبيعات والحجوزات -->
+        <article class="sol-card sol-card--priced">
+          <span class="sol-card__top">
+            <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 16.5l5.5-5.5 4 4L20 7.5"/><path d="M15 7.5h5v5"/></svg></span>
+          </span>
+          <h3 data-en="AI Sales &amp; Booking Agent">وكيل ذكاء اصطناعي للمبيعات والحجوزات</h3>
+          <p data-en="Qualifies the customer, guides them to the right next step, and books an appointment or hands over to your sales team.">يؤهل العميل، يوجّهه إلى الخطوة المناسبة، ويحجز أو يحوّله إلى فريق المبيعات.</p>
+          <div class="price-block">
+            <div class="price-block__rule"></div>
+            <p class="price-block__main" data-en="From SAR 13,900">يبدأ من 13,900 ريال</p>
+            <p class="price-block__sub" data-en="Operation and management from SAR 2,400/month">التشغيل والإدارة من 2,400 ريال شهريًا</p>
+            <a class="price-block__cta" href="pricing.html#sales-booking-agent" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
+          </div>
+        </article>
 
-          <article class="sol-card sol-card--soon">
-            <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h9l4 4V20.5H6z"/><path d="M14.5 3.5V8H19"/><path d="M9 12.5h6M9 16h4"/></svg></span><span class="tag tag--soon">قريبًا</span></span>
-            <h3>مساعد التقديم الوظيفي</h3>
-            <p>يساعدك تجهز لكل فرصة، وتنظم تقديماتك ومتابعاتك واستعدادك للمقابلات.</p>
-          </article>
-          <article class="sol-card sol-card--soon">
-            <span class="sol-card__top"><span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="8" width="17" height="11" rx="2.5"/><path d="M9 8V6.5A2.5 2.5 0 0 1 11.5 4h1A2.5 2.5 0 0 1 15 6.5V8M3.5 12.5h17"/></svg></span><span class="tag tag--soon">قريبًا</span></span>
-            <h3>مساعد المستقل بالذكاء الاصطناعي</h3>
-            <p>ينظم استفسارات العملاء والطلبات والمواعيد والمتابعة، عشان تركز على تنفيذ شغلك</p>
-          </article>
-        </div>
-        <p class="solutions__note">تبي تبدأ بالبورتفوليو الذكي؟ <a href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener">احجز مكالمة قصيرة</a></p>
+        <!-- C — مساعد مهني متخصص بالذكاء الاصطناعي -->
+        <article class="sol-card sol-card--priced">
+          <span class="sol-card__top">
+            <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h9l4 4V20.5H6z"/><path d="M14.5 3.5V8H19"/><path d="M9 12.5h6M9 16h4"/></svg></span>
+          </span>
+          <h3 data-en="Specialized Professional AI Assistant">مساعد مهني متخصص بالذكاء الاصطناعي</h3>
+          <p data-en="An assistant built for one specific profession or role — it organises information, analyses inputs, and prepares the outputs.">مساعد يُبنى لمهنة أو دور وظيفي محدد، وينظم المعلومات ويحلل المدخلات ويجهز المخرجات.</p>
+          <div class="price-block">
+            <div class="price-block__rule"></div>
+            <p class="price-block__main" data-en="From SAR 18,900">يبدأ من 18,900 ريال</p>
+            <p class="price-block__sub" data-en="Operation and management from SAR 1,490/month">التشغيل والإدارة من 1,490 ريال شهريًا</p>
+            <a class="price-block__cta" href="pricing.html#professional-ai-assistant" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
+          </div>
+        </article>
+
+        <!-- D — أتمتة العمليات وسير العمل -->
+        <article class="sol-card sol-card--priced">
+          <span class="sol-card__top">
+            <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 3 5 13.5h6L11 21l8-10.5h-6L13 3Z"/></svg></span>
+          </span>
+          <h3 data-en="Workflow &amp; Process Automation">أتمتة العمليات وسير العمل</h3>
+          <p data-en="Connects your work steps and systems, automating data movement, follow-ups, alerts, and reports.">تربط خطوات العمل والأنظمة، وتؤتمت نقل البيانات والمتابعات والتنبيهات والتقارير.</p>
+          <div class="price-block">
+            <div class="price-block__rule"></div>
+            <p class="price-block__main" data-en="From SAR 9,900 for a simple workflow">تبدأ من 9,900 ريال للمسار البسيط</p>
+            <p class="price-block__sub" data-en="Monitoring and maintenance from SAR 990/month">المراقبة والصيانة من 990 ريال شهريًا</p>
+            <a class="price-block__cta" href="pricing.html#workflow-automation" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
+          </div>
+        </article>
+
+        <!-- E — حل ذكاء اصطناعي وأتمتة مخصص -->
+        <article class="sol-card sol-card--priced sol-card--wide">
+          <span class="sol-card__top">
+            <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.4"/><circle cx="5" cy="6.5" r="2"/><circle cx="19" cy="6.5" r="2"/><circle cx="5" cy="17.5" r="2"/><circle cx="19" cy="17.5" r="2"/><path d="M6.6 7.8 10.2 10.6M17.4 7.8 13.8 10.6M6.6 16.2 10.2 13.4M17.4 16.2 13.8 13.4"/></svg></span>
+          </span>
+          <h3 data-en="Custom AI &amp; Automation Solution">حل ذكاء اصطناعي وأتمتة مخصص</h3>
+          <p data-en="A complete solution for organisations that need several agents, channels, integrations, or their own operating logic.">حل متكامل للمنشآت التي تحتاج عدة وكلاء أو قنوات أو تكاملات أو منطق تشغيل خاص.</p>
+          <div class="price-block">
+            <div class="price-block__rule"></div>
+            <p class="price-block__main" data-en="From SAR 29,900">يبدأ من 29,900 ريال</p>
+            <p class="price-block__sub" data-en="Managed operation from SAR 2,490/month">التشغيل المُدار من 2,490 ريال شهريًا</p>
+            <a class="price-block__cta" href="pricing.html#custom-ai-solution" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
+          </div>
+        </article>
+
       </div>
+
+      <p class="solutions__note reveal" data-en="Not sure which one fits? Start with the free check, or see the full price list. <a href=&quot;pricing.html&quot;>View all pricing</a>">ما تدري أيها يناسبك؟ ابدأ بالفحص المجاني، أو اطّلع على قائمة الأسعار كاملة. <a href="pricing.html">شوف كل الأسعار</a></p>
     </div>
   </section>
 
@@ -372,11 +220,11 @@
     <div class="container">
       <div class="scan-head reveal">
         <div class="section-heading">
-          <span class="eyebrow eyebrow--gold">الخطوة الأولى</span>
-          <h2>فحص صبّارة</h2>
-          <p>شوف وين يضيع وقتك، ووين تضيع الفرص. أسئلة قصيرة — أقل من دقيقة.</p>
+          <span class="eyebrow eyebrow--gold" data-en="First step">الخطوة الأولى</span>
+          <h2 data-en="Sabbarah Scan">فحص صبّارة</h2>
+          <p data-en="See where your time goes and where opportunities slip away. Short questions — under a minute.">شوف وين يضيع وقتك، ووين تضيع الفرص. أسئلة قصيرة — أقل من دقيقة.</p>
         </div>
-        <span class="scan-head__badge">🌵 <b>7 أسئلة</b> · بدون تسجيل · نتيجة فورية</span>
+        <span class="scan-head__badge" data-en="🌵 <b>7 questions</b> · No sign-up · Instant result">🌵 <b>7 أسئلة</b> · بدون تسجيل · نتيجة فورية</span>
       </div>
 
       <div class="scan reveal" id="scanPanel">
@@ -384,19 +232,19 @@
         <div class="scan__stage" id="scanIntro">
           <div class="scan__intro">
             <div class="scan__intro-copy">
-              <h3>ما تدري وش يستاهل تأتمت أول؟</h3>
-              <p>سبع أسئلة قصيرة — نبدأ بنوع نشاطك — وصبّارة تشخّص وين يضيع وقتك، ووين تتسرب الفرص، ومن وين تبدأ.</p>
+              <h3 data-en="Not sure what to automate first?">ما تدري وش يستاهل تأتمت أول؟</h3>
+              <p data-en="Seven short questions — starting with your business type — and Sabbarah pinpoints where your time goes, where opportunities leak, and where to start.">سبع أسئلة قصيرة — نبدأ بنوع نشاطك — وصبّارة تشخّص وين يضيع وقتك، ووين تتسرب الفرص، ومن وين تبدأ.</p>
               <div class="scan__intro-actions">
-                <button class="button button--primary" id="scanStart">ابدأ الفحص</button>
-                <span class="scan__hint">بدون تسجيل وبدون رابط موقع — بس سبع إجابات.</span>
+                <button class="button button--primary" id="scanStart" data-en="Start the check">ابدأ الفحص</button>
+                <span class="scan__hint" data-en="No sign-up and no website link — just seven answers.">بدون تسجيل وبدون رابط موقع — بس سبع إجابات.</span>
               </div>
             </div>
             <div class="scan__preview">
-              <b>وش تطلع به من الفحص</b>
+              <b data-en="What you get from the check">وش تطلع به من الفحص</b>
               <ul>
-                <li><i>01</i><span>أولوية الأتمتة عند نشاطك: منخفضة، متوسطة، مرتفعة، أو مرتفعة جدًا.</span></li>
-                <li><i>02</i><span>قراءة لأربعة محاور: ضغط التواصل، فقدان الفرص، العمل المتكرر، ترابط الأنظمة.</span></li>
-                <li><i>03</i><span>أول موضع يستاهل الأتمتة عندك — وليش هو بالذات.</span></li>
+                <li><i>01</i><span data-en="Your automation priority: low, moderate, high, or very high.">أولوية الأتمتة عند نشاطك: منخفضة، متوسطة، مرتفعة، أو مرتفعة جدًا.</span></li>
+                <li><i>02</i><span data-en="A read on four axes: communication load, lost opportunities, repetitive work, and system connectivity.">قراءة لأربعة محاور: ضغط التواصل، فقدان الفرص، العمل المتكرر، ترابط الأنظمة.</span></li>
+                <li><i>03</i><span data-en="The first area worth automating — and exactly why.">أول موضع يستاهل الأتمتة عندك — وليش هو بالذات.</span></li>
               </ul>
             </div>
           </div>
@@ -419,9 +267,9 @@
         <!-- result -->
         <div class="scan__stage" id="scanResult" hidden>
           <div class="scan__lead">
-            <span>أول موضع يستاهل الأتمتة عندك</span>
+            <span data-en="The first area worth automating">أول موضع يستاهل الأتمتة عندك</span>
             <b id="scanTop">—</b>
-            <span class="scan__badge">أولوية الأتمتة: <b id="scanPriority">—</b></span>
+            <span class="scan__badge"><span data-en="Automation priority:">أولوية الأتمتة:</span> <b id="scanPriority">—</b></span>
           </div>
 
           <p class="scan__why" id="scanWhy"></p>
@@ -429,21 +277,21 @@
           <p class="scan__human" id="scanHuman"></p>
 
           <section class="compare" aria-labelledby="cmpTitle">
-            <h4 class="compare__title" id="cmpTitle">الفرق اللي ممكن تصنعه صبّارة</h4>
+            <h4 class="compare__title" id="cmpTitle" data-en="The difference Sabbarah can make">الفرق اللي ممكن تصنعه صبّارة</h4>
             <div class="compare__grid">
-              <div class="compare__col compare__col--now"><span>وضعك الآن</span><div class="cbars" id="cmpNow"></div></div>
-              <div class="compare__col compare__col--next"><span>المستهدف مع صبّارة</span><div class="cbars" id="cmpNext"></div></div>
+              <div class="compare__col compare__col--now"><span data-en="Where you are now">وضعك الآن</span><div class="cbars" id="cmpNow"></div></div>
+              <div class="compare__col compare__col--next"><span data-en="Target with Sabbarah">المستهدف مع صبّارة</span><div class="cbars" id="cmpNext"></div></div>
             </div>
-            <p class="compare__note">تصور مبدئي بناءً على إجاباتك، ويتحدد الأثر الفعلي بعد تصميم الحل.</p>
+            <p class="compare__note" data-en="An initial picture based on your answers; the actual impact is set once the solution is designed.">تصور مبدئي بناءً على إجاباتك، ويتحدد الأثر الفعلي بعد تصميم الحل.</p>
           </section>
 
           <div class="map-card">
-            <span class="map-card__label">المرحلة التالية بعد فحص صبّارة</span>
-            <h3>خريطة صبّارة — من التشخيص إلى الحل</h3>
-            <p>الفحص يوضح لك أين توجد الفرص. خريطة صبّارة تحوّل النتيجة إلى تصور مخصص يحدد الأولويات، نطاق الحل، التكاملات المطلوبة، الضوابط، ومؤشرات النجاح.</p>
+            <span class="map-card__label" data-en="The next step after the Sabbarah Scan">المرحلة التالية بعد فحص صبّارة</span>
+            <h3 data-en="Sabbarah Map — from diagnosis to solution">خريطة صبّارة — من التشخيص إلى الحل</h3>
+            <p data-en="The check shows you where the opportunities are. Sabbarah Map turns that result into a tailored plan: priorities, solution scope, required integrations, controls, and success metrics.">الفحص يوضح لك أين توجد الفرص. خريطة صبّارة تحوّل النتيجة إلى تصور مخصص يحدد الأولويات، نطاق الحل، التكاملات المطلوبة، الضوابط، ومؤشرات النجاح.</p>
             <div class="map-card__actions">
-              <a class="button button--primary" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener">اطلب خريطة صبّارة</a>
-              <button class="button button--ghost" id="scanRestart">أعد الفحص</button>
+              <a class="button button--primary" href="pricing.html#sabbarah-map" data-en="See Sabbarah Map">اطّلع على خريطة صبّارة</a>
+              <button class="button button--ghost" id="scanRestart" data-en="Restart the check">أعد الفحص</button>
             </div>
           </div>
         </div>
@@ -455,17 +303,50 @@
   <section class="section" id="guard">
     <div class="container guard reveal">
       <div class="guard__copy">
-        <span class="eyebrow eyebrow--gold">نبنيها صح</span>
-        <h2>الذكاء الاصطناعي وحده ما يكفي.</h2>
-        <p>في صبّارة، الأمن والخصوصية والحوكمة جزء من التصميم من البداية، وليس إضافة بعد التشغيل. هذا هو <b>صبّارة تحمي</b>.</p>
+        <span class="eyebrow eyebrow--gold" data-en="We build it right">نبنيها صح</span>
+        <h2 data-en="AI alone is not enough.">الذكاء الاصطناعي وحده ما يكفي.</h2>
+        <p data-en="At Sabbarah, security, privacy, and governance are part of the design from day one — not an addition after launch. This is <b>صبّارة تحمي</b>.">في صبّارة، الأمن والخصوصية والحوكمة جزء من التصميم من البداية، وليس إضافة بعد التشغيل. هذا هو <b>صبّارة تحمي</b>.</p>
       </div>
       <ul class="guard__list">
-        <li><b>الخصوصية من البداية</b><span>Privacy by Design</span></li>
-        <li><b>صلاحيات واضحة</b><span>Access Control</span></li>
-        <li><b>إشراف بشري</b><span>Human Oversight</span></li>
-        <li><b>مراقبة مستمرة</b><span>Monitoring</span></li>
-        <li><b>حوكمة الذكاء الاصطناعي</b><span>AI Governance</span></li>
+        <li><b data-en="Privacy by Design">الخصوصية من البداية</b><span data-en="الخصوصية من البداية">Privacy by Design</span></li>
+        <li><b data-en="Access Control">صلاحيات واضحة</b><span data-en="صلاحيات واضحة">Access Control</span></li>
+        <li><b data-en="Human Oversight">إشراف بشري</b><span data-en="إشراف بشري">Human Oversight</span></li>
+        <li><b data-en="Monitoring">مراقبة مستمرة</b><span data-en="مراقبة مستمرة">Monitoring</span></li>
+        <li><b data-en="AI Governance">حوكمة الذكاء الاصطناعي</b><span data-en="حوكمة الذكاء الاصطناعي">AI Governance</span></li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ============ المنتجات الجاهزة ============ -->
+  <section class="section" id="ready-products">
+    <div class="container">
+      <div class="section-heading reveal">
+        <span class="eyebrow" data-en="Ready Products">المنتجات الجاهزة</span>
+        <h2 data-en="Clear products, with a defined price and scope">منتجات واضحة، بسعر ونطاق محدد</h2>
+        <p data-en="Products ready to buy, with defined delivery and clear pricing — without a long custom project.">منتجات جاهزة للشراء، بتسليم محدد وسعر واضح — بدون مشروع مخصص طويل.</p>
+      </div>
+
+      <article class="ready-flag reveal">
+        <div class="ready-flag__copy">
+          <div class="ready-flag__top">
+            <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M7 16c.8-1.6 2-2.4 3.6-2.4S13.4 14.4 14 16M15 8h2M15 11h2"/></svg></span>
+            <span class="tag tag--now" data-en="Available now">متاح الآن</span>
+          </div>
+          <h3 data-en="Smart Portfolio">البورتفوليو الذكي</h3>
+          <p class="ready-flag__lead" data-en="An interactive professional site that presents your experience and projects, with an AI assistant that answers questions about your professional background.">موقع مهني تفاعلي يعرض خبرتك ومشاريعك، ومعه مساعد ذكي يجيب عن معلوماتك المهنية.</p>
+          <p data-en="It brings your experience, skills, and projects together in one place, and lets visitors explore your professional background and ask the assistant about it.">يجمع خبرتك ومهاراتك ومشاريعك في مكان واحد، ويتيح للزائر استكشاف معلوماتك المهنية وسؤال المساعد الذكي عنها.</p>
+          <div class="ready-flag__actions">
+            <a class="button button--primary" href="pricing.html#smart-portfolio" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
+          </div>
+        </div>
+
+        <div class="ready-flag__pricebox">
+          <span data-en="Fixed price">سعر ثابت</span>
+          <b data-en="SAR 1,900">1,900 ريال</b>
+          <em data-en="One-time">دفعة واحدة</em>
+          <p class="ready-flag__renew" data-en="Renewal after the first year: SAR 890/year">التجديد بعد السنة الأولى: 890 ريال سنويًا</p>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -473,15 +354,15 @@
   <section class="section" id="process">
     <div class="container">
       <div class="section-heading reveal">
-        <span class="eyebrow">كيف نعمل</span>
-        <h2>من الفكرة إلى التشغيل</h2>
-        <p>مسار واضح من فهم المشكلة إلى تشغيل الحل ودعمه.</p>
+        <span class="eyebrow" data-en="How We Work">كيف نعمل</span>
+        <h2 data-en="From idea to operation">من الفكرة إلى التشغيل</h2>
+        <p data-en="A clear path from understanding the problem to running and supporting the solution.">مسار واضح من فهم المشكلة إلى تشغيل الحل ودعمه.</p>
       </div>
       <ol class="steps reveal">
-        <li><i>01</i><b>نفهم</b><span>احتياجك وعملياتك وأين يضيع الوقت.</span></li>
-        <li><i>02</i><b>نصمم</b><span>الحل والمسارات والضوابط المطلوبة.</span></li>
-        <li><i>03</i><b>نبني ونختبر</b><span>الوظائف والتكاملات والأمان قبل التشغيل.</span></li>
-        <li><i>04</i><b>نشغّل وندعم</b><span>إطلاق، مراقبة، وتحسين مستمر.</span></li>
+        <li><i>01</i><b data-en="Understand">نفهم</b><span data-en="Your needs, your operations, and where time is lost.">احتياجك وعملياتك وأين يضيع الوقت.</span></li>
+        <li><i>02</i><b data-en="Design">نصمم</b><span data-en="The solution, the flows, and the controls required.">الحل والمسارات والضوابط المطلوبة.</span></li>
+        <li><i>03</i><b data-en="Build &amp; test">نبني ونختبر</b><span data-en="Functionality, integrations, and security before launch.">الوظائف والتكاملات والأمان قبل التشغيل.</span></li>
+        <li><i>04</i><b data-en="Run &amp; support">نشغّل وندعم</b><span data-en="Launch, monitoring, and continuous improvement.">إطلاق، مراقبة، وتحسين مستمر.</span></li>
       </ol>
     </div>
   </section>
@@ -490,16 +371,31 @@
   <section class="section" id="faq">
     <div class="container faq-wrap">
       <div class="section-heading reveal">
-        <span class="eyebrow">الأسئلة الشائعة</span>
-        <h2>قبل ما نبدأ</h2>
-        <p>إجابات مباشرة على أكثر الأسئلة اللي تدور في بالك.</p>
+        <span class="eyebrow" data-en="FAQ">الأسئلة الشائعة</span>
+        <h2 data-en="Before we start">قبل ما نبدأ</h2>
+        <p data-en="Direct answers to the questions that come up most.">إجابات مباشرة على أكثر الأسئلة اللي تدور في بالك.</p>
       </div>
       <div class="faq reveal">
-        <details><summary>وش تقدر صبّارة تأتمت؟</summary><p>أي عملية متكررة وقابلة لوصف خطواتها بوضوح قد تكون مرشحة للأتمتة، مثل الردود، المتابعة، نقل البيانات، التنبيهات، والتكامل بين الأنظمة.</p></details>
-        <details><summary>هل الحل يكون مخصص لنشاطي؟</summary><p>نعم. نبدأ بفهم سير العمل الفعلي ثم نصمم الحل على احتياج النشاط والأنظمة المستخدمة فيه.</p></details>
-        <details><summary>هل الذكاء الاصطناعي يستبدل موظفيني؟</summary><p>الهدف هو تقليل العمل المتكرر وتمكين الفريق من التركيز على المهام التي تحتاج حكمًا بشريًا، مع إبقاء التدخل البشري ضمن التصميم عند الحاجة.</p></details>
-        <details><summary>كيف تتعاملون مع البيانات والخصوصية؟</summary><p>نأخذ في الاعتبار نوع البيانات، الصلاحيات، أقل قدر من الوصول، وفصل المسؤوليات ضمن تصميم الحل منذ البداية.</p></details>
-        <details><summary>هل أقدر أبدأ بحل صغير وأطوره لاحقًا؟</summary><p>نعم. يمكن البدء بنطاق واضح ومحدود ثم التوسع بعد قياس النتيجة والتأكد من ملاءمة الحل.</p></details>
+        <details>
+          <summary data-en="What can Sabbarah automate?">وش تقدر صبّارة تأتمت؟</summary>
+          <p data-en="Any repetitive process whose steps can be described clearly is a candidate for automation — replies, follow-up, data movement, alerts, and integration between systems.">أي عملية متكررة وقابلة لوصف خطواتها بوضوح قد تكون مرشحة للأتمتة، مثل الردود، المتابعة، نقل البيانات، التنبيهات، والتكامل بين الأنظمة.</p>
+        </details>
+        <details>
+          <summary data-en="Will the solution be tailored to my business?">هل الحل يكون مخصص لنشاطي؟</summary>
+          <p data-en="Yes. We start by understanding your actual workflow, then design the solution around your needs and the systems you already use.">نعم. نبدأ بفهم سير العمل الفعلي ثم نصمم الحل على احتياج النشاط والأنظمة المستخدمة فيه.</p>
+        </details>
+        <details>
+          <summary data-en="Will AI replace my employees?">هل الذكاء الاصطناعي يستبدل موظفيني؟</summary>
+          <p data-en="The goal is to reduce repetitive work so your team can focus on what needs human judgement — with human intervention kept in the design wherever it is needed.">الهدف هو تقليل العمل المتكرر وتمكين الفريق من التركيز على المهام التي تحتاج حكمًا بشريًا، مع إبقاء التدخل البشري ضمن التصميم عند الحاجة.</p>
+        </details>
+        <details>
+          <summary data-en="How do you handle data and privacy?">كيف تتعاملون مع البيانات والخصوصية؟</summary>
+          <p data-en="We account for the type of data, permissions, least-privilege access, and separation of duties within the solution design from the very beginning.">نأخذ في الاعتبار نوع البيانات، الصلاحيات، أقل قدر من الوصول، وفصل المسؤوليات ضمن تصميم الحل منذ البداية.</p>
+        </details>
+        <details>
+          <summary data-en="Can I start small and expand later?">هل أقدر أبدأ بحل صغير وأطوره لاحقًا؟</summary>
+          <p data-en="Yes. You can start with a clear, limited scope and expand once the results are measured and the fit is confirmed.">نعم. يمكن البدء بنطاق واضح ومحدود ثم التوسع بعد قياس النتيجة والتأكد من ملاءمة الحل.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -509,13 +405,13 @@
     <div class="container">
       <div class="cta-card reveal">
         <div>
-          <span class="eyebrow eyebrow--gold">ابدأ بخطوة</span>
-          <h2>عندك عملية تستهلك وقتك؟</h2>
-          <p>افحص نشاطك مجانًا، أو خلّنا نسمع منك مباشرة.</p>
+          <span class="eyebrow eyebrow--gold" data-en="Start with one step">ابدأ بخطوة</span>
+          <h2 data-en="Got a process eating your time?">عندك عملية تستهلك وقتك؟</h2>
+          <p data-en="Run the free check, or talk to us directly.">افحص نشاطك مجانًا، أو خلّنا نسمع منك مباشرة.</p>
         </div>
         <div class="cta-card__actions">
-          <a class="button button--primary" href="#scan">افحص نشاطك مجانًا</a>
-          <a class="button button--ghost" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener">احجز استشارة</a>
+          <a class="button button--primary" href="#scan" data-en="Run your free check">افحص نشاطك مجانًا</a>
+          <a class="button button--ghost" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Book a consultation">احجز استشارة</a>
         </div>
       </div>
     </div>
@@ -527,306 +423,72 @@
   <div class="container footer__grid">
     <div class="footer__brand">
       <svg class="footer__logo" aria-hidden="true"><use href="#logo"/></svg>
-      <div><strong>صبّارة AI</strong><em>SABBARAH AI</em></div>
-      <p>نبني حلول ذكاء اصطناعي وأتمتة — للأعمال وللأفراد — مع الأمان والخصوصية والحوكمة من البداية.</p>
+      <div>
+        <strong data-en="SABBARAH AI">صبّارة AI</strong>
+        <em data-en="صبّارة AI">SABBARAH AI</em>
+      </div>
+      <p data-en="We build AI and automation — custom solutions shaped around your operations, and ready products at a fixed price — with security, privacy, and governance from day one.">نبني حلول ذكاء اصطناعي وأتمتة — حلول مخصصة على عملياتك ومنتجات جاهزة بسعر ثابت — مع الأمان والخصوصية والحوكمة من البداية.</p>
+      <p><a href="mailto:hello@sabbarahai.com">hello@sabbarahai.com</a></p>
+      <p><span><bdi>+966 53 986 9360</bdi></span></p>
+      <p><span data-en="Saudi Arabia">المملكة العربية السعودية</span></p>
     </div>
-    <div><h3>صبّارة للأعمال</h3><a href="#business">حلولنا الجاهزة</a><a href="#scan">فحص صبّارة</a><a href="#guard">صبّارة تحمي</a></div>
-    <div><h3>صبّارة للأفراد</h3><a href="#business" data-aud="ind">حلول الأفراد</a><a href="#business" data-aud="ind">البورتفوليو الذكي</a></div>
-    <div><h3>تواصل معنا</h3><a href="mailto:hello@sabbarahai.com">hello@sabbarahai.com</a><span>المملكة العربية السعودية</span></div>
+
+    <div>
+      <h3 data-en="Custom Solutions">الحلول المخصصة</h3>
+      <a href="pricing.html#customer-service-agent" data-en="Customer Service Agent">وكيل خدمة العملاء</a>
+      <a href="pricing.html#sales-booking-agent" data-en="Sales &amp; Booking Agent">وكيل المبيعات والحجوزات</a>
+      <a href="pricing.html#professional-ai-assistant" data-en="Specialized Professional Assistant">المساعد المهني المتخصص</a>
+      <a href="pricing.html#workflow-automation" data-en="Process Automation">أتمتة العمليات</a>
+      <a href="pricing.html#custom-ai-solution" data-en="Custom Solution">الحل المخصص</a>
+    </div>
+
+    <div>
+      <h3 data-en="Ready Products">المنتجات الجاهزة</h3>
+      <a href="pricing.html#smart-portfolio" data-en="Smart Portfolio">البورتفوليو الذكي</a>
+    </div>
+
+    <div>
+      <h3 data-en="Get Started">ابدأ</h3>
+      <a href="#scan" data-en="Sabbarah Scan">فحص صبّارة</a>
+      <a href="pricing.html#sabbarah-map" data-en="Sabbarah Map">خريطة صبّارة</a>
+      <a href="pricing.html" data-en="Pricing">الأسعار</a>
+      <a href="#contact" data-en="Contact">تواصل معنا</a>
+    </div>
   </div>
-  <div class="container footer__bottom"><span>© 2026 SABBARAH AI. جميع الحقوق محفوظة.</span></div>
+
+  <!-- تابع صبّارة -->
+  <div class="container">
+    <div class="footer__social">
+      <h3 data-en="Follow SABBARAH AI">تابع صبّارة</h3>
+      <div class="social-links">
+        <a class="social-link" href="https://www.linkedin.com/in/sabbarahai/" target="_blank" rel="noopener" aria-label="صبّارة AI على LinkedIn" data-en-aria-label="SABBARAH AI on LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a class="social-link" href="https://www.tiktok.com/@sabbarh.ai" target="_blank" rel="noopener" aria-label="صبّارة AI على TikTok" data-en-aria-label="SABBARAH AI on TikTok" title="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <a class="social-link" href="https://x.com/sabbarahai" target="_blank" rel="noopener" aria-label="صبّارة AI على X" data-en-aria-label="SABBARAH AI on X" title="X">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z"/></svg>
+        </a>
+        <a class="social-link" href="https://wa.me/966539869360" target="_blank" rel="noopener" aria-label="تواصل مع صبّارة AI على واتساب" data-en-aria-label="Chat with SABBARAH AI on WhatsApp" title="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        </a>
+        <a class="social-link" href="https://sabbarahai.com/" target="_blank" rel="noopener" aria-label="الموقع الرسمي لصبّارة AI" data-en-aria-label="SABBARAH AI official website" title="sabbarahai.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a7.94 7.94 0 0 1 0-4h3.38a16.6 16.6 0 0 0 0 4H4.26zm.81 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.99 7.99 0 0 1 5.07 16zm2.95-8H5.07a7.99 7.99 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.02 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66a14.9 14.9 0 0 1 0-4h4.68a14.9 14.9 0 0 1 0 4zm.26 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14a16.6 16.6 0 0 0 0-4h3.38a7.94 7.94 0 0 1 0 4h-3.38z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <span data-en="© 2026 SABBARAH AI. All rights reserved.">© 2026 SABBARAH AI. جميع الحقوق محفوظة.</span>
+  </div>
 </footer>
 
+<script src="js/i18n.js" defer></script>
 <script src="js/main.js" defer></script>
+<script src="js/scan.js" defer></script>
 <script src="js/glow.js" defer></script>
 <script src="js/assistant.js" defer></script>
-
-<script>
-/* ============ فحص صبّارة — rule-based diagnostic (v1) ============ */
-(function(){
-  /* ---------- 1) إعدادات أنواع النشاط: عدّل هنا بدون لمس المنطق ----------
-     (opener: نص القطاع — محفوظ للاستخدام لاحقًا، وغير معروض حاليًا لتقصير التشخيص) */
-  var TYPES={
-    ecom:{label:'متجر إلكتروني',
-      opener:'توجد فرصة واضحة لتحسين انتقال العميل من الاستفسار إلى الشراء.',
-      start:{comm:'الرد على استفسارات المنتجات والطلبات',
-             leak:'متابعة العميل اللي سأل وما أكمل الطلب',
-             manual:'متابعة الطلبات والتقارير اليومية',
-             frag:'نقل بيانات الطلبات بين أدواتك'}},
-    clinic:{label:'عيادة / مركز طبي',
-      opener:'توجد فرصة لتقليل العمل اليدوي في الحجز والتذكير والمتابعة.',
-      start:{comm:'الرد على استفسارات الحجز والأسعار',
-             leak:'تذكير ومتابعة المواعيد',
-             manual:'تنظيم الحجوزات والتقارير اليومية',
-             frag:'نقل بيانات المراجعين بين الأنظمة'}},
-    restaurant:{label:'مطعم / كافيه',
-      opener:'توجد فرصة لتخفيف الاستفسارات المتكررة وتنظيم الطلبات والمتابعة.',
-      start:{comm:'الرد على الاستفسارات المتكررة',
-             leak:'متابعة الحجوزات والطلبات المفتوحة',
-             manual:'تنظيم الطلبات والتقارير اليومية',
-             frag:'ربط الطلبات مع بقية أدواتك'}},
-    realestate:{label:'عقارات',
-      opener:'توجد فرصة لتحسين تأهيل العملاء ومتابعة الفرص قبل أن تبرد.',
-      start:{comm:'الرد على استفسارات العروض والمعاينات',
-             leak:'متابعة العميل المحتمل',
-             manual:'تنظيم بيانات العروض والتقارير',
-             frag:'نقل بيانات العملاء بين الأنظمة'}},
-    b2b:{label:'خدمات B2B',
-      opener:'توجد فرصة لتقليل الوقت بين دخول العميل المحتمل وتحويله إلى فرصة جاهزة للفريق.',
-      start:{comm:'استقبال الطلبات الواردة وتأهيلها',
-             leak:'متابعة العميل المحتمل',
-             manual:'التقارير التشغيلية والمتابعة الداخلية',
-             frag:'نقل البيانات بين الأنظمة'}},
-    services:{label:'شركة / مكتب خدمات',
-      opener:'توجد فرصة لتقليل العمل اليدوي من استقبال الطلب حتى إغلاقه.',
-      start:{comm:'الرد على الاستفسارات المتكررة',
-             leak:'متابعة الطلبات المفتوحة',
-             manual:'التقارير التشغيلية والعمل الإداري',
-             frag:'نقل البيانات بين الأنظمة'}},
-    other:{label:'نشاط آخر',
-      opener:'توجد فرصة لتقليل العمل المتكرر وتنظيم متابعة العملاء.',
-      start:{comm:'الرد على الاستفسارات المتكررة',
-             leak:'متابعة العميل المحتمل',
-             manual:'العمل الإداري المتكرر والتقارير',
-             frag:'نقل البيانات بين الأنظمة'}}
-  };
-
-  /* ليش يستاهل هذا الموضع — مشكلة عمل، مو حل تقني */
-  var WHY={
-    comm:'نفس الأسئلة تتكرر يوميًا وتأخذ وقت الفريق، وتأخر الرد ممكن يخلي العميل يروح لمكان ثاني.',
-    leak:'المتابعة تعتمد اليوم على التذكر، وبعض الفرص تضيع قبل ما تكمل رحلتها.',
-    manual:'جزء من يومك يروح في شغل متكرر ما يضيف قيمة، وهو وقت كان ممكن يروح للشغل المهم.',
-    frag:'المعلومة تتنقل يدويًا بين أكثر من مكان، وهذا يفتح باب التأخير وتكرار الإدخال والخطأ.'
-  };
-
-
-
-  var BAND=['منخفضة','متوسطة','مرتفعة','مرتفعة جدًا'];
-
-  /* ---------- «الفرق اللي ممكن تصنعه صبّارة» ----------
-     كل الأشرطة تمثّل حجم الاحتكاك: أقصر = أفضل.
-     العمود الأيسر هو «المستهدف» — أقوى تحسّن يكون في المحاور اللي يعالجها
-     الموضع الموصى به، وبقية المحاور تبقى كما هي أو تتحسن قليلًا. ---------- */
-  var TARGET={
-    repetitiveQuestions:{comm:'low',      leak:'medium',  manual:'low',    frag:'unchanged'},
-    followUp:           {comm:'medium',   leak:'low',     manual:'low',    frag:'unchanged'},
-    reporting:          {comm:'slight',   leak:'slight',  manual:'low',    frag:'low'},
-    appointments:       {comm:'low',      leak:'medium',  manual:'low',    frag:'depends'},
-    systemIntegration:  {comm:'unchanged',leak:'depends', manual:'low',    frag:'low'}
-  };
-
-  /* أي نموذج أثر يناسب الموضع الموصى به */
-  function targetKey(top,type){
-    if(top==='leak'&&(type==='clinic'||type==='restaurant'))return 'appointments';
-    if(top==='comm')return 'repetitiveQuestions';
-    if(top==='leak')return 'followUp';
-    if(top==='manual')return 'reporting';
-    return 'systemIntegration';
-  }
-
-  /* الهدف لا يكون أسوأ من الوضع الحالي أبدًا */
-  function targetLevel(rule,cur){
-    switch(rule){
-      case 'low':      return 0;
-      case 'medium':   return Math.min(cur,1);
-      case 'slight':   return cur>=2 ? cur-1 : cur;   /* أثر جانبي بسيط */
-      case 'depends':  return cur>=2 ? cur-1 : cur;   /* يتحسن فقط لو كان فيه احتكاك فعلي */
-      default:         return cur;                    /* unchanged — ما نوعد بشي */
-    }
-  }
-
-  /* ---------- 2) الأسئلة السبعة ---------- */
-  /* كل خيار: [النص, التأثير] — التأثير يغذّي أبعاد داخلية فقط */
-  var Q=[
-    {q:'وش نوع نشاطك؟',wide:true,
-     a:[['متجر إلكتروني',{type:'ecom'}],
-        ['عيادة / مركز طبي',{type:'clinic'}],
-        ['مطعم / كافيه',{type:'restaurant'}],
-        ['عقارات',{type:'realestate'}],
-        ['خدمات B2B',{type:'b2b'}],
-        ['شركة / مكتب خدمات',{type:'services'}],
-        ['نشاط آخر',{type:'other'}]]},
-
-    {q:'ما أكثر شيء يستهلك وقتك يوميًا؟',
-     a:[['الرد على الاستفسارات المتكررة',{comm:2,pain:'comm'}],
-        ['متابعة العملاء والمواعيد',{leak:2,pain:'leak'}],
-        ['التقارير وإدخال البيانات',{manual:2,pain:'manual'}],
-        ['تنسيق الطلبات والعمليات اليومية',{manual:1,frag:1,pain:'frag'}]]},
-
-    {q:'من وين توصلك الاستفسارات، وكم تقريبًا؟',
-     a:[['قناة وحدة وعدد محدود',{comm:1}],
-        ['قناة وحدة وعدد كبير يوميًا',{comm:3}],
-        ['أكثر من قناة وعدد متوسط',{comm:3,frag:1}],
-        ['أكثر من قناة وصعب نلحق عليها',{comm:4,frag:1}]]},
-
-    {q:'هل تتابعون العميل إذا سأل وما أكمل؟',
-     a:[['نعم، متابعة منظمة ومسجّلة',{leak:1}],
-        ['نتابع، بس حسب الوقت والتذكر',{leak:3}],
-        ['نادرًا',{leak:4}],
-        ['ما نتابع أصلًا',{leak:4}]]},
-
-    {q:'كم من شغلك اليومي يتكرر يدويًا (تعبئة، نسخ، تجهيز تقارير)؟',
-     a:[['شي بسيط',{manual:1}],
-        ['ربع اليوم تقريبًا',{manual:2}],
-        ['نص اليوم تقريبًا',{manual:3}],
-        ['أغلب اليوم',{manual:4}]]},
-
-    {q:'هل تنقلون معلومات يدويًا بين أكثر من نظام أو ملف؟',
-     a:[['لا، أنظمتنا مربوطة',{frag:1}],
-        ['أحيانًا وفي حالات محددة',{frag:2}],
-        ['نعم، بشكل شبه يومي',{frag:4}],
-        ['نشتغل على ملفات وواتساب بدون نظام',{frag:4,manual:1}]]},
-
-    {q:'وين تحتاجون قرار موظف بشري؟',
-     a:[['أغلب القرارات تحتاج موظف',{human:4}],
-        ['في الحالات الحساسة فقط (تسعير، شكاوى، استثناءات)',{human:2}],
-        ['نادرًا — أغلب الطلبات متشابهة',{human:1}],
-        ['ما هو واضح عندنا',{human:2}]]}
-  ];
-
-  /* ---------- 3) محرك القواعد ---------- */
-  var DIMS=['comm','leak','manual','frag'];
-  var NAMES={comm:'ضغط التواصل',leak:'فقدان الفرص',manual:'العمل المتكرر',frag:'ضعف ترابط الأنظمة'};
-
-  function levelOf(v){                       /* منخفض → مرتفع جدًا */
-    if(v<=1)return 0; if(v<=2)return 1; if(v<=4)return 2; return 3;
-  }
-  var LEVEL_TEXT=['منخفض','متوسط','مرتفع','مرتفع جدًا'];
-  var LEVEL_BAR=[28,52,78,95];
-  var HUMAN_TEXT={1:'محدود',2:'مهم في نقاط محددة',4:'ضروري في القرارات الحساسة'};
-
-  function evaluate(answers){
-    var d={comm:0,leak:0,manual:0,frag:0,human:2},type='other',pain=null;
-    answers.forEach(function(e){
-      if(!e)return;
-      if(e.type)type=e.type;
-      if(e.pain)pain=e.pain;
-      DIMS.concat(['human']).forEach(function(k){ if(e[k])d[k]=(k==='human')?e[k]:d[k]+e[k]; });
-    });
-    var cfg=TYPES[type]||TYPES.other;
-
-    /* أولوية الأتمتة: مجموع الأبعاد الأربعة (4 → 18) */
-    var total=d.comm+d.leak+d.manual+d.frag;
-    var band = total<=7?0 : total<=11?1 : total<=15?2 : 3;
-
-    /* أول موضع يستاهل الأتمتة: أعلى بُعد، والتعادل يُحسم بأكثر شي يستهلك الوقت */
-    var order=[pain,'leak','comm','manual','frag'];
-    var top=DIMS.slice().sort(function(a,b){
-      if(d[b]!==d[a])return d[b]-d[a];
-      return order.indexOf(a)-order.indexOf(b);
-    })[0];
-
-    /* المقارنة البصرية: نفس المحاور الأربعة — الآن مقابل المستهدف */
-    function state(k,lv,focus){
-      return {key:k,name:NAMES[k],label:LEVEL_TEXT[lv],bar:LEVEL_BAR[lv],
-              ok:lv<=1,focus:!!focus};
-    }
-    var tKey=targetKey(top,type),rules=TARGET[tKey];
-    var compare={model:tKey,now:[],next:[]};
-    DIMS.forEach(function(k){
-      var cur=levelOf(d[k]),tgt=targetLevel(rules[k],cur);
-      compare.now.push(state(k,cur));
-      compare.next.push(state(k,tgt,(cur-tgt)>=2));   /* إبراز خفيف لأقوى تحسّن */
-    });
-
-    return {
-      type:type,typeLabel:cfg.label,
-      compare:compare,
-      priority:BAND[band],
-      topKey:top,
-      topLabel:cfg.start[top],
-      why:WHY[top],
-      human:HUMAN_TEXT[d.human]||'مهم في نقاط محددة',
-      _debug:{total:total,dims:d}
-    };
-  }
-
-  if(typeof module!=='undefined'&&module.exports){module.exports={Q:Q,evaluate:evaluate};}
-
-  /* ---------- 4) الربط بالواجهة ---------- */
-  var panel=(typeof document!=='undefined')&&document.getElementById('scanPanel');
-  if(!panel)return;
-
-  var stages={intro:document.getElementById('scanIntro'),quiz:document.getElementById('scanQuiz'),
-              load:document.getElementById('scanAnalyzing'),res:document.getElementById('scanResult')};
-  var elStep=document.getElementById('scanStep'),elBar=document.getElementById('scanBarFill'),
-      elQ=document.getElementById('scanQuestion'),elOpts=document.getElementById('scanOptions'),
-      elBack=document.getElementById('scanBack'),elPhase=document.getElementById('scanPhase'),
-      elPriority=document.getElementById('scanPriority'),elTop=document.getElementById('scanTop'),
-      elHuman=document.getElementById('scanHuman'),
-      elWhy=document.getElementById('scanWhy'),elBadge=document.querySelector('.scan-head__badge'),
-      elNow=document.getElementById('cmpNow'),elNext=document.getElementById('cmpNext');
-  var idx=0,answers=[];
-
-  function drawBars(box,rows){
-    box.innerHTML='';
-    rows.forEach(function(r){
-      var w=document.createElement('div');
-      w.className='cbar'+(r.ok?' cbar--ok':'')+(r.focus?' cbar--focus':'');
-      w.innerHTML='<b>'+r.name+'</b><span>'+r.label+'</span><i></i>';
-      box.appendChild(w);
-      var bar=w.querySelector('i');
-      requestAnimationFrame(function(){bar.style.setProperty('--v',r.bar+'%')});
-    });
-  }
-
-  function stage(name){
-    Object.keys(stages).forEach(function(k){stages[k].hidden=k!==name});
-    if(elBadge)elBadge.hidden=(name!=='intro');   /* الشارة للتمهيد فقط */
-  }
-
-  function render(){
-    elStep.textContent='السؤال '+(idx+1)+' من '+Q.length;
-    elBar.style.width=(idx/Q.length*100)+'%';
-    elQ.textContent=Q[idx].q;
-    elOpts.className='scan__options'+(Q[idx].wide?' scan__options--wide':'');
-    elOpts.innerHTML='';
-    Q[idx].a.forEach(function(opt){
-      var b=document.createElement('button');
-      b.type='button';b.className='scan__opt';b.textContent=opt[0];
-      if(answers[idx]===opt[1])b.classList.add('is-picked');
-      b.addEventListener('click',function(){answers[idx]=opt[1];next()});
-      elOpts.appendChild(b);
-    });
-    elBack.hidden=idx===0;
-  }
-
-  function next(){
-    if(idx<Q.length-1){idx++;render()}
-    else{elBar.style.width='100%';analyze()}
-  }
-
-  function analyze(){
-    stage('load');
-    var phases=['صبّارة ترتب إجاباتك…','تبحث عن أكثر نقاط العمل المتكرر…',
-                'تراجع أين تضيع الفرص…','تحدد لك أفضل مكان تبدأ منه…'];
-    var p=0;elPhase.textContent=phases[0];
-    var iv=setInterval(function(){p++;if(p<phases.length)elPhase.textContent=phases[p]},760);
-    setTimeout(function(){clearInterval(iv);show(evaluate(answers))},3000);
-  }
-
-  function show(r){
-    stage('res');
-    elPriority.textContent=r.priority;
-    elTop.textContent=r.topLabel;
-    elWhy.innerHTML='<b>ليش؟</b> '+r.why;
-    elHuman.innerHTML='التدخل البشري: <b>'+r.human+'</b>';
-    drawBars(elNow,r.compare.now);
-    drawBars(elNext,r.compare.next);
-  }
-
-  document.getElementById('scanStart').addEventListener('click',function(){
-    idx=0;answers=[];stage('quiz');render();
-    panel.scrollIntoView({behavior:'smooth',block:'center'});
-  });
-  elBack.addEventListener('click',function(){if(idx>0){idx--;render()}});
-  document.getElementById('scanRestart').addEventListener('click',function(){
-    idx=0;answers=[];stage('intro');
-    panel.scrollIntoView({behavior:'smooth',block:'center'});
-  });
-})();
-
-
-</script>
 </body>
 </html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Pricing | SABBARAH AI">الأسعار | صبّارة AI</title>
+<meta name="description"
+      content="أسعار صبّارة AI — الحلول المخصصة تبدأ من نطاق أساسي واضح، والمنتجات الجاهزة بسعر ثابت. كل تكلفة إضافية تُوضح قبل التعاقد."
+      data-en-content="SABBARAH AI pricing — custom solutions start from a clearly defined base scope, and ready products have fixed prices. Any additional cost is explained before engagement.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+
+<!-- اللغة المحفوظة تُطبّق قبل الرسم لمنع وميض النص -->
+<script>
+(function(){
+  var d=document.documentElement;
+  try{
+    var l=localStorage.getItem('sabbarah-lang')==='en'?'en':'ar';
+    d.setAttribute('data-lang',l);
+    if(l==='en'){d.lang='en';d.dir='ltr';setTimeout(function(){d.classList.add('i18n-ready')},900);}
+    else{d.classList.add('i18n-ready');}
+  }catch(e){d.classList.add('i18n-ready');}
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/zahra.css">
+<link rel="stylesheet" href="css/glow.css">
+</head>
+<body>
+
+<div class="ambient" aria-hidden="true">
+  <div class="ambient__aurora"></div>
+  <div class="ambient__orb ambient__orb--one"></div>
+  <div class="ambient__orb ambient__orb--two"></div>
+  <div class="ambient__orb ambient__orb--three"></div>
+  <div class="ambient__grid"></div>
+</div>
+<canvas class="glow-particles" aria-hidden="true"></canvas>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <linearGradient id="logoGrad" x1="0" y1="0" x2=".85" y2="1">
+      <stop offset="0%" stop-color="#58E8C5"/><stop offset="55%" stop-color="#16C99A"/>
+      <stop offset="100%" stop-color="#08B987"/>
+    </linearGradient>
+    <symbol id="logo" viewBox="0 0 1000 1000">
+      <path d="M452 171 L500 123 L548 171" fill="none" stroke="#F2CF4A" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="500" cy="224" r="38" fill="#F2CF4A"/>
+      <path fill="url(#logoGrad)" d="M318 328 C291 328 270 349 270 376 L270 576 C270 603 291 624 318 624 L478 624 L478 639 C478 655 491 668 507 668 L694 668 C721 668 742 647 742 620 L742 458 C742 431 721 410 694 410 C667 410 646 431 646 458 L646 572 L536 572 L536 529 C536 513 523 500 507 500 C491 500 478 513 478 529 L478 528 L366 528 L366 376 C366 349 345 328 318 328 Z"/>
+      <circle cx="505" cy="500" r="13" fill="none" stroke="#0C1219" stroke-width="7"/>
+      <circle cx="505" cy="548" r="15" fill="#0C1219"/>
+      <circle cx="505" cy="596" r="15" fill="#0C1219"/>
+      <circle cx="505" cy="644" r="15" fill="#0C1219"/>
+      <g stroke="#16C99A" stroke-width="14" stroke-linecap="round" fill="none">
+        <path d="M500 745 L500 826"/><path d="M360 826 L640 826"/>
+      </g>
+      <circle cx="360" cy="826" r="24" fill="#F2CF4A"/>
+      <circle cx="640" cy="826" r="24" fill="#F2CF4A"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="top">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="صبّارة AI — الرئيسية" data-en-aria-label="SABBARAH AI — Home">
+      <svg class="brand__icon" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="brand__text">
+        <strong data-en="SABBARAH AI">صبّارة AI</strong>
+        <em data-en="صبّارة AI">SABBARAH AI</em>
+      </span>
+    </a>
+
+    <nav class="nav-menu" id="navMenu" aria-label="التنقل الرئيسي" data-en-aria-label="Main navigation">
+      <a href="index.html" data-en="Home">الرئيسية</a>
+      <a href="#custom-solutions" data-en="Custom Solutions">الحلول المخصصة</a>
+      <a href="#ready-products" data-en="Ready Products">المنتجات الجاهزة</a>
+      <a href="index.html#scan" data-en="Sabbarah Scan">فحص صبّارة</a>
+      <a href="pricing.html" aria-current="page" data-en="Pricing">الأسعار</a>
+      <a href="index.html#process" data-nav-optional data-en="How We Work">كيف نعمل</a>
+      <a href="index.html#contact" data-en="Contact">تواصل معنا</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="اللغة" data-en-aria-label="Language">
+        <button type="button" data-lang-btn="ar" aria-pressed="true" lang="ar">ع</button>
+        <button type="button" data-lang-btn="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+      <a class="button button--outline" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Book a consultation">احجز استشارة</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="فتح القائمة" data-en-aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ============ PRICING HERO ============ -->
+  <section class="pricing-hero">
+    <div class="container">
+      <div class="section-heading reveal">
+        <span class="eyebrow" data-en="Clear Pricing">أسعار واضحة</span>
+        <h1 data-en="Choose the right starting point — we define the scope before implementation">اختر البداية المناسبة — ونحدد النطاق قبل التنفيذ</h1>
+        <p class="pricing-hero__sub" data-en="Custom solutions start from a clearly defined base scope, while ready products have fixed prices. Any additional cost is explained before engagement.">الحلول المخصصة تبدأ من نطاق أساسي واضح، والمنتجات الجاهزة لها سعر ثابت. كل تكلفة إضافية تُوضح قبل التعاقد.</p>
+        <div class="jump-pills">
+          <a class="jump-pill" href="#custom-solutions"><i>↓</i><span data-en="Custom Solutions">الحلول المخصصة</span></a>
+          <a class="jump-pill" href="#ready-products"><i>↓</i><span data-en="Ready Products">المنتجات الجاهزة</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ الحلول المخصصة ============ -->
+  <section class="pricing-section" id="custom-solutions">
+    <div class="container">
+      <div class="section-heading reveal">
+        <span class="eyebrow" data-en="Custom Solutions">الحلول المخصصة</span>
+        <h2 data-en="Starting prices">أسعار تبدأ من</h2>
+        <p data-en="Starting prices — the final price depends on the agreed scope.">أسعار تبدأ من — يتحدد السعر النهائي حسب النطاق.</p>
+      </div>
+
+      <div class="pricing-grid reveal">
+
+        <!-- 1) وكيل ذكاء اصطناعي لخدمة العملاء -->
+        <article class="price-card" id="customer-service-agent">
+          <span class="price-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3.5a1.5 1.5 0 0 0 1.5 1.5H7v-5H4ZM20 13v3.5a1.5 1.5 0 0 1-1.5 1.5H17v-5h3Z"/><path d="M17.5 18v.8a2.2 2.2 0 0 1-2.2 2.2H12.8"/></svg></span>
+          <h3 data-en="AI Customer Service Agent">وكيل ذكاء اصطناعي لخدمة العملاء<span class="price-card__en">AI Customer Service Agent</span></h3>
+
+          <div class="price-card__amount">
+            <p class="price-card__price" data-en="<small>From</small> SAR 9,900"><small>يبدأ من</small> 9,900 ريال</p>
+            <p class="price-card__label" data-en="One-time setup and implementation">تأسيس وتنفيذ مرة واحدة</p>
+            <p class="price-card__monthly" data-en="Operation and management from SAR 1,900/month">التشغيل والإدارة من 1,900 ريال شهريًا</p>
+          </div>
+
+          <p class="price-card__scope" data-en="The base scope includes">يشمل النطاق الأساسي</p>
+          <ul class="price-list">
+            <li data-en="One customer service agent">وكيل خدمة عملاء واحد</li>
+            <li data-en="One channel: WhatsApp or website chat">قناة واحدة: واتساب أو شات الموقع</li>
+            <li data-en="Up to 750 conversations per month">حتى 750 محادثة شهريًا</li>
+            <li data-en="Set-up of approved knowledge, questions, and policies">إعداد المعرفة والأسئلة والسياسات المعتمدة</li>
+            <li data-en="Escalation of complex or sensitive cases to your team">تحويل الحالات المعقدة أو الحساسة إلى الفريق</li>
+            <li data-en="Monthly performance report and basic monitoring">تقرير أداء شهري ومراقبة أساسية</li>
+          </ul>
+
+          <div class="price-card__example">
+            <span data-en="Example">مثال</span>
+            <p data-en="An agent for a dental clinic that answers questions on appointments, pricing, and insurance, and passes medical cases to a staff member.">وكيل لعيادة أسنان يجيب عن المواعيد والأسعار والتأمين، ويحوّل الحالات الطبية للموظف.</p>
+          </div>
+
+          <div class="price-card__actions">
+            <a class="button button--primary" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Request the Customer Service Agent">اطلب وكيل خدمة العملاء</a>
+          </div>
+        </article>
+
+        <!-- 2) وكيل ذكاء اصطناعي للمبيعات والحجوزات -->
+        <article class="price-card" id="sales-booking-agent">
+          <span class="price-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 16.5l5.5-5.5 4 4L20 7.5"/><path d="M15 7.5h5v5"/></svg></span>
+          <h3 data-en="AI Sales &amp; Booking Agent">وكيل ذكاء اصطناعي للمبيعات والحجوزات<span class="price-card__en">AI Sales &amp; Booking Agent</span></h3>
+
+          <div class="price-card__amount">
+            <p class="price-card__price" data-en="<small>From</small> SAR 13,900"><small>يبدأ من</small> 13,900 ريال</p>
+            <p class="price-card__label" data-en="One-time setup and implementation">تأسيس وتنفيذ مرة واحدة</p>
+            <p class="price-card__monthly" data-en="Operation and management from SAR 2,400/month">التشغيل والإدارة من 2,400 ريال شهريًا</p>
+          </div>
+
+          <p class="price-card__scope" data-en="The base scope includes">يشمل النطاق الأساسي</p>
+          <ul class="price-list">
+            <li data-en="One agent and one channel">وكيل واحد وقناة واحدة</li>
+            <li data-en="Up to 750 conversations per month">حتى 750 محادثة شهريًا</li>
+            <li data-en="Capturing customer details and initial qualification">جمع بيانات العميل وتأهيله مبدئيًا</li>
+            <li data-en="Guiding the customer to the right service or next step">توجيه العميل إلى الخدمة أو الخطوة المناسبة</li>
+            <li data-en="Booking an appointment or handing over to the sales team">حجز موعد أو تحويله إلى فريق المبيعات</li>
+            <li data-en="One standard integration with a calendar or CRM">تكامل قياسي واحد مع تقويم أو CRM</li>
+            <li data-en="Basic opportunity follow-up and a monthly report">متابعة أساسية للفرص وتقرير شهري</li>
+          </ul>
+
+          <div class="price-card__example">
+            <span data-en="Example">مثال</span>
+            <p data-en="An agent for a real estate company that asks about budget and area, qualifies the client, and books an appointment with an advisor.">وكيل لشركة عقارية يسأل عن الميزانية والمنطقة، يؤهل العميل ويحجز له موعدًا مع المستشار.</p>
+          </div>
+
+          <div class="price-card__actions">
+            <a class="button button--primary" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Request the Sales Agent">اطلب وكيل المبيعات</a>
+          </div>
+        </article>
+
+        <!-- 3) مساعد مهني متخصص بالذكاء الاصطناعي -->
+        <article class="price-card" id="professional-ai-assistant">
+          <span class="price-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h9l4 4V20.5H6z"/><path d="M14.5 3.5V8H19"/><path d="M9 12.5h6M9 16h4"/></svg></span>
+          <h3 data-en="Specialized Professional AI Assistant">مساعد مهني متخصص بالذكاء الاصطناعي<span class="price-card__en">Specialized Professional AI Assistant</span></h3>
+
+          <div class="price-card__amount">
+            <p class="price-card__price" data-en="<small>From</small> SAR 18,900"><small>يبدأ من</small> 18,900 ريال</p>
+            <p class="price-card__label" data-en="One-time design and implementation">تصميم وتنفيذ مرة واحدة</p>
+            <p class="price-card__monthly" data-en="Operation and management from SAR 1,490/month">التشغيل والإدارة من 1,490 ريال شهريًا</p>
+          </div>
+
+          <p class="price-card__scope" data-en="The base scope includes">يشمل النطاق الأساسي</p>
+          <ul class="price-list">
+            <li data-en="An assistant dedicated to one profession or role">مساعد مخصص لمهنة أو دور وظيفي واحد</li>
+            <li data-en="One primary workflow">سير عمل رئيسي واحد</li>
+            <li data-en="Knowledge set up from approved sources">إعداد معرفة من مصادر معتمدة</li>
+            <li data-en="Organising and analysing inputs">تنظيم وتحليل المدخلات</li>
+            <li data-en="Up to 3 primary outputs">حتى 3 مخرجات رئيسية</li>
+            <li data-en="Human review and approval checkpoints">نقاط مراجعة واعتماد بشري</li>
+            <li data-en="One user and a basic interface">مستخدم واحد وواجهة استخدام أساسية</li>
+          </ul>
+
+          <div class="price-card__example">
+            <span data-en="Example">مثال</span>
+            <p data-en="An assistant for an IT auditor that organises the observation, drafts the 5Cs, and prepares the report draft for approval.">مساعد لمراجع تقنية المعلومات ينظم الملاحظة، يصيغ 5Cs ويجهز مسودة التقرير للاعتماد.</p>
+          </div>
+
+          <div class="price-card__actions">
+            <a class="button button--primary" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Request a Professional Assistant">اطلب مساعدًا مهنيًا</a>
+          </div>
+        </article>
+
+        <!-- 4) أتمتة العمليات وسير العمل -->
+        <article class="price-card" id="workflow-automation">
+          <span class="price-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 3 5 13.5h6L11 21l8-10.5h-6L13 3Z"/></svg></span>
+          <h3 data-en="Workflow &amp; Process Automation">أتمتة العمليات وسير العمل<span class="price-card__en">Workflow &amp; Process Automation</span></h3>
+
+          <div class="price-card__amount">
+            <p class="price-card__price" data-en="<small>From</small> SAR 9,900 <small>for a simple workflow</small>"><small>تبدأ من</small> 9,900 ريال <small>للمسار البسيط</small></p>
+            <p class="price-card__label" data-en="One-time setup and implementation">تأسيس وتنفيذ مرة واحدة</p>
+            <p class="price-card__monthly" data-en="Monitoring and maintenance from SAR 990/month">المراقبة والصيانة من 990 ريال شهريًا</p>
+          </div>
+
+          <p class="price-card__scope" data-en="The base scope includes">يشمل النطاق الأساسي</p>
+          <ul class="price-list">
+            <li data-en="One clearly defined workflow">مسار عمل واحد واضح</li>
+            <li data-en="Connection between two tools or systems">الربط بين أداتين أو نظامين</li>
+            <li data-en="Automatic data transfer or status updates">نقل بيانات أو تحديث حالة تلقائيًا</li>
+            <li data-en="Automated alerts or follow-ups">تنبيهات أو متابعات آلية</li>
+            <li data-en="Basic handling of failure cases">معالجة أساسية لحالات التعطل</li>
+            <li data-en="Testing and documentation of how it runs">اختبار وتوثيق طريقة التشغيل</li>
+          </ul>
+
+          <div class="price-card__example">
+            <span data-en="Example">مثال</span>
+            <p data-en="A new order arrives from an online store, is added to the system, the team is alerted, the status is updated, and the customer is notified.">وصول طلب جديد من متجر إلكتروني، إضافته إلى النظام، تنبيه الفريق، تحديث الحالة وإرسال إشعار للعميل.</p>
+          </div>
+
+          <div class="price-card__actions">
+            <a class="button button--primary" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Request process automation">اطلب أتمتة عملية</a>
+          </div>
+        </article>
+
+        <!-- 5) حل ذكاء اصطناعي وأتمتة مخصص -->
+        <article class="price-card price-card--wide" id="custom-ai-solution">
+          <span class="price-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.4"/><circle cx="5" cy="6.5" r="2"/><circle cx="19" cy="6.5" r="2"/><circle cx="5" cy="17.5" r="2"/><circle cx="19" cy="17.5" r="2"/><path d="M6.6 7.8 10.2 10.6M17.4 7.8 13.8 10.6M6.6 16.2 10.2 13.4M17.4 16.2 13.8 13.4"/></svg></span>
+          <h3 data-en="Custom AI &amp; Automation Solution">حل ذكاء اصطناعي وأتمتة مخصص<span class="price-card__en">Custom AI &amp; Automation Solution</span></h3>
+
+          <div class="price-card__amount">
+            <p class="price-card__price" data-en="<small>From</small> SAR 29,900"><small>يبدأ من</small> 29,900 ريال</p>
+            <p class="price-card__label" data-en="Design and implementation according to scope">تصميم وتنفيذ حسب النطاق</p>
+            <p class="price-card__monthly" data-en="Managed operation from SAR 2,490/month">التشغيل المُدار من 2,490 ريال شهريًا</p>
+          </div>
+
+          <p class="price-card__scope" data-en="Suited to solutions that need">مناسب للحلول التي تحتاج</p>
+          <ul class="price-list">
+            <li data-en="More than one agent or workflow">أكثر من وكيل أو مسار عمل</li>
+            <li data-en="Multiple channels and integrations">قنوات وتكاملات متعددة</li>
+            <li data-en="Business logic tailored to the organisation">منطق عمل مخصص للمنشأة</li>
+            <li data-en="A dedicated interface or operations dashboard">واجهة أو لوحة تشغيل خاصة</li>
+            <li data-en="Multiple permissions, roles, and approvals">صلاحيات وأدوار وموافقات متعددة</li>
+            <li data-en="Human oversight and operating controls">إشراف بشري وضوابط تشغيل</li>
+            <li data-en="Phased launch and managed operation">إطلاق مرحلي وتشغيل مُدار</li>
+          </ul>
+
+          <div class="price-card__example">
+            <span data-en="Example">مثال</span>
+            <p data-en="A solution for a group of clinics that brings customer service, bookings, reminders, and reporting into a single system.">حل لمجموعة عيادات يجمع خدمة العملاء والحجوزات والتذكيرات والتقارير في منظومة واحدة.</p>
+          </div>
+
+          <div class="price-card__actions">
+            <a class="button button--primary" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Design your solution with Sabbarah">صمّم حلك مع صبّارة</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ خريطة صبّارة ============ -->
+  <section class="pricing-section" id="sabbarah-map">
+    <div class="container">
+      <div class="map-strip reveal">
+        <div class="map-strip__copy">
+          <span class="map-strip__label" data-en="Before implementation">قبل التنفيذ</span>
+          <h2 data-en="Sabbarah Map">خريطة صبّارة</h2>
+          <p class="map-strip__sub" data-en="From diagnosis to a clear solution scope">من التشخيص إلى نطاق حل واضح</p>
+          <div class="map-strip__amount">
+            <b data-en="SAR 2,900">2,900 ريال</b>
+            <small data-en="One-time">دفعة واحدة</small>
+          </div>
+          <p class="map-strip__credit" data-en="The full Sabbarah Map fee is credited against the implementation cost when you contract with us within 30 days.">يُخصم كامل مبلغ خريطة صبّارة من قيمة التنفيذ عند التعاقد معنا خلال 30 يومًا.</p>
+          <div class="map-strip__actions">
+            <a class="button button--primary" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Request Sabbarah Map">اطلب خريطة صبّارة</a>
+          </div>
+        </div>
+
+        <div class="map-strip__scope">
+          <ul class="price-list">
+            <li data-en="Understanding the current process">فهم العملية الحالية</li>
+            <li data-en="Setting priorities">تحديد الأولويات</li>
+            <li data-en="Defining the solution scope">تصور نطاق الحل</li>
+            <li data-en="The systems and integrations required">الأنظمة والتكاملات المطلوبة</li>
+            <li data-en="Human intervention points and controls">نقاط التدخل البشري والضوابط</li>
+            <li data-en="Success metrics and implementation phases">مؤشرات النجاح ومراحل التنفيذ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ المنتجات الجاهزة ============ -->
+  <section class="pricing-section" id="ready-products">
+    <div class="container">
+      <div class="section-heading reveal">
+        <span class="eyebrow" data-en="Ready Products">المنتجات الجاهزة</span>
+        <h2 data-en="Clear fixed pricing">سعر ثابت وواضح</h2>
+        <p data-en="Clear fixed pricing — customization within a defined scope.">سعر ثابت وواضح — تخصيص ضمن نطاق محدد.</p>
+      </div>
+
+      <div class="pricing-grid reveal">
+        <article class="price-card price-card--wide" id="smart-portfolio">
+          <span class="price-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M7 16c.8-1.6 2-2.4 3.6-2.4S13.4 14.4 14 16M15 8h2M15 11h2"/></svg></span>
+          <h3 data-en="Smart Portfolio">البورتفوليو الذكي<span class="price-card__en">Smart Portfolio</span></h3>
+
+          <div class="price-card__amount">
+            <p class="price-card__price" data-en="SAR 1,900">1,900 ريال</p>
+            <p class="price-card__label" data-en="One-time">دفعة واحدة</p>
+            <p class="price-card__monthly" data-en="Renewal after the first year: SAR 890/year">التجديد بعد السنة الأولى: 890 ريال سنويًا</p>
+          </div>
+
+          <p class="price-card__scope" data-en="What you receive">يشمل</p>
+          <ul class="price-list">
+            <li data-en="A responsive professional site in one language">موقع مهني متجاوب بلغة واحدة</li>
+            <li data-en="Presentation of your experience, skills, and projects">عرض الخبرات والمهارات والمشاريع</li>
+            <li data-en="Up to 5 sections and 3 main projects">حتى 5 أقسام و3 مشاريع رئيسية</li>
+            <li data-en="An AI assistant that answers from your professional information">مساعد ذكي يجيب من معلوماتك المهنية</li>
+            <li data-en="Two rounds of revisions">جولتان من التعديلات</li>
+            <li data-en="Hosting and basic usage for the first year">الاستضافة والاستخدام الأساسي للسنة الأولى</li>
+          </ul>
+
+          <div class="price-card__example">
+            <span data-en="Example">مثال</span>
+            <p data-en="A portfolio for a cybersecurity specialist that showcases her projects and answers visitors about her experience and certifications.">بورتفوليو لمتخصصة أمن سيبراني يعرض مشاريعها ويجيب الزائر عن خبراتها وشهاداتها.</p>
+          </div>
+
+          <div class="price-card__actions">
+            <a class="button button--primary" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Start your Smart Portfolio">ابدأ البورتفوليو الذكي</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- ============ بيان الأسعار ============ -->
+      <div class="disclaimer reveal">
+        <h3 data-en="What affects the final price">ما الذي يؤثر على السعر النهائي</h3>
+        <p data-en="Custom solution prices start from the base scope shown. Final pricing depends on the number of channels and integrations, usage and knowledge volume, data sensitivity, and operating requirements. Third-party platform, messaging, calling, and external hosting fees are charged separately and disclosed before engagement. No additional work begins without client approval. Prices exclude VAT where applicable.">الأسعار المعروضة للحلول المخصصة تبدأ من النطاق الأساسي الموضح. يتغير السعر النهائي حسب عدد القنوات والتكاملات، حجم الاستخدام والمعرفة، حساسية البيانات ومتطلبات التشغيل. رسوم المنصات والرسائل والمكالمات والاستضافات الخارجية تُحسب بشكل منفصل وتُوضح قبل التعاقد. لا يبدأ أي عمل إضافي دون موافقة العميل. الأسعار لا تشمل ضريبة القيمة المضافة عند انطباقها.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="section cta-section" id="contact">
+    <div class="container">
+      <div class="cta-card reveal">
+        <div>
+          <span class="eyebrow eyebrow--gold" data-en="Not sure where to start?">ما تدري من وين تبدأ؟</span>
+          <h2 data-en="Let's define the scope together">خلّنا نحدد النطاق مع بعض</h2>
+          <p data-en="Run the free check first, or book a consultation and we'll shape the right starting point with you.">ابدأ بالفحص المجاني، أو احجز استشارة ونحدد معك البداية المناسبة.</p>
+        </div>
+        <div class="cta-card__actions">
+          <a class="button button--primary" href="index.html#scan" data-en="Run your free check">افحص نشاطك مجانًا</a>
+          <a class="button button--ghost" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Book a consultation">احجز استشارة</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <svg class="footer__logo" aria-hidden="true"><use href="#logo"/></svg>
+      <div>
+        <strong data-en="SABBARAH AI">صبّارة AI</strong>
+        <em data-en="صبّارة AI">SABBARAH AI</em>
+      </div>
+      <p data-en="We build AI and automation — custom solutions shaped around your operations, and ready products at a fixed price — with security, privacy, and governance from day one.">نبني حلول ذكاء اصطناعي وأتمتة — حلول مخصصة على عملياتك ومنتجات جاهزة بسعر ثابت — مع الأمان والخصوصية والحوكمة من البداية.</p>
+      <p><a href="mailto:hello@sabbarahai.com">hello@sabbarahai.com</a></p>
+      <p><span><bdi>+966 53 986 9360</bdi></span></p>
+      <p><span data-en="Saudi Arabia">المملكة العربية السعودية</span></p>
+    </div>
+
+    <div>
+      <h3 data-en="Custom Solutions">الحلول المخصصة</h3>
+      <a href="#customer-service-agent" data-en="Customer Service Agent">وكيل خدمة العملاء</a>
+      <a href="#sales-booking-agent" data-en="Sales &amp; Booking Agent">وكيل المبيعات والحجوزات</a>
+      <a href="#professional-ai-assistant" data-en="Specialized Professional Assistant">المساعد المهني المتخصص</a>
+      <a href="#workflow-automation" data-en="Process Automation">أتمتة العمليات</a>
+      <a href="#custom-ai-solution" data-en="Custom Solution">الحل المخصص</a>
+    </div>
+
+    <div>
+      <h3 data-en="Ready Products">المنتجات الجاهزة</h3>
+      <a href="#smart-portfolio" data-en="Smart Portfolio">البورتفوليو الذكي</a>
+    </div>
+
+    <div>
+      <h3 data-en="Get Started">ابدأ</h3>
+      <a href="index.html#scan" data-en="Sabbarah Scan">فحص صبّارة</a>
+      <a href="#sabbarah-map" data-en="Sabbarah Map">خريطة صبّارة</a>
+      <a href="pricing.html" data-en="Pricing">الأسعار</a>
+      <a href="index.html#contact" data-en="Contact">تواصل معنا</a>
+    </div>
+  </div>
+
+  <!-- تابع صبّارة -->
+  <div class="container">
+    <div class="footer__social">
+      <h3 data-en="Follow SABBARAH AI">تابع صبّارة</h3>
+      <div class="social-links">
+        <a class="social-link" href="https://www.linkedin.com/in/sabbarahai/" target="_blank" rel="noopener" aria-label="صبّارة AI على LinkedIn" data-en-aria-label="SABBARAH AI on LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a class="social-link" href="https://www.tiktok.com/@sabbarh.ai" target="_blank" rel="noopener" aria-label="صبّارة AI على TikTok" data-en-aria-label="SABBARAH AI on TikTok" title="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <a class="social-link" href="https://x.com/sabbarahai" target="_blank" rel="noopener" aria-label="صبّارة AI على X" data-en-aria-label="SABBARAH AI on X" title="X">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z"/></svg>
+        </a>
+        <a class="social-link" href="https://wa.me/966539869360" target="_blank" rel="noopener" aria-label="تواصل مع صبّارة AI على واتساب" data-en-aria-label="Chat with SABBARAH AI on WhatsApp" title="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        </a>
+        <a class="social-link" href="https://sabbarahai.com/" target="_blank" rel="noopener" aria-label="الموقع الرسمي لصبّارة AI" data-en-aria-label="SABBARAH AI official website" title="sabbarahai.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a7.94 7.94 0 0 1 0-4h3.38a16.6 16.6 0 0 0 0 4H4.26zm.81 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.99 7.99 0 0 1 5.07 16zm2.95-8H5.07a7.99 7.99 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.02 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66a14.9 14.9 0 0 1 0-4h4.68a14.9 14.9 0 0 1 0 4zm.26 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14a16.6 16.6 0 0 0 0-4h3.38a7.94 7.94 0 0 1 0 4h-3.38z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <span data-en="© 2026 SABBARAH AI. All rights reserved.">© 2026 SABBARAH AI. جميع الحقوق محفوظة.</span>
+  </div>
+</footer>
+
+<script src="js/i18n.js" defer></script>
+<script src="js/main.js" defer></script>
+<script src="js/glow.js" defer></script>
+<script src="js/assistant.js" defer></script>
+</body>
+</html>

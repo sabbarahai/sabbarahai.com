@@ -88,11 +88,12 @@ img,svg{display:block;max-width:100%}
 .brand{display:flex;align-items:center;gap:11px}
 .brand__icon{width:38px;height:38px}
 .brand__text{display:flex;flex-direction:column;line-height:1.15}
+.brand__text strong,.brand__text em{white-space:nowrap}
 .brand__text strong{font-size:16.5px}
 .brand__text em{font-style:normal;font-family:var(--ff-lat);font-size:10.5px;
   letter-spacing:.16em;color:var(--muted-dim)}
 .nav-menu{display:flex;align-items:center;gap:clamp(12px,1.9vw,28px);margin-inline:auto}
-.nav-menu a{font-size:14.8px;color:#c8d8d3;padding:6px 2px;position:relative}
+.nav-menu a{font-size:14.8px;color:#c8d8d3;padding:6px 2px;position:relative;white-space:nowrap}
 .nav-menu a::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1.5px;
   background:var(--mint);transform:scaleX(0);transition:transform .25s ease}
 .nav-menu a:hover{color:#fff}
@@ -156,21 +157,7 @@ img,svg{display:block;max-width:100%}
   background:linear-gradient(90deg,var(--mint),rgba(63,232,182,0));margin-top:16px}
 .section-heading p{margin-top:16px;color:var(--muted);font-size:16px;max-width:52ch}
 
-/* ============ solutions + audience switch ============ */
-.aud-switch{position:relative;display:inline-flex;padding:6px;border-radius:999px;
-  background:rgba(255,255,255,.035);border:1px solid var(--line-strong);
-  margin-bottom:clamp(24px,2.6vw,34px)}
-.aud-switch__thumb{position:absolute;top:6px;bottom:6px;width:calc(50% - 6px);right:6px;
-  border-radius:999px;background:linear-gradient(135deg,var(--mint),var(--teal));
-  box-shadow:0 10px 26px -14px rgba(22,201,154,.9);
-  transition:transform .32s cubic-bezier(.65,.05,.36,1)}
-.aud-switch.is-ind .aud-switch__thumb{transform:translateX(-100%)}
-.aud-switch__btn{position:relative;z-index:1;min-width:132px;min-height:42px;border:0;
-  background:transparent;color:var(--muted);font-size:15px;font-weight:600;cursor:pointer;
-  border-radius:999px;transition:color .25s ease}
-.aud-switch__btn.is-active{color:#04120f}
-.aud-panel[hidden]{display:none}
-.aud-panel{animation:fade .4s ease both}
+/* ============ solutions ============ */
 @keyframes fade{from{opacity:0;transform:translateY(8px)}}
 .sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gap)}
 .sol-card{position:relative;display:flex;flex-direction:column;
@@ -193,29 +180,9 @@ img,svg{display:block;max-width:100%}
 .sol-card h3{font-size:20px;margin-top:26px}
 .sol-card__line{margin-top:10px;font-size:15.6px;font-weight:600;color:#dcece7;line-height:1.7}
 .sol-card p{margin-top:9px;font-size:14.4px;color:var(--muted);line-height:1.8}
-/* بطاقات "قريبًا" أخف بصريًا */
-.sol-card--soon{opacity:.9;min-height:210px}
-.sol-card--soon:hover{transform:none;border-color:var(--line);background:var(--card);box-shadow:none}
-.sol-card--soon:hover::after{opacity:0}
-.sol-card--soon .sol-card__icon{background:rgba(255,255,255,.035);border-color:var(--line-strong)}
-.sol-card--soon .sol-card__icon svg{stroke:var(--muted)}
 .tag{display:inline-flex;align-items:center;gap:6px;font-size:12.2px;font-weight:600;
   padding:5px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
 .tag--now{color:#04120f;background:linear-gradient(135deg,var(--mint),var(--teal))}
-.tag--soon{color:var(--gold);border-color:rgba(242,207,74,.32);background:rgba(242,207,74,.06)}
-/* المنتج الرئيسي للأفراد */
-.ind-flag{border:1px solid rgba(63,232,182,.3);border-radius:var(--radius-lg);
-  padding:clamp(24px,3vw,40px);margin-bottom:var(--grid-gap);
-  background:radial-gradient(120% 150% at 100% 0%,rgba(22,201,154,.14),transparent 58%),
-             linear-gradient(180deg,rgba(14,34,31,.6),rgba(6,18,17,.45));
-  box-shadow:0 34px 90px -60px rgba(22,201,154,.7)}
-.ind-flag__top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.ind-flag h3{font-size:clamp(23px,2.7vw,32px);margin-top:18px}
-.ind-flag__lead{margin-top:14px;font-size:clamp(16px,1.4vw,18px);color:#dcece7;
-  font-weight:600;line-height:1.7;max-width:52ch}
-.ind-flag p{margin-top:12px;color:var(--muted);font-size:15px;line-height:1.85;max-width:64ch}
-.ind-flag__actions{margin-top:24px}
-#solHeading.is-swap{animation:fade .4s ease both}
 .solutions__note{margin-top:clamp(22px,2.4vw,30px);font-size:15px;color:var(--muted)}
 .solutions__note a{color:var(--mint);border-bottom:1px solid rgba(63,232,182,.4);padding-bottom:1px}
 
@@ -276,37 +243,52 @@ img,svg{display:block;max-width:100%}
 .scan__radar::after{animation-delay:1s}
 @keyframes radar{from{transform:scale(.5);opacity:.9}to{transform:scale(1.15);opacity:0}}
 .scan__radar i{width:12px;height:12px;border-radius:50%;background:var(--mint)}
-/* result — «أول موضع» هو النتيجة الرئيسية، والأولوية تسنده */
-.scan__headline{display:grid;grid-template-columns:1.18fr .82fr;gap:var(--grid-gap);align-items:stretch}
-.scan__verdict,.scan__start{border:1px solid var(--line);border-radius:var(--radius);
-  background:rgba(4,14,13,.4);padding:20px 22px;display:flex;flex-direction:column;justify-content:center}
-.scan__verdict span,.scan__start span{display:block;font-size:13px;color:var(--muted);margin-bottom:10px}
-/* رئيسي */
-.scan__start{border-color:rgba(63,232,182,.45);padding:clamp(22px,2.4vw,28px);
+/* result — توصية واحدة بارزة، والباقي يسندها */
+.scan__lead{border:1px solid rgba(63,232,182,.45);border-radius:var(--radius);
+  padding:clamp(22px,2.6vw,30px);display:flex;flex-direction:column;align-items:flex-start;gap:12px;
   background:radial-gradient(120% 150% at 100% 0%,rgba(22,201,154,.16),transparent 62%),
              linear-gradient(150deg,rgba(18,44,39,.7),rgba(4,14,13,.45));
   box-shadow:0 26px 70px -50px rgba(22,201,154,.85)}
-.scan__start span{color:var(--mint)}
-.scan__start b{display:block;font-size:clamp(22px,2.7vw,31px);line-height:1.35;color:#fff}
-/* ثانوي */
-.scan__verdict b{display:block;font-size:clamp(19px,2vw,25px);color:var(--mint);line-height:1.2}
-.scan__indicators{display:grid;grid-template-columns:repeat(2,1fr);
-  gap:14px clamp(20px,3vw,40px);margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
-.ind{display:grid;grid-template-columns:1fr auto;gap:7px 12px;font-size:14.4px}
-.ind b{font-weight:600}
-.ind span{color:var(--mint);font-size:13.4px}
-.ind--warn span{color:var(--gold)}
-.ind i{grid-column:1/-1;height:5px;border-radius:99px;background:rgba(255,255,255,.07);
-  overflow:hidden;display:block}
-.ind i::after{content:"";display:block;height:100%;width:var(--v,0%);border-radius:99px;
-  background:linear-gradient(90deg,rgba(22,201,154,.45),var(--mint));transition:width .9s ease}
-.ind--warn i::after{background:linear-gradient(90deg,rgba(242,207,74,.35),var(--gold))}
-.scan__human{margin-top:16px;font-size:13.8px;color:var(--muted)}
-.scan__human b{color:var(--ink);font-weight:600}
-.scan__diagnosis{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);
-  display:grid;gap:10px;font-size:15.4px;color:#d7e6e1;line-height:1.85}
-.scan__diagnosis b{color:#fff}
-.scan__norecipe{margin-top:12px;font-size:13.2px;color:var(--muted-dim)}
+.scan__lead>span{font-size:13px;font-weight:600;color:var(--mint)}
+.scan__lead b{font-size:clamp(23px,2.9vw,33px);line-height:1.32;color:#fff}
+.scan__badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);
+  border:1px solid var(--line-strong);border-radius:999px;padding:6px 14px;background:rgba(4,14,13,.4)}
+.scan__badge b{font-size:13px;color:var(--mint);font-weight:600}
+.scan__why{margin-top:18px;font-size:15.2px;color:#d7e6e1;line-height:1.8}
+.scan__why b{color:var(--mint);font-weight:600}
+.scan__human{margin-top:14px;font-size:13.6px;color:var(--muted-dim)}
+.scan__human b{color:#cfe0db;font-weight:600}
+/* المقارنة: وضعك الآن / مع صبّارة */
+.compare{margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
+.compare__title{font-size:clamp(18px,1.9vw,22px)}
+.compare__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--grid-gap);margin-top:18px}
+.compare__col{border:1px solid var(--line);border-radius:var(--radius);
+  background:rgba(4,14,13,.35);padding:18px 20px}
+.compare__col>span{display:block;font-size:13px;font-weight:600;color:var(--muted);
+  padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.compare__col--next{border-color:rgba(63,232,182,.26);
+  background:linear-gradient(160deg,rgba(22,201,154,.07),rgba(4,14,13,.35))}
+.compare__col--next>span{color:var(--mint)}
+.cbars{display:grid;gap:15px}
+.cbar{display:grid;grid-template-columns:1fr auto;gap:7px 12px;font-size:13.8px}
+.cbar b{font-weight:600;color:#cfe0db}
+.cbar span{font-size:12.8px}
+.cbar i{grid-column:1/-1;height:6px;border-radius:99px;background:rgba(255,255,255,.06);
+  display:block;overflow:hidden}
+.cbar i::after{content:"";display:block;height:100%;width:var(--v,0%);border-radius:99px;
+  transition:width 1s cubic-bezier(.2,.8,.2,1)}
+/* وضعك الآن — احتكاك بالذهبي، وما هو مرتاح يبقى أخضر هادئ */
+.compare__col--now .cbar span{color:var(--gold)}
+.compare__col--now .cbar i::after{background:linear-gradient(90deg,rgba(242,207,74,.3),var(--gold))}
+.compare__col--now .cbar--ok span{color:var(--mint)}
+.compare__col--now .cbar--ok i::after{background:linear-gradient(90deg,rgba(22,201,154,.35),var(--mint))}
+/* مع صبّارة — كله بلون صبّارة */
+.compare__col--next .cbar span{color:var(--mint)}
+.compare__col--next .cbar i::after{background:linear-gradient(90deg,rgba(22,201,154,.4),var(--mint))}
+.compare__col--next .cbar--focus b{color:#fff}
+.compare__col--next .cbar--focus i::after{background:linear-gradient(90deg,var(--teal),var(--mint));
+  box-shadow:0 0 12px rgba(63,232,182,.45)}
+.compare__note{margin-top:14px;font-size:13px;color:var(--muted-dim)}
 .map-card{margin-top:24px;border:1px solid rgba(242,207,74,.28);border-radius:var(--radius);
   background:linear-gradient(140deg,rgba(242,207,74,.07),rgba(6,18,17,.2));padding:22px}
 .map-card__label{font-size:12.6px;color:var(--gold);font-weight:600}
@@ -403,7 +385,7 @@ img,svg{display:block;max-width:100%}
   .steps::before{display:none}
   .footer__grid{grid-template-columns:1fr 1fr}
   .scan__intro{grid-template-columns:1fr}
-  .scan__headline{grid-template-columns:1fr}
+  .compare__grid{grid-template-columns:1fr}
   .scan__options--wide{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:860px){
@@ -419,10 +401,8 @@ img,svg{display:block;max-width:100%}
 }
 @media (max-width:640px){
   .sol-grid,.sol-grid--3,.sol-grid--2,.guard__list,.steps,.scan__options,
-  .scan__options--wide,.scan__indicators,.footer__grid{grid-template-columns:1fr}
+  .scan__options--wide,.footer__grid{grid-template-columns:1fr}
   .guard__list li:last-child{grid-column:auto}
-  .aud-switch{width:100%}
-  .aud-switch__btn{flex:1;min-width:0}
   .button{width:100%}
   .hero__actions .button,.cta-card__actions .button,.map-card__actions .button,
   .scan__intro-actions .button{width:100%}
@@ -503,32 +483,26 @@ padding:7px 14px;font-size:12px;font-weight:700;transition:.2s ease;font-family:
 /* ---------- responsive ---------- */
 @media(max-width:1040px){
 .sol-grid,.sol-grid--3{grid-template-columns:repeat(2,1fr)}
-.nav{grid-template-columns:auto auto 1fr}
-.nav-menu{display:none;position:absolute;top:74px;right:20px;left:20px;padding:16px;border-radius:18px;border:1px solid var(--line);
+.nav-menu{display:none;position:absolute;top:74px;inset-inline:20px;padding:16px;border-radius:18px;border:1px solid var(--line);
 background:rgba(11,15,20,.97);backdrop-filter:blur(18px);flex-direction:column;align-items:stretch}
 .nav-menu.is-open{display:flex}
-.nav-toggle{display:block}
-.nav>.button{justify-self:end}
+.nav-toggle{display:flex}
 .hero__grid{grid-template-columns:1fr;text-align:center;gap:44px}
 .hero__copy p{margin-inline:auto}
 .hero__actions{justify-content:center}
 .guard{grid-template-columns:1fr;gap:30px}
-.portfolio{grid-template-columns:1fr}
 .steps{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:720px){
-.container{width:min(calc(100% - 28px),var(--max))}
+.container{width:min(100%,var(--container))}
 .nav{min-height:70px;gap:12px}
 .brand__icon{width:40px;height:40px}
-.nav>.button{min-height:40px;padding:0 14px;font-size:13px}
+.nav-actions .button{min-height:40px;padding:0 14px;font-size:13px}
 .hero{padding:52px 0 64px}
 .section{padding:70px 0}
 .sol-grid,.sol-grid--3{grid-template-columns:1fr}
 .sol-card{min-height:0}
-.aud-switch{width:100%;display:flex}
-.aud-switch__btn{flex:1;padding:10px 8px}
 .scan{padding:26px 22px}
-.scan__result-grid{grid-template-columns:1fr;justify-items:center}
 .guard{padding:28px 24px}
 .steps{grid-template-columns:1fr}
 .cta-card{flex-direction:column;align-items:flex-start;padding:28px}
@@ -540,4 +514,238 @@ background:rgba(11,15,20,.97);backdrop-filter:blur(18px);flex-direction:column;a
 .sb-assistant{inset-inline-start:14px}
 .sb-cactus{width:86px;height:98px}
 .sb-panel{inset-inline-start:12px;bottom:12px}
+}
+
+/* ============================================================
+   الترجمة واللغة — Language system (AR default / EN)
+   ============================================================ */
+/* نمنع وميض العربية قبل تطبيق الإنجليزية، مع صمام أمان في <head> */
+html[data-lang="en"]:not(.i18n-ready) body{opacity:0}
+body{transition:opacity .25s ease}
+@media (prefers-reduced-motion:reduce){body{transition:none}}
+
+.nav-actions{display:flex;align-items:center;gap:10px}
+.lang-switch{display:inline-flex;align-items:center;padding:3px;border-radius:999px;
+  border:1px solid var(--line-strong);background:rgba(255,255,255,.03)}
+.lang-switch button{min-height:30px;padding:0 11px;border:0;border-radius:999px;cursor:pointer;
+  background:transparent;color:var(--muted);font-family:var(--ff-lat);font-size:12px;
+  font-weight:600;letter-spacing:.06em;transition:color .2s ease,background .25s ease}
+.lang-switch button:hover{color:var(--ink)}
+.lang-switch button[aria-pressed="true"]{color:#04120f;
+  background:linear-gradient(135deg,var(--mint),var(--teal));
+  box-shadow:0 8px 20px -12px rgba(22,201,154,.9)}
+
+/* الإنجليزية: نحافظ على نفس الهوية مع إيقاع لاتيني للعناوين */
+html[lang="en"] h1,html[lang="en"] h2,html[lang="en"] h3,
+html[lang="en"] .brand__text strong,html[lang="en"] .price-card__price{
+  font-family:var(--ff-lat);letter-spacing:-.015em}
+html[lang="en"] .hero h1{letter-spacing:-.025em}
+/* الاسم العربي يظهر في الخانة اللاتينية عند الإنجليزية — نعيد له خطه وتباعده */
+html[lang="en"] .brand__text em,
+html[lang="en"] .footer__brand em,
+html[lang="en"] .guard__list span{font-family:var(--ff-ar);letter-spacing:0;font-size:12.5px}
+
+/* نُخفي الرابط الثانوي «كيف نعمل» عندما تضيق المساحة — ويبقى في الفوتر وقائمة الجوال.
+   المسميات الإنجليزية أطول، فتحتاج مدى أوسع. */
+@media (min-width:1041px) and (max-width:1200px){
+  .nav-menu a[data-nav-optional]{display:none}
+}
+/* المسميات الإنجليزية أطول ولا تتسع لسبعة روابط داخل الحاوية،
+   فيبقى «كيف نعمل» في الفوتر وقائمة الجوال فقط. */
+@media (min-width:1041px){
+  html[lang="en"] .nav-menu a[data-nav-optional]{display:none}
+}
+
+/* ============================================================
+   بطاقة حل مخصص بسعر (الصفحة الرئيسية)
+   ============================================================ */
+.sol-card--priced{min-height:0;padding-bottom:clamp(22px,2.2vw,28px)}
+/* الأيقونة أعلى البطاقة، والسعر يثبت في الأسفل — بدون فراغ في المنتصف */
+.sol-card--priced .sol-card__top,
+.sol-card--priced .sol-card__icon{margin-bottom:0}
+.sol-card--priced h3{margin-top:24px}
+.sol-card--priced>p{margin-top:10px}
+.sol-card--wide{grid-column:1/-1;
+  border-color:rgba(63,232,182,.3);
+  background:radial-gradient(120% 150% at 100% 0%,rgba(22,201,154,.12),transparent 58%),
+             linear-gradient(180deg,rgba(14,34,31,.6),rgba(6,18,17,.45));
+  box-shadow:0 34px 90px -60px rgba(22,201,154,.55)}
+.sol-card--wide h3{font-size:clamp(21px,2.2vw,26px)}
+.sol-card--wide>p{max-width:70ch}
+
+/* كتلة السعر — واضحة وهادئة */
+.price-block{margin-top:auto;padding-top:18px}
+.price-block__rule{height:1px;background:var(--line);margin-bottom:16px}
+.price-block__main{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;
+  font-size:clamp(19px,2vw,23px);font-weight:700;color:#fff;line-height:1.3}
+.price-block__main em{font-style:normal;font-size:13.5px;font-weight:600;color:var(--muted)}
+.price-block__sub{margin-top:8px;font-size:13.8px;color:var(--mint);font-weight:600}
+.price-block__cta{display:inline-flex;align-items:center;gap:7px;margin-top:18px;
+  font-size:14.6px;font-weight:600;color:var(--mint);
+  border-bottom:1px solid rgba(63,232,182,.35);padding-bottom:2px;transition:.22s ease}
+.price-block__cta::after{content:"↖";font-size:12px;transform:rotate(135deg);transition:transform .22s ease}
+html[dir="ltr"] .price-block__cta::after{transform:rotate(45deg)}
+.price-block__cta:hover{color:#fff;border-bottom-color:var(--mint)}
+.price-block__cta:hover::after{transform:rotate(135deg) translate(2px,-2px)}
+html[dir="ltr"] .price-block__cta:hover::after{transform:rotate(45deg) translate(2px,-2px)}
+
+/* ============================================================
+   المنتجات الجاهزة — بطاقة المنتج
+   ============================================================ */
+.ready-flag{position:relative;border:1px solid rgba(63,232,182,.3);border-radius:var(--radius-lg);
+  padding:clamp(24px,3vw,40px);
+  background:radial-gradient(120% 150% at 100% 0%,rgba(22,201,154,.14),transparent 58%),
+             linear-gradient(180deg,rgba(14,34,31,.6),rgba(6,18,17,.45));
+  box-shadow:0 34px 90px -60px rgba(22,201,154,.7);
+  display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,3vw,44px);align-items:center}
+.ready-flag__top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.ready-flag h3{font-size:clamp(23px,2.7vw,32px);margin-top:18px}
+.ready-flag__lead{margin-top:14px;font-size:clamp(16px,1.4vw,18px);color:#dcece7;
+  font-weight:600;line-height:1.7;max-width:52ch}
+.ready-flag p{margin-top:12px;color:var(--muted);font-size:15px;line-height:1.85;max-width:64ch}
+.ready-flag__actions{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px}
+.ready-flag__pricebox{border:1px solid var(--line-strong);border-radius:var(--radius);
+  background:rgba(4,14,13,.5);padding:clamp(20px,2.2vw,26px)}
+.ready-flag__pricebox span{display:block;font-size:12.8px;color:var(--muted-dim);font-weight:600}
+.ready-flag__pricebox b{display:block;margin-top:9px;font-size:clamp(24px,2.8vw,32px);
+  color:#fff;line-height:1.25}
+.ready-flag__pricebox em{display:block;margin-top:6px;font-style:normal;font-size:13.4px;
+  color:var(--muted)}
+.ready-flag__renew{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:13.6px;color:var(--mint);font-weight:600}
+
+/* ============================================================
+   صفحة الأسعار
+   ============================================================ */
+.pricing-hero{padding-block:clamp(48px,6vw,86px) clamp(26px,3vw,40px)}
+.pricing-hero .section-heading{max-width:720px;margin-bottom:0}
+.pricing-hero h1{font-size:clamp(31px,4.4vw,54px);line-height:1.18;letter-spacing:-.02em}
+.pricing-hero h1::after{content:"";display:block;width:58px;height:3px;border-radius:3px;
+  background:linear-gradient(90deg,var(--mint),rgba(63,232,182,0));margin-top:18px}
+.pricing-hero__sub{margin-top:20px;color:var(--muted);font-size:clamp(15.5px,1.2vw,17.4px);
+  max-width:62ch;line-height:1.9}
+.jump-pills{display:flex;flex-wrap:wrap;gap:11px;margin-top:clamp(26px,3vw,34px)}
+.jump-pill{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;
+  border-radius:999px;border:1px solid var(--line-strong);background:rgba(255,255,255,.02);
+  color:#dbe9e5;font-size:14.6px;font-weight:600;transition:.24s ease}
+.jump-pill:hover{border-color:rgba(63,232,182,.5);background:rgba(22,201,154,.09);
+  color:#fff;transform:translateY(-2px)}
+.jump-pill i{font-style:normal;color:var(--mint);font-size:13px}
+
+.pricing-section{padding-block:clamp(44px,5vw,72px)}
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--grid-gap)}
+
+.price-card{position:relative;display:flex;flex-direction:column;
+  padding:clamp(24px,2.4vw,32px);border:1px solid var(--line);border-radius:var(--radius-lg);
+  background:var(--card);overflow:hidden;
+  transition:transform .28s ease,border-color .28s ease,background .28s ease,box-shadow .28s ease}
+.price-card::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(63,232,182,.5),transparent);
+  opacity:0;transition:opacity .3s ease}
+.price-card:hover{transform:translateY(-4px);border-color:rgba(63,232,182,.28);
+  background:var(--card-hover);box-shadow:0 26px 60px -40px rgba(22,201,154,.6)}
+.price-card:hover::after{opacity:1}
+.price-card--wide{grid-column:1/-1;border-color:rgba(63,232,182,.28);
+  background:radial-gradient(120% 150% at 100% 0%,rgba(22,201,154,.12),transparent 58%),
+             linear-gradient(180deg,rgba(14,34,31,.58),rgba(6,18,17,.45));
+  box-shadow:0 34px 90px -60px rgba(22,201,154,.5)}
+.price-card__icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  background:rgba(22,201,154,.10);border:1px solid rgba(22,201,154,.22)}
+.price-card__icon svg{width:22px;height:22px;fill:none;stroke:var(--mint);stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round}
+.price-card h3{margin-top:22px;font-size:clamp(20px,2vw,24px)}
+.price-card__en{display:block;margin-top:7px;font-family:var(--ff-lat);font-size:12.6px;
+  letter-spacing:.05em;color:var(--muted-dim);font-weight:500}
+html[lang="en"] .price-card__en{display:none}
+
+.price-card__amount{margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.price-card__price{font-size:clamp(27px,3.2vw,38px);font-weight:700;color:#fff;line-height:1.15;
+  display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.price-card__price small{font-size:15px;font-weight:600;color:var(--muted)}
+.price-card__label{margin-top:9px;font-size:13.4px;color:var(--muted-dim)}
+.price-card__monthly{margin-top:14px;display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:600;color:var(--mint);
+  border:1px solid rgba(63,232,182,.26);background:rgba(22,201,154,.07);
+  border-radius:999px;padding:8px 15px;line-height:1.5}
+
+.price-card__scope{margin-top:26px;font-size:14.6px;font-weight:600;color:#dcece7}
+.price-list{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:11px}
+.price-list li{position:relative;padding-inline-start:28px;font-size:14.6px;color:#cfe0db;
+  line-height:1.75}
+.price-list li::before{content:"";position:absolute;inset-inline-start:0;top:6px;
+  width:19px;height:19px;border-radius:7px;background:rgba(22,201,154,.12);
+  border:1px solid rgba(22,201,154,.28)}
+.price-list li::after{content:"";position:absolute;inset-inline-start:6px;top:11px;
+  width:6px;height:9px;border:solid var(--mint);border-width:0 1.8px 1.8px 0;
+  transform:rotate(45deg)}
+html[dir="rtl"] .price-list li::after{inset-inline-start:6.5px}
+
+.price-card__example{margin-top:24px;border:1px solid var(--line);border-radius:var(--radius);
+  background:rgba(4,14,13,.42);padding:16px 18px}
+.price-card__example span{display:block;font-size:12.4px;font-weight:600;color:var(--gold);
+  margin-bottom:8px}
+.price-card__example p{font-size:14.2px;color:var(--muted);line-height:1.8}
+.price-card__actions{margin-top:26px;padding-top:4px;display:flex;flex-wrap:wrap;gap:12px}
+.price-card--wide .price-list{grid-template-columns:repeat(2,1fr);gap:11px clamp(20px,2.4vw,34px)}
+
+/* خريطة صبّارة — شريط مستقل بامتداد كامل */
+.map-strip{position:relative;border:1px solid rgba(242,207,74,.3);border-radius:28px;
+  padding:clamp(26px,3.2vw,46px);
+  background:radial-gradient(120% 130% at 0% 0%,rgba(242,207,74,.10),transparent 58%),
+             linear-gradient(160deg,rgba(24,34,26,.6),rgba(5,15,14,.45));
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,3.4vw,52px);align-items:center}
+.map-strip__label{display:inline-block;font-size:13px;font-weight:600;color:var(--gold);
+  text-shadow:0 0 18px rgba(201,162,39,.2)}
+.map-strip h2{margin-top:12px;font-size:clamp(26px,3.2vw,40px)}
+.map-strip__sub{margin-top:14px;font-size:clamp(16px,1.4vw,18.5px);color:#dcece7;font-weight:600}
+.map-strip__amount{margin-top:22px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.map-strip__amount b{font-size:clamp(28px,3.4vw,40px);color:#fff;line-height:1.15;font-weight:700}
+.map-strip__amount small{font-size:14px;color:var(--muted)}
+.map-strip__credit{margin-top:18px;border:1px solid rgba(242,207,74,.28);border-radius:var(--radius);
+  background:rgba(242,207,74,.06);padding:14px 17px;font-size:14.2px;color:#f0e4bd;line-height:1.8}
+.map-strip__actions{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px}
+.map-strip .price-list li::before{background:rgba(242,207,74,.10);border-color:rgba(242,207,74,.28)}
+.map-strip .price-list li::after{border-color:var(--gold)}
+html[lang="en"] .map-strip h2{font-family:var(--ff-lat)}
+
+/* بيان الأسعار — واضح ومقروء، وليس هامشًا قانونيًا */
+.disclaimer{border:1px solid var(--line-strong);border-radius:var(--radius-lg);
+  background:linear-gradient(180deg,rgba(18,40,36,.4),rgba(7,20,18,.32));
+  padding:clamp(24px,2.6vw,34px);margin-top:clamp(30px,3.4vw,44px)}
+.disclaimer h3{font-size:18.5px}
+.disclaimer p{margin-top:14px;font-size:15px;color:#c3d4cf;line-height:2;max-width:88ch}
+
+/* ============================================================
+   تابع صبّارة — روابط التواصل في الفوتر
+   ============================================================ */
+.footer__social{display:flex;align-items:center;justify-content:space-between;gap:18px;
+  flex-wrap:wrap;margin-top:clamp(30px,3.4vw,44px);padding-top:26px;
+  border-top:1px solid var(--line)}
+.footer__social h3{font-size:14.6px;margin:0}
+.social-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.social-link{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;
+  border:1px solid var(--line-strong);background:rgba(255,255,255,.02);color:var(--muted);
+  transition:color .22s ease,border-color .22s ease,background .22s ease,transform .22s ease}
+.social-link svg{width:17px;height:17px;fill:currentColor;display:block}
+.social-link:hover{color:var(--mint);border-color:rgba(63,232,182,.45);
+  background:rgba(22,201,154,.08);transform:translateY(-2px)}
+
+/* ============================================================
+   استجابة الشاشات — الأقسام الجديدة
+   ============================================================ */
+@media (max-width:1024px){
+  .ready-flag{grid-template-columns:1fr}
+  .map-strip{grid-template-columns:1fr}
+  .price-card--wide .price-list{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .pricing-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .price-card__actions .button,.map-strip__actions .button,
+  .ready-flag__actions .button{width:100%}
+  .jump-pill{width:100%;justify-content:center}
+  .footer__social{flex-direction:column;align-items:flex-start;gap:14px}
+  .price-card{padding:24px 20px}
+  .price-card__price{font-size:29px}
 }

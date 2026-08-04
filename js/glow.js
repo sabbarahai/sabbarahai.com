@@ -69,7 +69,7 @@
 
   /* ---------------- 2. cursor-following surface glow ---------------- */
   if (window.matchMedia("(hover: hover)").matches && !reduced.matches) {
-    const TARGETS = ".sol-card, .steps li, .faq details, .portfolio__site, .portfolio__chat";
+    const TARGETS = ".sol-card, .steps li, .faq details, .price-card";
     document.addEventListener("pointermove", (event) => {
       const target = event.target.closest?.(TARGETS);
       if (!target) return;

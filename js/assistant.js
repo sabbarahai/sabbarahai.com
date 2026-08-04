@@ -201,9 +201,9 @@
       p: ["حلول", "خدمات", "منتجات", "وش تسوون", "وش تقدمون", "وش عندكم", "ايش تقدمون",
           "solutions", "services", "products", "what do you do", "what do you offer", "offerings", "capabilities"],
       run: (lang) => lang === "ar"
-        ? { html: "حلول صبّارة الجاهزة للأعمال 🌵:<br><br>• <b>صبّارة تبيع</b> — توصل عميلك للشراء أو الحجز<br>• <b>صبّارة تتابع</b> — ترجع الفرص اللي كانت بتضيع<br>• <b>صبّارة تهتم</b> — خدمة عملاء ما تنام<br>• <b>صبّارة تختصر</b> — تنهي الشغل اليدوي والتقارير<br>• <b>صبّارة تحمي</b> — خصوصية وصلاحيات وحوكمة<br><br>وهذي بعض حلولنا الجاهزة — ونبني حلولًا مخصصة حسب عمليات نشاطك. أي واحد يلمس وجعك أكثر؟",
+        ? { html: "قدرات صبّارة 🌵:<br><br>• <b>صبّارة تبيع</b> — توصل عميلك للشراء أو الحجز<br>• <b>صبّارة تتابع</b> — ترجع الفرص اللي كانت بتضيع<br>• <b>صبّارة تهتم</b> — خدمة عملاء ما تنام<br>• <b>صبّارة تختصر</b> — تنهي الشغل اليدوي والتقارير<br>• <b>صبّارة تحمي</b> — خصوصية وصلاحيات وحوكمة<br><br>هذي القدرات نبنيها كحلول مخصصة على عمليات نشاطك. أي واحد يلمس وجعك أكثر؟",
             chips: [{ t: "صبّارة تبيع", send: true }, { t: "صبّارة تتابع", send: true }, { t: "صبّارة تهتم", send: true }, { t: "صبّارة تختصر", send: true }, { t: "صبّارة تحمي", send: true }] }
-        : { html: "Sabbarah's ready business solutions 🌵:<br><br>• <b>صبّارة تبيع</b> — gets your customer to purchase or booking<br>• <b>صبّارة تتابع</b> — recovers opportunities before they vanish<br>• <b>صبّارة تهتم</b> — customer care that never sleeps<br>• <b>صبّارة تختصر</b> — ends manual work and reports<br>• <b>صبّارة تحمي</b> — privacy, permissions, governance<br><br>These are the ready ones — we also build custom solutions around your workflows. Which one touches your pain most?",
+        : { html: "What Sabbarah can do 🌵:<br><br>• <b>صبّارة تبيع</b> — gets your customer to purchase or booking<br>• <b>صبّارة تتابع</b> — recovers opportunities before they vanish<br>• <b>صبّارة تهتم</b> — customer care that never sleeps<br>• <b>صبّارة تختصر</b> — ends manual work and reports<br>• <b>صبّارة تحمي</b> — privacy, permissions, governance<br><br>We build these as custom solutions around your workflows. Which one touches your pain most?",
             chips: [{ t: "Selling", send: true }, { t: "Follow-up", send: true }, { t: "Customer care", send: true }, { t: "Operations", send: true }] } },
     { id: "vague-automation",
       p: ["اتمته", "أتمته", "ابغي اتمته", "ذكاء اصطناعي", "ai", "بوت", "روبوت", "اتمت", "ابي نظام",
@@ -247,28 +247,28 @@
       p: ["بورتفوليو", "البورتفوليو", "افراد", "للافراد", "سيره ذاتيه", "ملف مهني", "موقع شخصي",
           "portfolio", "individuals", "cv", "resume", "personal site", "personal brand"],
       run: (lang) => lang === "ar"
-        ? { html: "صبّارة للأفراد 🌵 — <b>البورتفوليو الذكي</b>:<br>حضور مهني أذكى من ملف PDF: موقعك المهني بخبراتك ومشاريعك، ومعه مساعدة ذكية تجيب زوارك عنك.<br><br>بورتفوليو يتكلم عنك، حتى وأنت مو موجود.",
-            chips: [{ t: "شوف القسم", goto: "#individuals" }, { t: "اكتشف البورتفوليو الذكي", book: true }] }
-        : { html: "Sabbarah for Individuals 🌵 — the <b>Smart Portfolio</b>:<br>A professional presence smarter than a PDF: your site with your experience and projects, plus an AI assistant that answers visitors about you.<br><br>A portfolio that speaks for you, even when you're away.",
-            chips: [{ t: "See the section", goto: "#individuals" }, { t: "Discover the Smart Portfolio", book: true }] } },
+        ? { html: "<b>البورتفوليو الذكي</b> 🌵 — من المنتجات الجاهزة:<br>حضور مهني أذكى من ملف PDF: موقعك المهني بخبراتك ومشاريعك، ومعه مساعدة ذكية تجيب زوارك عنك.<br><br>سعر ثابت وواضح: <b>1,900 ريال</b> دفعة واحدة.",
+            chips: [{ t: "شوف القسم", goto: "#ready-products" }, { t: "التفاصيل والسعر", goto: "pricing.html#smart-portfolio" }] }
+        : { html: "The <b>Smart Portfolio</b> 🌵 — one of our ready products:<br>A professional presence smarter than a PDF: your site with your experience and projects, plus an AI assistant that answers visitors about you.<br><br>A clear fixed price: <b>SAR 1,900</b>, one-time.",
+            chips: [{ t: "See the section", goto: "#ready-products" }, { t: "Details and pricing", goto: "pricing.html#smart-portfolio" }] } },
     { id: "pricing",
       p: ["سعر", "اسعار", "الاسعار", "تكلفه", "بكم", "كم يكلف", "باقات", "ميزانيه", "فلوس", "كم سعره",
           "price", "pricing", "cost", "how much", "packages", "budget", "fees", "expensive"],
       run: (lang, ctx) => {
         const last = ctx.lastTopic && SOL[ctx.lastTopic] ? SOL[ctx.lastTopic][lang].name : null;
         return lang === "ar"
-          ? { html: (last ? "بالنسبة لـ<b>" + last + "</b> — " : "") + "كل حل يُصمم على نشاطك وعملياتك 🌵 فالتكلفة تعتمد على النطاق: قنوات، تكاملات، وعمق الأتمتة.<br><br>أفضل بداية: <b>فحص صبّارة</b> المجاني، وبعده استشارة مجانية نحدد فيها النطاق والتكلفة بوضوح — بدون التزام.",
-              chips: [{ t: "🌵 افحص نشاطك مجانًا", goto: "#scan" }, { t: "احجز استشارة مجانية", book: true }] }
-          : { html: (last ? "For <b>" + last + "</b> — " : "") + "every solution is tailored to your business 🌵 so cost depends on scope: channels, integrations, automation depth.<br><br>Best start: the free <b>فحص صبّارة</b>, then a free consultation to define scope and cost clearly — no commitment.",
-              chips: [{ t: "🌵 Try the free check", goto: "#scan" }, { t: "Book a free consultation", book: true }] };
+          ? { html: (last ? "بالنسبة لـ<b>" + last + "</b> — " : "") + "أسعارنا معلنة 🌵<br>الحلول المخصصة لها <b>سعر يبدأ من</b> نطاق أساسي واضح، والمنتجات الجاهزة لها <b>سعر ثابت</b>.<br><br>مثال: وكيل خدمة العملاء يبدأ من <b>9,900 ريال</b> تأسيسًا، والبورتفوليو الذكي <b>1,900 ريال</b> دفعة واحدة.<br><br>السعر النهائي للحلول المخصصة يتحدد بعد الاتفاق على النطاق.",
+              chips: [{ t: "شوف قائمة الأسعار", goto: "pricing.html" }, { t: "🌵 افحص نشاطك مجانًا", goto: "#scan" }, { t: "احجز استشارة", book: true }] }
+          : { html: (last ? "For <b>" + last + "</b> — " : "") + "our pricing is published 🌵<br>Custom solutions have a <b>starting price</b> based on a clear base scope; ready products have a <b>fixed price</b>.<br><br>For example: the Customer Service Agent starts at <b>SAR 9,900</b> to implement, and the Smart Portfolio is <b>SAR 1,900</b> one-time.<br><br>The final price for custom work is set once the scope is agreed.",
+              chips: [{ t: "See the pricing page", goto: "pricing.html" }, { t: "🌵 Try the free check", goto: "#scan" }, { t: "Book a consultation", book: true }] };
       } },
     { id: "about",
       p: ["من انتم", "عن صباره", "وش صباره", "مين صباره", "من انت", "مين انتي", "تعريف", "ليش صباره", "وش يميزكم", "ليش انتم",
           "who are you", "about sabbarah", "what is sabbarah", "why sabbarah", "what makes you different", "your value"],
       run: (lang) => lang === "ar"
-        ? { html: "صبّارة AI 🌵 شركة سعودية تبني وكلاء ذكاء اصطناعي وأنظمة أتمتة — للأعمال وللأفراد.<br><br>اللي يميزنا؟ <b>نبنيها صح</b>: الأمان والخصوصية والحوكمة جزء من التصميم من البداية، مو إضافة بعد التشغيل. ونشتغل بالعربي، لسوقنا، وبحلول تُقاس نتيجتها.",
+        ? { html: "صبّارة AI 🌵 شركة سعودية تبني وكلاء ذكاء اصطناعي وأنظمة أتمتة — حلول مخصصة على عملياتك، ومنتجات جاهزة بسعر ثابت.<br><br>اللي يميزنا؟ <b>نبنيها صح</b>: الأمان والخصوصية والحوكمة جزء من التصميم من البداية، مو إضافة بعد التشغيل. ونشتغل بالعربي، لسوقنا، وبحلول تُقاس نتيجتها.",
             chips: [{ t: "وش حلولكم؟", send: true }, { t: "كيف تشتغلون؟", send: true }, { t: "احجز استشارة", book: true }] }
-        : { html: "Sabbarah AI 🌵 is a Saudi company building AI agents and automation — for businesses and individuals.<br><br>What makes us different? <b>We build it right</b>: security, privacy, and governance are part of the design from day one — not an afterthought. Arabic-first, built for this market, measured by results.",
+        : { html: "Sabbarah AI 🌵 is a Saudi company building AI agents and automation — custom solutions shaped around your operations, plus ready products at a fixed price.<br><br>What makes us different? <b>We build it right</b>: security, privacy, and governance are part of the design from day one — not an afterthought. Arabic-first, built for this market, measured by results.",
             chips: [{ t: "Your solutions?", send: true }, { t: "How do you work?", send: true }, { t: "Book a consultation", book: true }] } },
     { id: "guard-info",
       p: ["حوكمه", "الحوكمه", "تحمي", "نبنيها صح", "اشراف بشري", "صلاحيات",
@@ -296,9 +296,9 @@
           "where do i find", "show me around", "navigate", "sections", "where is"],
       run: (lang) => lang === "ar"
         ? { html: "أدلّك 🌵 — اختر وأنا أوديك للقسم:",
-            chips: [{ t: "حلول الأعمال", goto: "#business" }, { t: "فحص صبّارة", goto: "#scan" }, { t: "للأفراد", goto: "#individuals" }, { t: "كيف نعمل", goto: "#process" }, { t: "تواصل معنا", goto: "#contact" }] }
+            chips: [{ t: "الحلول المخصصة", goto: "#custom-solutions" }, { t: "المنتجات الجاهزة", goto: "#ready-products" }, { t: "فحص صبّارة", goto: "#scan" }, { t: "الأسعار", goto: "pricing.html" }, { t: "كيف نعمل", goto: "#process" }, { t: "تواصل معنا", goto: "#contact" }] }
         : { html: "Let me guide you 🌵 — pick a section and I'll take you there:",
-            chips: [{ t: "Business solutions", goto: "#business" }, { t: "The free check", goto: "#scan" }, { t: "For individuals", goto: "#individuals" }, { t: "How we work", goto: "#process" }, { t: "Contact", goto: "#contact" }] } },
+            chips: [{ t: "Custom Solutions", goto: "#custom-solutions" }, { t: "Ready Products", goto: "#ready-products" }, { t: "The free check", goto: "#scan" }, { t: "Pricing", goto: "pricing.html" }, { t: "How we work", goto: "#process" }, { t: "Contact", goto: "#contact" }] } },
     { id: "human",
       p: ["انسان", "بشر", "موظف", "كلمني احد", "ابغي اكلم احد", "شخص حقيقي",
           "human", "real person", "agent", "talk to someone", "speak to a person"],
@@ -498,7 +498,12 @@
     window.open(mail, "_blank");
   };
   const doGoto = (sel) => {
-    document.querySelector(sel)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    /* رابط لصفحة أخرى (مثل صفحة الأسعار) — ننتقل إليه مباشرة */
+    if (!sel.startsWith("#")) { window.location.href = sel; return; }
+    const el = document.querySelector(sel);
+    if (el) { el.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+    /* القسم غير موجود في هذه الصفحة — نفتحه في الصفحة الرئيسية */
+    window.location.href = "index.html" + sel;
   };
 
   const addMsg = (content, who, lang, isHtml) => {

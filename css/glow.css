@@ -44,26 +44,27 @@ animation:shimmer 9s ease-in-out infinite}
 50%{box-shadow:0 32px 84px rgba(5,7,10,.65),0 0 54px rgba(31,217,160,.18)}}
 
 /* ---------- 7. cursor-following glow on interactive surfaces ---------- */
-.steps li,.faq details,.guard__list li,.portfolio__site,.portfolio__chat,.scan{--mx:50%;--my:50%;position:relative}
-.steps li::before,.faq details::before,.portfolio__site::before,.portfolio__chat::before{
+.steps li,.faq details,.guard__list li,.scan,.price-card{--mx:50%;--my:50%;position:relative}
+.steps li::before,.faq details::before,.price-card::before{
 content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .45s ease;
 background:radial-gradient(320px circle at var(--mx) var(--my),rgba(31,217,160,.08),transparent 65%)}
-.steps li:hover::before,.faq details:hover::before,
-.portfolio__site:hover::before,.portfolio__chat:hover::before{opacity:1}
+.steps li:hover::before,.faq details:hover::before,.price-card:hover::before{opacity:1}
 
 /* ---------- 8. traveling border light on premium panels ---------- */
 @property --sweep{syntax:"<angle>";inherits:false;initial-value:0deg}
-.guard::after,.cta-card::after,.map-card::after{
+.guard::after,.cta-card::after,.map-card::after,.map-strip::after{
 content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
 background:conic-gradient(from var(--sweep,0deg),transparent 0deg,transparent 300deg,rgba(31,217,160,.45) 330deg,rgba(107,245,206,.7) 342deg,rgba(31,217,160,.45) 354deg,transparent 360deg);
 -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
 animation:sweep 14s linear infinite}
-.guard,.cta-card,.map-card{position:relative}
+.guard,.cta-card,.map-card,.map-strip{position:relative}
 .cta-card::after{animation-duration:11s;animation-delay:-4s}
 .map-card::after{animation-duration:12s;animation-delay:-7s}
+.map-strip::after{animation-duration:13s;animation-delay:-5s;
+background:conic-gradient(from var(--sweep,0deg),transparent 0deg,transparent 300deg,rgba(201,162,39,.4) 330deg,rgba(242,207,74,.65) 342deg,rgba(201,162,39,.4) 354deg,transparent 360deg)}
 @keyframes sweep{to{--sweep:360deg}}
 @supports not (background:conic-gradient(from var(--sweep,0deg),#000,#000)){
-.guard::after,.cta-card::after,.map-card::after{display:none}
+.guard::after,.cta-card::after,.map-card::after,.map-strip::after{display:none}
 .guard,.cta-card,.map-card{animation:edgeBreath 8s ease-in-out infinite}
 @keyframes edgeBreath{0%,100%{box-shadow:0 0 0 rgba(31,217,160,0)}50%{box-shadow:0 0 44px rgba(31,217,160,.07)}}}
 
@@ -90,6 +91,6 @@ transition:width .9s cubic-bezier(.2,.8,.2,1) .2s}
 @media(prefers-reduced-motion:reduce){
 .ambient__orb--one,.ambient__orb--two,.ambient__orb--three,.ambient__aurora,
 .site-header::after,.hero h1 span,.demo,.guard::after,.cta-card::after,.map-card::after,
-.button--primary,.trust-line i{animation:none!important}
+.map-strip::after,.button--primary,.trust-line i{animation:none!important}
 .glow-particles{display:none}
 .section-heading h2::after{transition:none}}
