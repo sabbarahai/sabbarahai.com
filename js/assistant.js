@@ -247,9 +247,9 @@
       p: ["بورتفوليو", "البورتفوليو", "افراد", "للافراد", "سيره ذاتيه", "ملف مهني", "موقع شخصي",
           "portfolio", "individuals", "cv", "resume", "personal site", "personal brand"],
       run: (lang) => lang === "ar"
-        ? { html: "<b>البورتفوليو الذكي</b> 🌵 — من المنتجات الجاهزة:<br>حضور مهني أذكى من ملف PDF: موقعك المهني بخبراتك ومشاريعك، ومعه مساعدة ذكية تجيب زوارك عنك.<br><br>سعر ثابت وواضح: <b>1,900 ريال</b> دفعة واحدة.",
+        ? { html: "<b>البورتفوليو الذكي</b> 🌵 — من المنتجات الجاهزة:<br>حضور مهني أذكى من ملف PDF: موقعك المهني بخبراتك ومشاريعك، ومعه مساعدة ذكية تجيب زوارك عنك.<br><br>سعر ثابت وواضح: <s>1,900 ريال</s> <b>499 ريال</b> دفعة واحدة — خصم لفترة محدودة.",
             chips: [{ t: "شوف القسم", goto: "#ready-products" }, { t: "التفاصيل والسعر", goto: "pricing.html#smart-portfolio" }] }
-        : { html: "The <b>Smart Portfolio</b> 🌵 — one of our ready products:<br>A professional presence smarter than a PDF: your site with your experience and projects, plus an AI assistant that answers visitors about you.<br><br>A clear fixed price: <b>SAR 1,900</b>, one-time.",
+        : { html: "The <b>Smart Portfolio</b> 🌵 — one of our ready products:<br>A professional presence smarter than a PDF: your site with your experience and projects, plus an AI assistant that answers visitors about you.<br><br>A clear fixed price: <s>SAR 1,900</s> <b>SAR 499</b>, one-time — limited-time offer.",
             chips: [{ t: "See the section", goto: "#ready-products" }, { t: "Details and pricing", goto: "pricing.html#smart-portfolio" }] } },
     { id: "pricing",
       p: ["سعر", "اسعار", "الاسعار", "تكلفه", "بكم", "كم يكلف", "باقات", "ميزانيه", "فلوس", "كم سعره",
@@ -257,9 +257,9 @@
       run: (lang, ctx) => {
         const last = ctx.lastTopic && SOL[ctx.lastTopic] ? SOL[ctx.lastTopic][lang].name : null;
         return lang === "ar"
-          ? { html: (last ? "بالنسبة لـ<b>" + last + "</b> — " : "") + "أسعارنا معلنة 🌵<br>الحلول المخصصة لها <b>سعر يبدأ من</b> نطاق أساسي واضح، والمنتجات الجاهزة لها <b>سعر ثابت</b>.<br><br>مثال: وكيل خدمة العملاء يبدأ من <b>9,900 ريال</b> تأسيسًا، والبورتفوليو الذكي <b>1,900 ريال</b> دفعة واحدة.<br><br>السعر النهائي للحلول المخصصة يتحدد بعد الاتفاق على النطاق.",
+          ? { html: (last ? "بالنسبة لـ<b>" + last + "</b> — " : "") + "أسعارنا معلنة 🌵<br>الحلول المخصصة لها <b>سعر يبدأ من</b> نطاق أساسي واضح، والمنتجات الجاهزة لها <b>سعر ثابت</b>.<br><br>مثال: وكيل خدمة العملاء يبدأ من <b>9,900 ريال</b> تأسيسًا، والبورتفوليو الذكي <s>1,900 ريال</s> <b>499 ريال</b> دفعة واحدة.<br><br>السعر النهائي للحلول المخصصة يتحدد بعد الاتفاق على النطاق.",
               chips: [{ t: "شوف قائمة الأسعار", goto: "pricing.html" }, { t: "🌵 افحص نشاطك مجانًا", goto: "#scan" }, { t: "احجز استشارة", book: true }] }
-          : { html: (last ? "For <b>" + last + "</b> — " : "") + "our pricing is published 🌵<br>Custom solutions have a <b>starting price</b> based on a clear base scope; ready products have a <b>fixed price</b>.<br><br>For example: the Customer Service Agent starts at <b>SAR 9,900</b> to implement, and the Smart Portfolio is <b>SAR 1,900</b> one-time.<br><br>The final price for custom work is set once the scope is agreed.",
+          : { html: (last ? "For <b>" + last + "</b> — " : "") + "our pricing is published 🌵<br>Custom solutions have a <b>starting price</b> based on a clear base scope; ready products have a <b>fixed price</b>.<br><br>For example: the Customer Service Agent starts at <b>SAR 9,900</b> to implement, and the Smart Portfolio is <s>SAR 1,900</s> <b>SAR 499</b> one-time.<br><br>The final price for custom work is set once the scope is agreed.",
               chips: [{ t: "See the pricing page", goto: "pricing.html" }, { t: "🌵 Try the free check", goto: "#scan" }, { t: "Book a consultation", book: true }] };
       } },
     { id: "about",

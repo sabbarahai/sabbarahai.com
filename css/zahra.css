@@ -1054,3 +1054,35 @@ html[data-theme="light"] ::selection{background:rgba(14,92,74,.18);color:#0b0f14
 html[data-theme="light"] ::-webkit-scrollbar-track{background:#ebefed}
 html[data-theme="light"] ::-webkit-scrollbar-thumb{background:#c3d0ca;border-color:#ebefed}
 html[data-theme="light"] ::-webkit-scrollbar-thumb:hover{background:#9fb5ac}
+
+/* ============================================================
+   ⬥ عرض مخفّض — البورتفوليو الذكي (2026-08-09)
+   طبقة إضافية فوق أنماط الأسعار: السعر السابق مشطوب وثانوي،
+   والسعر الجديد هو الأبرز، مع وسم «خصم لفترة محدودة» بلون الذهب.
+   لا تُحذف ولا تُعدَّل أي قاعدة سابقة — تعمل في الوضعين وفي RTL/LTR.
+   ============================================================ */
+
+/* صندوق سعر الصفحة الرئيسية يصبح سطرًا مرنًا مثل بطاقة الأسعار */
+.ready-flag__pricebox b{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+
+/* السعر السابق — مشطوب، ثانوي، ويبقى مقروءًا */
+:is(.ready-flag__pricebox b,.price-card__price) .price-was{
+  font-size:.56em;font-weight:600;color:var(--muted-dim);letter-spacing:0;
+  text-decoration:line-through;text-decoration-thickness:1.5px;white-space:nowrap}
+
+/* السعر الجديد — هو الأساسي، ويرث لون السعر في الوضعين */
+:is(.ready-flag__pricebox b,.price-card__price) .price-now{
+  font-size:1em;font-weight:700;color:inherit;white-space:nowrap}
+
+/* وسم الخصم — نمط .tag نفسه بلون الذهب */
+.tag--offer{color:var(--gold);background:rgba(242,207,74,.10);
+  border-color:rgba(242,207,74,.34)}
+/* داخل صندوق السعر توجد قاعدة span عامة (display/لون/حجم) — نرفع التخصيص لاستعادة نمط الوسم */
+.ready-flag__pricebox .tag--offer{display:inline-flex;margin-bottom:14px;
+  font-size:12.2px;font-weight:600;color:var(--gold)}
+.price-card__amount .tag--offer{margin-bottom:14px}
+
+/* الوضع الفاتح — تباين كافٍ للسعر المشطوب وللوسم */
+html[data-theme="light"] :is(.ready-flag__pricebox b,.price-card__price) .price-was{color:#5b6672}
+html[data-theme="light"] .tag--offer{color:#6f5a12;background:rgba(201,162,39,.10);
+  border-color:rgba(201,162,39,.38)}
