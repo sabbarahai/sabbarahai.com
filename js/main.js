@@ -19,6 +19,29 @@
   });
 })();
 
+/* ============ تبديل المظهر (فاتح/داكن) ============ */
+(function () {
+  var KEY = 'sabbarah-theme', root = document.documentElement;
+  var btns = document.querySelectorAll('.theme-toggle');
+  if (!btns.length) return;
+  function sync() {
+    var light = root.getAttribute('data-theme') === 'light';
+    for (var i = 0; i < btns.length; i++) btns[i].setAttribute('aria-pressed', light ? 'true' : 'false');
+  }
+  function apply(theme) {
+    if (theme === 'light') root.setAttribute('data-theme', 'light');
+    else root.removeAttribute('data-theme');
+    try { localStorage.setItem(KEY, theme); } catch (e) { /* تصفح خاص */ }
+    sync();
+  }
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener('click', function () {
+      apply(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+    });
+  }
+  sync();
+})();
+
 /* ============ خط الهيدر عند التمرير (يفعّل تأثير css/glow.css) ============ */
 (function () {
   var h = document.querySelector('.site-header');

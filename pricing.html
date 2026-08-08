@@ -14,6 +14,7 @@
 (function(){
   var d=document.documentElement;
   try{
+    if(localStorage.getItem('sabbarah-theme')==='light')d.setAttribute('data-theme','light');
     var l=localStorage.getItem('sabbarah-lang')==='en'?'en':'ar';
     d.setAttribute('data-lang',l);
     if(l==='en'){d.lang='en';d.dir='ltr';setTimeout(function(){d.classList.add('i18n-ready')},900);}
@@ -84,6 +85,10 @@
     </nav>
 
     <div class="nav-actions">
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="تبديل المظهر" data-en-aria-label="Toggle theme">
+        <svg class="tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+        <svg class="tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 13.6A8.2 8.2 0 0 1 10.4 3.8a8.2 8.2 0 1 0 9.8 9.8Z"/></svg>
+      </button>
       <div class="lang-switch" role="group" aria-label="اللغة" data-en-aria-label="Language">
         <button type="button" data-lang-btn="ar" aria-pressed="true" lang="ar">ع</button>
         <button type="button" data-lang-btn="en" aria-pressed="false" lang="en">EN</button>
