@@ -349,10 +349,11 @@ html[dir="rtl"] .scope{transform:scaleX(-1)}
 .station.is-done .station__frame{opacity:1;transform:none}
 html:not(.js) .station__frame{opacity:1;transform:none}
 @keyframes stIn{to{opacity:1;transform:none}}
-.station__msg,.station__reply{margin:0;font-size:13px;line-height:1.55;padding:6px 11px;border-radius:11px;max-width:100%}
-.station__msg{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#dcece7;border-end-start-radius:4px}
-.station__reply{background:linear-gradient(135deg,var(--mint),var(--teal));color:#04120f;font-weight:500;border-end-end-radius:4px;margin-inline-start:auto}
-html[data-theme="light"] .station__reply{background:linear-gradient(135deg,#3fe8b6,#16c99a)}
+/* scoped under .station so the bubbles outrank the generic `.sol-card p` rule (muted colour, 15.5px, 9px margin) */
+.station .station__msg,.station .station__reply{margin:0;font-size:14px;line-height:1.6;padding:6px 11px;border-radius:11px;max-width:100%}
+.station .station__msg{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#dcece7;border-end-start-radius:4px}
+.station .station__reply{background:linear-gradient(135deg,var(--mint),var(--teal));color:#04120f;font-weight:500;border-end-end-radius:4px;margin-inline-start:auto}
+html[data-theme="light"] .station .station__reply{background:linear-gradient(135deg,#3fe8b6,#16c99a);color:#04120f}
 .station__ch{width:9px;height:9px;border-radius:50%;background:var(--green);flex:none;box-shadow:0 0 0 4px rgba(31,217,160,.16)}
 .station__ch--3{display:inline-flex;gap:4px;width:auto;height:auto;background:none;box-shadow:none}
 .station__ch--3 i{width:8px;height:8px;border-radius:50%;background:var(--green);opacity:.5}
