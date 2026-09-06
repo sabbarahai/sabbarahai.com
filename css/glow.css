@@ -1,98 +1,55 @@
 /* ============================================================
-   ZAHRA — Living Green Glow System
+   ZAHRA — Living Green Glow System (glow.css)
    Layered on top of zahra.css WITHOUT touching layout/structure.
    Deep Jade #0E5C4A · Sabbarah Green #1FD9A0 · Mint #6BF5CE ·
-   Desert Gold #C9A227 (≤5%). Subtle, premium, reduced-motion safe.
+   Desert Gold #C9A227 (one touch per composition).
+   2026-09-06 consolidation: motion means a state changed. The
+   ambient loops (orbs, aurora, shimmer, breath, sweeps, twinkle,
+   header hairline, button pulse) are retired; what remains reacts
+   to the visitor: cursor light on hover, the heading underline on
+   reveal, and one edge light on the active station.
    ============================================================ */
 
-/* ---------- 1. ambient orbs drift & breathe ---------- */
-.ambient__orb--one{animation:orbOne 26s ease-in-out infinite alternate}
-.ambient__orb--two{animation:orbTwo 32s ease-in-out infinite alternate}
-.ambient__orb--three{top:38%;left:44%;width:420px;background:var(--jade);opacity:.10;animation:orbThree 38s ease-in-out infinite alternate}
-@keyframes orbOne{0%{transform:translate(0,0) scale(1);opacity:.14}50%{transform:translate(-70px,60px) scale(1.12);opacity:.19}100%{transform:translate(30px,110px) scale(.96);opacity:.13}}
-@keyframes orbTwo{0%{transform:translate(0,0) scale(1);opacity:.14}50%{transform:translate(90px,-70px) scale(1.08);opacity:.18}100%{transform:translate(-40px,-120px) scale(1.02);opacity:.12}}
-@keyframes orbThree{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-110px,70px) scale(1.15)}100%{transform:translate(120px,-60px) scale(.94)}}
+/* ---------- 1. hero headline: the second line is simply green ---------- */
+.hero h1 span{color:var(--green)}
+html[data-theme="light"] .hero h1 span{color:var(--jade)}
 
-/* ---------- 2. aurora veil — slow moving green light ---------- */
-.ambient__aurora{position:absolute;inset:-20%;will-change:transform;
-background:radial-gradient(ellipse 42% 30% at 20% 30%,rgba(31,217,160,.06),transparent 70%),
-radial-gradient(ellipse 36% 26% at 75% 65%,rgba(14,92,74,.10),transparent 70%),
-radial-gradient(ellipse 30% 22% at 55% 20%,rgba(107,245,206,.04),transparent 70%);
-animation:aurora 44s ease-in-out infinite alternate}
-@keyframes aurora{0%{transform:translate(-3%,-2%) rotate(0deg) scale(1)}50%{transform:translate(2.5%,2%) rotate(2.2deg) scale(1.05)}100%{transform:translate(-1.5%,3%) rotate(-1.6deg) scale(1.02)}}
+/* ---------- 2. cursor-following light on interactive surfaces (dark: glow, light: fill light) ---------- */
+.sol-card,.faq details,.guard__list li,.price-card,.steps li{--mx:50%;--my:50%;position:relative}
+.sol-card::before,.faq details::before,.price-card::before{
+content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .45s ease;z-index:0;
+background:radial-gradient(320px circle at var(--mx) var(--my),rgba(31,217,160,.06),transparent 65%)}
+.sol-card:hover::before,.faq details:hover::before,.price-card:hover::before{opacity:1}
+.sol-card>*,.price-card>*{position:relative;z-index:1}
+/* on Sand the pointer is a fill light, not a torch: a warm white lift instead of green */
+html[data-theme="light"] .sol-card::before,html[data-theme="light"] .faq details::before,html[data-theme="light"] .price-card::before{
+background:radial-gradient(360px circle at var(--mx) var(--my),rgba(255,255,255,.55),transparent 66%)}
 
-/* ---------- 3. floating particles canvas ---------- */
-.glow-particles{position:fixed;inset:0;z-index:-1;pointer-events:none}
+/* ---------- 3. scroll-reactive: heading underline draws on reveal ---------- */
+.section-heading h2{position:relative;display:block;width:fit-content}
+.section-heading h2::after{content:"";position:absolute;inset-inline-start:0;bottom:-10px;height:3px;width:0;border-radius:99px;
+background:linear-gradient(90deg,var(--green),var(--mint));box-shadow:0 0 12px rgba(31,217,160,.35);
+transition:width .9s var(--ease-out) .2s}
+html[dir="rtl"] .section-heading h2::after{background:linear-gradient(270deg,var(--green),var(--mint))}
+.reveal.is-visible h2::after,.is-visible .section-heading h2::after,.section-heading.is-visible h2::after,
+html:not(.js) .section-heading h2::after{width:56px}
+html[data-theme="light"] .section-heading h2::after{background:linear-gradient(90deg,var(--jade),var(--green));box-shadow:none}
 
-/* ---------- 4. header hairline slides when scrolled ---------- */
-.site-header{position:sticky}
-.site-header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;pointer-events:none;
-background:linear-gradient(90deg,transparent,rgba(31,217,160,0) 20%,rgba(31,217,160,.55) 50%,rgba(107,245,206,.35) 60%,transparent 80%);
-background-size:220% 100%;opacity:0;transition:opacity .4s ease;animation:hairline 7s linear infinite}
-.site-header.is-scrolled::after{opacity:1}
-@keyframes hairline{0%{background-position:220% 0}100%{background-position:-120% 0}}
-
-/* ---------- 5. hero headline shimmer (slow mint pass) ---------- */
-.hero h1 span{background:linear-gradient(100deg,var(--green) 0%,var(--green) 38%,var(--mint) 50%,var(--green) 62%,var(--green) 100%);
-background-size:240% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--green);
-animation:shimmer 9s ease-in-out infinite}
-@keyframes shimmer{0%,55%{background-position:130% 0}85%,100%{background-position:-40% 0}}
-
-/* ---------- 6. hero demo card breathes ---------- */
-.demo{animation:demoBreath 8s ease-in-out infinite}
-@keyframes demoBreath{0%,100%{box-shadow:0 32px 80px rgba(5,7,10,.65),0 0 40px rgba(31,217,160,.10)}
-50%{box-shadow:0 32px 84px rgba(5,7,10,.65),0 0 54px rgba(31,217,160,.18)}}
-
-/* ---------- 7. cursor-following glow on interactive surfaces ---------- */
-.steps li,.faq details,.guard__list li,.scan,.price-card{--mx:50%;--my:50%;position:relative}
-.steps li::before,.faq details::before,.price-card::before{
-content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .45s ease;
-background:radial-gradient(320px circle at var(--mx) var(--my),rgba(31,217,160,.08),transparent 65%)}
-.steps li:hover::before,.faq details:hover::before,.price-card:hover::before{opacity:1}
-
-/* ---------- 8. traveling border light on premium panels ---------- */
+/* ---------- 4. the active station carries the one edge light on the page ---------- */
 @property --sweep{syntax:"<angle>";inherits:false;initial-value:0deg}
-.guard::after,.cta-card::after,.map-card::after,.map-strip::after{
-content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+.sol-card.is-active::after{
+content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;opacity:1;height:auto;background:none;
 background:conic-gradient(from var(--sweep,0deg),transparent 0deg,transparent 300deg,rgba(31,217,160,.45) 330deg,rgba(107,245,206,.7) 342deg,rgba(31,217,160,.45) 354deg,transparent 360deg);
 -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
-animation:sweep 14s linear infinite}
-.guard,.cta-card,.map-card,.map-strip{position:relative}
-.cta-card::after{animation-duration:11s;animation-delay:-4s}
-.map-card::after{animation-duration:12s;animation-delay:-7s}
-.map-strip::after{animation-duration:13s;animation-delay:-5s;
-background:conic-gradient(from var(--sweep,0deg),transparent 0deg,transparent 300deg,rgba(201,162,39,.4) 330deg,rgba(242,207,74,.65) 342deg,rgba(201,162,39,.4) 354deg,transparent 360deg)}
+animation:sweep 6s linear 2}
 @keyframes sweep{to{--sweep:360deg}}
-@supports not (background:conic-gradient(from var(--sweep,0deg),#000,#000)){
-.guard::after,.cta-card::after,.map-card::after,.map-strip::after{display:none}
-.guard,.cta-card,.map-card{animation:edgeBreath 8s ease-in-out infinite}
-@keyframes edgeBreath{0%,100%{box-shadow:0 0 0 rgba(31,217,160,0)}50%{box-shadow:0 0 44px rgba(31,217,160,.07)}}}
+@supports not (background:conic-gradient(from var(--sweep,0deg),#000,#000)){.sol-card.is-active::after{display:none}}
 
-/* ---------- 9. primary button living pulse ---------- */
-.button--primary{animation:btnGlow 6s ease-in-out infinite}
-@keyframes btnGlow{
-0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 14px 36px rgba(31,217,160,.15)}
-50%{box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 14px 42px rgba(31,217,160,.28),0 0 18px rgba(107,245,206,.12)}}
-.button--primary:hover{animation:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 18px 44px rgba(31,217,160,.24)}
+/* ---------- 5. quiet text accents (no shadows on paper) ---------- */
+.eyebrow,.kicker{text-shadow:0 0 18px rgba(107,245,206,.18)}
+html[data-theme="light"] .eyebrow,html[data-theme="light"] .kicker{text-shadow:none}
 
-/* ---------- 10. scroll-reactive: heading underline draws on reveal ---------- */
-.section-heading h2{position:relative;display:block;width:fit-content}
-.section-heading h2::after{content:"";position:absolute;inset-inline-start:0;bottom:-8px;height:3px;width:0;border-radius:99px;
-background:linear-gradient(90deg,var(--green),var(--mint));box-shadow:0 0 12px rgba(31,217,160,.45);
-transition:width .9s cubic-bezier(.2,.8,.2,1) .2s}
-.reveal.is-visible h2::after,.is-visible .section-heading h2::after,.section-heading.is-visible h2::after{width:56px}
-
-/* ---------- 11. quiet gold accents twinkle (≤5% gold) ---------- */
-.trust-line i{animation:goldTwinkle 5s ease-in-out infinite}
-@keyframes goldTwinkle{0%,100%{text-shadow:0 0 8px rgba(201,162,39,.3)}50%{text-shadow:0 0 16px rgba(201,162,39,.65)}}
-.eyebrow,.kicker{text-shadow:0 0 18px rgba(107,245,206,.22)}
-.eyebrow--gold{text-shadow:0 0 18px rgba(201,162,39,.2)}
-
-
-/* ---------- reduced motion: everything calms down ---------- */
+/* ---------- reduced motion ---------- */
 @media(prefers-reduced-motion:reduce){
-.ambient__orb--one,.ambient__orb--two,.ambient__orb--three,.ambient__aurora,
-.site-header::after,.hero h1 span,.demo,.guard::after,.cta-card::after,.map-card::after,
-.map-strip::after,.button--primary,.trust-line i{animation:none!important}
-.glow-particles{display:none}
+.sol-card.is-active::after{animation:none!important}
 .section-heading h2::after{transition:none}}

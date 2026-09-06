@@ -8,11 +8,23 @@
       content="صبّارة AI تبني وكلاء ذكاء اصطناعي وحلول أتمتة — حلول مخصصة على عملياتك ومنتجات جاهزة بسعر ثابت — مع الأمان والخصوصية والحوكمة مدمجة من البداية."
       data-en-content="SABBARAH AI builds AI agents and automation — custom solutions shaped around your operations and ready products at a fixed price — with security, privacy, and governance built in from day one.">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://sabbarahai.com/">
+<meta name="theme-color" content="#0B0F14">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SABBARAH AI">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:url" content="https://sabbarahai.com/">
+<meta property="og:title" content="صبّارة AI | شغلك كثير؟ خلّ صبّارة تشتغل معك">
+<meta property="og:description" content="صبّارة AI تبني وكلاء ذكاء اصطناعي وحلول أتمتة — حلول مخصصة على عملياتك ومنتجات جاهزة بسعر ثابت — مع الأمان والخصوصية والحوكمة مدمجة من البداية.">
+<meta property="og:image" content="https://sabbarahai.com/assets/Logo_Avatar_512x512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@sabbarahai">
 
-<!-- اللغة المحفوظة تُطبّق قبل الرسم لمنع وميض النص -->
+<!-- اللغة والمظهر المحفوظان يُطبّقان قبل الرسم لمنع الوميض -->
 <script>
 (function(){
   var d=document.documentElement;
+  d.classList.add('js'); /* حركات الدخول تعمل فقط مع الجافاسكربت — بدونها يظهر كل شيء ثابتًا */
   try{
     if(localStorage.getItem('sabbarah-theme')==='light')d.setAttribute('data-theme','light');
     var l=localStorage.getItem('sabbarah-lang')==='en'?'en':'ar';
@@ -23,22 +35,25 @@
 })();
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- الخطوط مستضافة محليًا — لا طلب خارجي على مسار الرسم -->
+<link rel="preload" href="assets/fonts/plex-arabic-700-arab.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/plex-arabic-400-arab.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/zahra.css">
 <link rel="stylesheet" href="css/glow.css">
+<link rel="stylesheet" href="css/depth.css">
+<link rel="stylesheet" href="css/journey.css">
+<script type="speculationrules">{"prerender":[{"urls":["pricing.html"],"eagerness":"moderate"}]}</script>
 </head>
 <body>
 
+<!-- البيئة المحيطة: طبقة ضوء واحدة مخبوزة (داكن) وانكسار ضوء النهار (فاتح) — بلا مرشّحات حية -->
 <div class="ambient" aria-hidden="true">
-  <div class="ambient__aurora"></div>
-  <div class="ambient__orb ambient__orb--one"></div>
-  <div class="ambient__orb ambient__orb--two"></div>
-  <div class="ambient__orb ambient__orb--three"></div>
-  <div class="ambient__grid"></div>
+  <div class="ambient__bake"></div>
+  <div class="ambient__caustic"></div>
 </div>
-<canvas class="glow-particles" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
 
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
   <defs>
@@ -47,13 +62,14 @@
       <stop offset="100%" stop-color="#08B987"/>
     </linearGradient>
     <symbol id="logo" viewBox="0 0 1000 1000">
-      <path d="M452 171 L500 123 L548 171" fill="none" stroke="#F2CF4A" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="500" cy="224" r="38" fill="#F2CF4A"/>
+      <path class="lg-apex" d="M452 171 L500 123 L548 171" fill="none" stroke="#F2CF4A" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle class="lg-apex" cx="500" cy="224" r="38" fill="#F2CF4A"/>
       <path fill="url(#logoGrad)" d="M318 328 C291 328 270 349 270 376 L270 576 C270 603 291 624 318 624 L478 624 L478 639 C478 655 491 668 507 668 L694 668 C721 668 742 647 742 620 L742 458 C742 431 721 410 694 410 C667 410 646 431 646 458 L646 572 L536 572 L536 529 C536 513 523 500 507 500 C491 500 478 513 478 529 L478 528 L366 528 L366 376 C366 349 345 328 318 328 Z"/>
-      <circle cx="505" cy="500" r="13" fill="none" stroke="#0C1219" stroke-width="7"/>
-      <circle cx="505" cy="548" r="15" fill="#0C1219"/>
-      <circle cx="505" cy="596" r="15" fill="#0C1219"/>
-      <circle cx="505" cy="644" r="15" fill="#0C1219"/>
+      <!-- العقد تضيء بالتتابع (css/depth.css) — "الأتمتة تتدفق" -->
+      <circle class="lg-ring" cx="505" cy="500" r="13" fill="none" stroke="#0C1219" stroke-width="7"/>
+      <circle class="lg-n1" cx="505" cy="548" r="15" fill="#0C1219"/>
+      <circle class="lg-n2" cx="505" cy="596" r="15" fill="#0C1219"/>
+      <circle class="lg-n3" cx="505" cy="644" r="15" fill="#0C1219"/>
       <g stroke="#16C99A" stroke-width="14" stroke-linecap="round" fill="none">
         <path d="M500 745 L500 826"/><path d="M360 826 L640 826"/>
       </g>
@@ -71,6 +87,7 @@
       <span class="brand__text">
         <strong data-en="SABBARAH AI">صبّارة AI</strong>
         <em data-en="صبّارة AI">SABBARAH AI</em>
+        <span class="brand__now" aria-hidden="true"></span>
       </span>
     </a>
 
@@ -99,13 +116,13 @@
   </div>
 </header>
 
-<main>
-  <!-- ============ HERO ============ -->
-  <section class="hero">
+<main id="main">
+  <!-- ============ HERO — رسالة واحدة تدخل ============ -->
+  <section class="hero" id="hero">
     <div class="container hero__grid">
       <div class="hero__copy">
         <span class="kicker" data-en="SABBARAH AI · AI and automation">صبّارة AI · ذكاء اصطناعي وأتمتة</span>
-        <h1 data-en="Too much on your plate?<span>Let Sabbarah work with you.</span>">شغلك كثير؟<span>خلّ صبّارة تشتغل معك.</span></h1>
+        <h1 data-en="<b>Too much on your plate?</b><span>Let Sabbarah work with you.</span>"><b>شغلك كثير؟</b><span>خلّ صبّارة تشتغل معك.</span></h1>
         <p data-en="We build AI agents and automation systems that help your business reply, follow up, and get things done — with security, privacy, and governance built in from the start.">نبني وكلاء ذكاء اصطناعي وأنظمة أتمتة تساعد أعمالك ترد، تتابع، وتنجز — مع الأمان والخصوصية والحوكمة مدمجة من البداية.</p>
         <div class="hero__actions">
           <a class="button button--primary" href="#scan" data-en="Run your free check">افحص نشاطك مجانًا</a>
@@ -115,103 +132,236 @@
       </div>
 
       <div class="hero__demo">
-        <div class="demo" aria-label="مثال حي لتفاعل صبّارة مع عميل" data-en-aria-label="A live example of Sabbarah interacting with a customer">
-          <div class="demo__head">
-            <span class="demo__dot"></span>
-            <span data-en="Sabbarah is replying">صبّارة ترد الآن</span>
-            <span class="demo__tag" data-en="Live example">مثال حي</span>
+        <!-- اختر قطاعك: المحادثة تتبدل من الأمثلة المنشورة فقط (js/main.js + SB.STRINGS) -->
+        <div class="sectors" role="group" aria-label="شوف المحادثة في قطاعك" data-en-aria-label="See the conversation in your sector">
+          <span class="sectors__label" data-en="Your sector">قطاعك</span>
+          <button type="button" class="sector" data-sector="clinic" aria-pressed="false" data-en="Clinic">عيادة</button>
+          <button type="button" class="sector" data-sector="store" aria-pressed="true" data-en="Store">متجر</button>
+          <button type="button" class="sector" data-sector="estate" aria-pressed="false" data-en="Real estate">عقار</button>
+        </div>
+        <!-- مسرح ثلاثي الأبعاد: المحادثة في المقدمة، وطبقتان من النظام تطلّان من تحتها، وأرضية تعكسها -->
+        <div class="hero__stage">
+          <div class="stage-3d">
+            <div class="stage-layer stage-layer--2" aria-hidden="true"></div>
+            <div class="stage-layer stage-layer--1" aria-hidden="true"></div>
+            <div class="demo" aria-label="مثال حي لتفاعل صبّارة مع عميل" data-en-aria-label="A live example of Sabbarah interacting with a customer">
+              <div class="demo__head">
+                <span class="demo__dot"></span>
+                <span data-en="Sabbarah is replying">صبّارة ترد الآن</span>
+                <span class="demo__tag" data-en="Live example">مثال حي</span>
+              </div>
+              <div class="demo__body" id="demoBody"></div>
+              <ol class="demo__flow" aria-hidden="true">
+                <li data-en="Understand">فهم السؤال</li>
+                <li data-en="Next step">اقتراح الخطوة</li>
+                <li data-en="Capture">التقاط العميل</li>
+                <li data-en="Follow-up">متابعة تلقائية</li>
+              </ol>
+            </div>
           </div>
-          <div class="demo__body" id="demoBody"></div>
-          <div class="demo__flow" aria-hidden="true" data-en="Understand the question → Suggest the next step → Capture the lead → Automatic follow-up">فهم السؤال ← اقتراح الخطوة ← التقاط العميل ← متابعة تلقائية</div>
+          <div class="hero__floor" aria-hidden="true"><i class="hero__reflect"></i><i class="hero__pool"></i></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ الحلول المخصصة ============ -->
+  <!-- ============ خلف كل رد — الشعار ينفتح ============ -->
+  <section class="section section--anatomy" id="anatomy">
+    <div class="container">
+      <div class="anatomy__head reveal">
+        <div class="section-heading">
+          <span class="eyebrow" data-en="Behind every reply">خلف كل رد</span>
+          <h2 data-en="The reply your customer sees is the last layer of a complete system">الرد اللي يشوفه عميلك هو آخر طبقة من نظام كامل</h2>
+          <p data-en="Every message passes through six stages — from request to result — with controls and human oversight in the middle of the path, not added after launch. Scroll: the mark opens, and the message from the example above descends through the stations.">كل رسالة تمر بست مراحل — من الطلب إلى النتيجة — والضوابط والإشراف البشري في منتصف المسار، وليس إضافة بعد التشغيل. مرّر: الشعار ينفتح، والرسالة من المثال أعلاه تنزل عبر المحطات.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- المسار الطويل: المشهد يثبت والتمرير هو الكاميرا (js/journey.js) -->
+    <div class="mark" id="mark">
+      <div class="mark__sticky">
+        <div class="container mark__grid">
+          <!-- القراءة: مكان واحد لكل الكلمات — لا نص داخل المنظور أبدًا -->
+          <div class="mark__readout" aria-live="polite" aria-atomic="true">
+            <div class="mark__idx"><b id="markIdx">01</b><span id="markOf" data-en="/ 06">/ 06</span></div>
+            <div class="mark__word" id="markWord">
+              <strong class="mark__ar" id="markMain" data-en="Request">الطلب</strong>
+              <span class="mark__en" id="markSub" data-en="الطلب">REQUEST</span>
+            </div>
+            <div class="mark__rule" aria-hidden="true"></div>
+            <p class="mark__desc" id="markDesc" data-en="A customer message arrives on WhatsApp or website chat.">رسالة تصل من العميل عبر واتساب أو شات الموقع.</p>
+            <p class="mark__msg" id="markMsg"><span data-en="The message">الرسالة</span><q id="markMsgText">السلام عليكم، الطلب يوصل الخبر؟</q></p>
+            <ol class="mark__index" id="markIndex" aria-label="المحطات" data-en-aria-label="Stations">
+              <li><button type="button" data-station="1" aria-pressed="true" aria-label="الطلب" data-en-aria-label="Request">01</button></li>
+              <li><button type="button" data-station="2" aria-pressed="false" aria-label="المعرفة" data-en-aria-label="Knowledge">02</button></li>
+              <li><button type="button" data-station="3" aria-pressed="false" aria-label="الفهم" data-en-aria-label="Understanding">03</button></li>
+              <li><button type="button" data-station="4" aria-pressed="false" aria-label="القرار" data-en-aria-label="Decision">04</button></li>
+              <li><button type="button" data-station="5" aria-pressed="false" aria-label="التنفيذ" data-en-aria-label="Action">05</button></li>
+              <li><button type="button" data-station="6" aria-pressed="false" aria-label="النتيجة" data-en-aria-label="Result">06</button></li>
+            </ol>
+            <p class="mark__gold" data-en="Gold node: a human checkpoint">العقدة الذهبية: نقطة تدخل بشري</p>
+          </div>
+
+          <div class="mark__stage">
+            <!-- الشعار الرسمي نفسه هو الجسم: مغلق = الرد الذي يراه العميل، ومفتوح = ست محطات على محور واحد -->
+            <div class="mark__scene" id="markScene" aria-hidden="true">
+              <svg class="mark__closed" viewBox="0 0 1000 1000"><use href="#logo"/></svg>
+              <svg class="mark__svg" id="markSvg" viewBox="0 0 1000 1000"></svg>
+            </div>
+            <!-- المصعد: نسخة الجوال ثنائية الأبعاد بلا منظور -->
+            <ol class="mark__elevator" id="markElevator" aria-hidden="true">
+              <li data-station="1"><i class="el__dot"></i></li>
+              <li data-station="2"><i class="el__chip"></i><i class="el__chip"></i><i class="el__chip"></i></li>
+              <li data-station="3"><i class="el__tag"></i><i class="el__tag"></i></li>
+              <li data-station="4"><i class="el__branch"></i><i class="el__gold"></i></li>
+              <li data-station="5"><i class="el__cal"></i><i class="el__bar"></i></li>
+              <li data-station="6"><i class="el__bubble"></i></li>
+              <div class="el__card"><i></i><i></i></div>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- للقارئ الشاشي وبلا جافاسكربت: المحطات الست بكلماتها -->
+    <ol class="sr-only" id="anatomyList">
+      <li data-en="Request — a customer message arrives on WhatsApp or website chat.">الطلب — رسالة تصل من العميل عبر واتساب أو شات الموقع.</li>
+      <li data-en="Knowledge — your approved answers, policies, and information, nothing else.">المعرفة — الأسئلة والسياسات والمعلومات المعتمدة من فريقك، ولا شيء غيرها.</li>
+      <li data-en="Understanding — AI understands the request and picks the right next step.">الفهم — الذكاء الاصطناعي يفهم المطلوب ويحدد الخطوة المناسبة.</li>
+      <li data-en="Decision — a decision within clear permissions; sensitive cases go to a person.">القرار — قرار ضمن صلاحيات واضحة، والحالات الحساسة تتحول إلى إنسان.</li>
+      <li data-en="Action — an instant reply, a booking, or an update in your calendar or CRM.">التنفيذ — رد فوري، أو حجز موعد، أو تحديث في التقويم أو CRM.</li>
+      <li data-en="Result — automatic follow-up, continuous monitoring, and a monthly performance report.">النتيجة — متابعة تلقائية، ومراقبة مستمرة، وتقرير أداء شهري.</li>
+    </ol>
+  </section>
+
+  <!-- ============ الحلول المخصصة — الحلول تشتغل ============ -->
   <section class="section" id="custom-solutions">
     <div class="container">
       <div class="section-heading reveal">
         <span class="eyebrow" data-en="Custom Solutions">الحلول المخصصة</span>
         <h2 data-en="AI and automation solutions built around the way you work">حلول ذكاء اصطناعي وأتمتة تُبنى على طريقة عملك</h2>
-        <p data-en="We understand the process, design the solution, connect the systems, and run it with you — with privacy, controls, and human oversight from day one.">نفهم العملية، نصمم الحل، نربط الأنظمة، ونشغّله معك — مع الخصوصية والضوابط والإشراف البشري من البداية.</p>
+        <p data-en="We understand the process, design the solution, connect the systems, and run it with you — with privacy, controls, and human oversight from day one. Each card shows its agent finishing one job from its published example.">نفهم العملية، نصمم الحل، نربط الأنظمة، ونشغّله معك — مع الخصوصية والضوابط والإشراف البشري من البداية. كل بطاقة تعرض وكيلها وهو ينهي مهمة واحدة من مثاله المنشور.</p>
       </div>
 
       <div class="sol-grid sol-grid--2 reveal">
 
         <!-- A — وكيل ذكاء اصطناعي لخدمة العملاء -->
-        <article class="sol-card sol-card--priced">
+        <article class="sol-card sol-card--priced" id="sol-cs">
           <span class="sol-card__top">
             <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3.5a1.5 1.5 0 0 0 1.5 1.5H7v-5H4ZM20 13v3.5a1.5 1.5 0 0 1-1.5 1.5H17v-5h3Z"/><path d="M17.5 18v.8a2.2 2.2 0 0 1-2.2 2.2H12.8"/></svg></span>
           </span>
           <h3 data-en="AI Customer Service Agent">وكيل ذكاء اصطناعي لخدمة العملاء</h3>
           <p data-en="Answers customer inquiries, helps with orders, and hands complex or sensitive cases to your team.">يرد على استفسارات العملاء، يساعد في الطلبات، ويحوّل الحالات المعقدة أو الحساسة إلى فريقك.</p>
+          <!-- المحطة: رسالة → إجراء بالأشكال → جملة واحدة للوكيل (من المثال المنشور: عيادة أسنان) -->
+          <div class="station" data-station="cs">
+            <div class="station__frame station__frame--1"><span class="station__ch" aria-hidden="true"></span><p class="station__msg" data-en="Do you accept my company's insurance?">هل تقبلون تأمين شركتي؟</p></div>
+            <div class="station__frame station__frame--2" aria-hidden="true"><span class="st-chip"></span><span class="st-chip st-chip--on"></span><span class="st-chip"></span><span class="st-flip"><i></i></span></div>
+            <div class="station__frame station__frame--3"><p class="station__reply" data-en="Yes, the insurance is accepted. Shall I book you the nearest appointment?">نعم، التأمين مقبول. أحجز لك أقرب موعد؟</p></div>
+            <button type="button" class="station__replay" aria-label="إعادة تشغيل المثال" data-en-aria-label="Replay the example" title="إعادة"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg></button>
+          </div>
           <div class="price-block">
             <div class="price-block__rule"></div>
-            <p class="price-block__main" data-en="From SAR 9,900">يبدأ من 9,900 ريال</p>
+            <p class="price-block__main" data-en="From <b>SAR 9,900</b>">يبدأ من <b>9,900</b> ريال</p>
             <p class="price-block__sub" data-en="Operation and management from SAR 1,900/month">التشغيل والإدارة من 1,900 ريال شهريًا</p>
             <a class="price-block__cta" href="pricing.html#customer-service-agent" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
           </div>
         </article>
 
         <!-- B — وكيل ذكاء اصطناعي للمبيعات والحجوزات -->
-        <article class="sol-card sol-card--priced">
+        <article class="sol-card sol-card--priced" id="sol-sales">
           <span class="sol-card__top">
             <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 16.5l5.5-5.5 4 4L20 7.5"/><path d="M15 7.5h5v5"/></svg></span>
           </span>
           <h3 data-en="AI Sales &amp; Booking Agent">وكيل ذكاء اصطناعي للمبيعات والحجوزات</h3>
           <p data-en="Qualifies the customer, guides them to the right next step, and books an appointment or hands over to your sales team.">يؤهل العميل، يوجّهه إلى الخطوة المناسبة، ويحجز أو يحوّله إلى فريق المبيعات.</p>
+          <div class="station" data-station="sales">
+            <div class="station__frame station__frame--1"><span class="station__ch" aria-hidden="true"></span><p class="station__msg" data-en="I'm looking for an apartment in Riyadh">أبحث عن شقة في الرياض</p></div>
+            <div class="station__frame station__frame--2" aria-hidden="true"><span class="st-tag"></span><span class="st-tag"></span><span class="st-cal"><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i></span></div>
+            <div class="station__frame station__frame--3"><p class="station__reply" data-en="Budget and area logged, and I booked you an appointment with the advisor">سجّلت الميزانية والمنطقة، وحجزت لك موعدًا مع المستشار</p></div>
+            <button type="button" class="station__replay" aria-label="إعادة تشغيل المثال" data-en-aria-label="Replay the example" title="إعادة"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg></button>
+          </div>
           <div class="price-block">
             <div class="price-block__rule"></div>
-            <p class="price-block__main" data-en="From SAR 13,900">يبدأ من 13,900 ريال</p>
+            <p class="price-block__main" data-en="From <b>SAR 13,900</b>">يبدأ من <b>13,900</b> ريال</p>
             <p class="price-block__sub" data-en="Operation and management from SAR 2,400/month">التشغيل والإدارة من 2,400 ريال شهريًا</p>
             <a class="price-block__cta" href="pricing.html#sales-booking-agent" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
           </div>
         </article>
 
         <!-- C — مساعد مهني متخصص بالذكاء الاصطناعي -->
-        <article class="sol-card sol-card--priced">
+        <article class="sol-card sol-card--priced" id="sol-pro">
           <span class="sol-card__top">
             <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5h9l4 4V20.5H6z"/><path d="M14.5 3.5V8H19"/><path d="M9 12.5h6M9 16h4"/></svg></span>
           </span>
           <h3 data-en="Specialized Professional AI Assistant">مساعد مهني متخصص بالذكاء الاصطناعي</h3>
           <p data-en="An assistant built for one specific profession or role — it organises information, analyses inputs, and prepares the outputs.">مساعد يُبنى لمهنة أو دور وظيفي محدد، وينظم المعلومات ويحلل المدخلات ويجهز المخرجات.</p>
+          <div class="station" data-station="pro">
+            <div class="station__frame station__frame--1"><span class="st-doc" aria-hidden="true"><i></i><i></i><i></i></span><p class="station__msg" data-en="A document enters for review">ملف يدخل للمراجعة</p></div>
+            <div class="station__frame station__frame--2" aria-hidden="true"><span class="st-row"></span><span class="st-row"></span><span class="st-row"></span><span class="st-human"><i></i></span></div>
+            <div class="station__frame station__frame--3"><p class="station__reply" data-en="Three outputs ready for review">ثلاث مخرجات جاهزة للمراجعة</p></div>
+            <button type="button" class="station__replay" aria-label="إعادة تشغيل المثال" data-en-aria-label="Replay the example" title="إعادة"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg></button>
+          </div>
           <div class="price-block">
             <div class="price-block__rule"></div>
-            <p class="price-block__main" data-en="From SAR 18,900">يبدأ من 18,900 ريال</p>
+            <p class="price-block__main" data-en="From <b>SAR 18,900</b>">يبدأ من <b>18,900</b> ريال</p>
             <p class="price-block__sub" data-en="Operation and management from SAR 1,490/month">التشغيل والإدارة من 1,490 ريال شهريًا</p>
             <a class="price-block__cta" href="pricing.html#professional-ai-assistant" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
           </div>
         </article>
 
         <!-- D — أتمتة العمليات وسير العمل -->
-        <article class="sol-card sol-card--priced">
+        <article class="sol-card sol-card--priced" id="sol-auto">
           <span class="sol-card__top">
             <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 3 5 13.5h6L11 21l8-10.5h-6L13 3Z"/></svg></span>
           </span>
           <h3 data-en="Workflow &amp; Process Automation">أتمتة العمليات وسير العمل</h3>
           <p data-en="Connects your work steps and systems, automating data movement, follow-ups, alerts, and reports.">تربط خطوات العمل والأنظمة، وتؤتمت نقل البيانات والمتابعات والتنبيهات والتقارير.</p>
+          <div class="station" data-station="auto">
+            <div class="station__frame station__frame--1"><span class="st-order" aria-hidden="true"></span><p class="station__msg" data-en="A new order arrives from the store">طلب جديد وصل من المتجر</p></div>
+            <div class="station__frame station__frame--2" aria-hidden="true"><span class="st-sys"><i class="st-token"></i></span><span class="st-sys st-sys--2"><i class="st-status"></i><i class="st-alert"></i></span></div>
+            <div class="station__frame station__frame--3"><p class="station__reply" data-en="Status updated and the customer notified">تم تحديث الحالة وإشعار العميل</p></div>
+            <button type="button" class="station__replay" aria-label="إعادة تشغيل المثال" data-en-aria-label="Replay the example" title="إعادة"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg></button>
+          </div>
           <div class="price-block">
             <div class="price-block__rule"></div>
-            <p class="price-block__main" data-en="From SAR 9,900 for a simple workflow">تبدأ من 9,900 ريال للمسار البسيط</p>
+            <p class="price-block__main" data-en="From <b>SAR 9,900</b> for a simple workflow">تبدأ من <b>9,900</b> ريال للمسار البسيط</p>
             <p class="price-block__sub" data-en="Monitoring and maintenance from SAR 990/month">المراقبة والصيانة من 990 ريال شهريًا</p>
             <a class="price-block__cta" href="pricing.html#workflow-automation" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
           </div>
         </article>
 
         <!-- E — حل ذكاء اصطناعي وأتمتة مخصص -->
-        <article class="sol-card sol-card--priced sol-card--wide">
+        <article class="sol-card sol-card--priced sol-card--wide" id="sol-custom">
           <span class="sol-card__top">
             <span class="sol-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.4"/><circle cx="5" cy="6.5" r="2"/><circle cx="19" cy="6.5" r="2"/><circle cx="5" cy="17.5" r="2"/><circle cx="19" cy="17.5" r="2"/><path d="M6.6 7.8 10.2 10.6M17.4 7.8 13.8 10.6M6.6 16.2 10.2 13.4M17.4 16.2 13.8 13.4"/></svg></span>
           </span>
-          <h3 data-en="Custom AI &amp; Automation Solution">حل ذكاء اصطناعي وأتمتة مخصص</h3>
-          <p data-en="A complete solution for organisations that need several agents, channels, integrations, or their own operating logic.">حل متكامل للمنشآت التي تحتاج عدة وكلاء أو قنوات أو تكاملات أو منطق تشغيل خاص.</p>
-          <div class="price-block">
-            <div class="price-block__rule"></div>
-            <p class="price-block__main" data-en="From SAR 29,900">يبدأ من 29,900 ريال</p>
-            <p class="price-block__sub" data-en="Managed operation from SAR 2,490/month">التشغيل المُدار من 2,490 ريال شهريًا</p>
-            <a class="price-block__cta" href="pricing.html#custom-ai-solution" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
+          <div class="sol-card__wide">
+            <div class="sol-card__wide-copy">
+              <h3 data-en="Custom AI &amp; Automation Solution">حل ذكاء اصطناعي وأتمتة مخصص</h3>
+              <p data-en="A complete solution for organisations that need several agents, channels, integrations, or their own operating logic.">حل متكامل للمنشآت التي تحتاج عدة وكلاء أو قنوات أو تكاملات أو منطق تشغيل خاص.</p>
+              <div class="price-block">
+                <div class="price-block__rule"></div>
+                <p class="price-block__main" data-en="From <b>SAR 29,900</b>">يبدأ من <b>29,900</b> ريال</p>
+                <p class="price-block__sub" data-en="Managed operation from SAR 2,490/month">التشغيل المُدار من 2,490 ريال شهريًا</p>
+                <a class="price-block__cta" href="pricing.html#custom-ai-solution" data-en="View pricing details">اطّلع على قائمة الأسعار</a>
+              </div>
+            </div>
+            <div class="station station--wide" data-station="custom">
+              <div class="station__frame station__frame--1"><span class="station__ch station__ch--3" aria-hidden="true"><i></i><i></i><i></i></span><p class="station__msg" data-en="Three channels, several branches, one question">ثلاث قنوات، عدة فروع، سؤال واحد</p></div>
+              <div class="station__frame station__frame--2" aria-hidden="true"><span class="st-lanes"><i></i><i></i><i></i><i></i></span></div>
+              <div class="station__frame station__frame--3"><p class="station__reply" data-en="One system for every branch">نظام واحد لكل الفروع</p></div>
+              <button type="button" class="station__replay" aria-label="إعادة تشغيل المثال" data-en-aria-label="Replay the example" title="إعادة"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg></button>
+            </div>
           </div>
+          <!-- شبكة عدة وكلاء وقنوات وتكاملات — فرع من الخيط، ترسم نفسها عند الظهور -->
+          <svg class="sol-card__net" viewBox="0 0 320 210" aria-hidden="true">
+            <g class="net-links"><path d="M48 105 L150 42 M48 105 L150 168 M150 42 L262 105 M150 168 L262 105 M150 42 L150 105 M150 168 L150 105 M48 105 L150 105 M150 105 L262 105 M150 42 L96 22 M150 168 L204 190"/></g>
+            <g class="net-nodes">
+              <circle cx="48" cy="105" r="6"/><circle cx="150" cy="42" r="6"/><circle cx="150" cy="168" r="6"/><circle cx="262" cy="105" r="6"/>
+              <circle cx="96" cy="22" r="4"/><circle cx="204" cy="190" r="4"/>
+              <circle class="net-core" cx="150" cy="105" r="9"/>
+            </g>
+          </svg>
         </article>
 
       </div>
@@ -220,12 +370,12 @@
     </div>
   </section>
 
-  <!-- ============ فحص صبّارة ============ -->
-  <section class="section" id="scan">
+  <!-- ============ فحص صبّارة — الأداة ============ -->
+  <section class="section section--well" id="scan">
     <div class="container">
       <div class="scan-head reveal">
         <div class="section-heading">
-          <span class="eyebrow eyebrow--gold" data-en="First step">الخطوة الأولى</span>
+          <span class="eyebrow" data-en="First step">الخطوة الأولى</span>
           <h2 data-en="Sabbarah Scan">فحص صبّارة</h2>
           <p data-en="See where your time goes and where opportunities slip away. Short questions — under a minute.">شوف وين يضيع وقتك، ووين تضيع الفرص. أسئلة قصيرة — أقل من دقيقة.</p>
         </div>
@@ -263,9 +413,9 @@
           <button class="scan__back" id="scanBack" hidden>→ السؤال السابق</button>
         </div>
 
-        <!-- analyzing -->
+        <!-- analyzing: المحاور الأربعة تُرسم كما ستظهر في النتيجة -->
         <div class="scan__stage scan__stage--center" id="scanAnalyzing" hidden>
-          <div class="scan__radar" aria-hidden="true"><i></i></div>
+          <div class="scan__axes" id="scanAxes" aria-hidden="true"></div>
           <p id="scanPhase">صبّارة تقرأ إجاباتك…</p>
         </div>
 
@@ -291,12 +441,21 @@
           </section>
 
           <div class="map-card">
-            <span class="map-card__label" data-en="The next step after the Sabbarah Scan">المرحلة التالية بعد فحص صبّارة</span>
-            <h3 data-en="Sabbarah Map — from diagnosis to solution">خريطة صبّارة — من التشخيص إلى الحل</h3>
-            <p data-en="The check shows you where the opportunities are. Sabbarah Map turns that result into a tailored plan: priorities, solution scope, required integrations, controls, and success metrics.">الفحص يوضح لك أين توجد الفرص. خريطة صبّارة تحوّل النتيجة إلى تصور مخصص يحدد الأولويات، نطاق الحل، التكاملات المطلوبة، الضوابط، ومؤشرات النجاح.</p>
-            <div class="map-card__actions">
-              <a class="button button--primary" href="pricing.html#sabbarah-map" data-en="See Sabbarah Map">اطّلع على خريطة صبّارة</a>
-              <button class="button button--ghost" id="scanRestart" data-en="Restart the check">أعد الفحص</button>
+            <!-- خريطة صبّارة كجسم: ورقة مطوية بأربعة محاور ونقطة تدخل بشري — خطوط فقط، لا محتوى حقيقي -->
+            <svg class="map-card__object" viewBox="0 0 160 120" aria-hidden="true">
+              <path class="mo-sheet" d="M22 14h74l18 18v74H22z"/><path class="mo-fold" d="M96 14v18h18"/>
+              <path class="mo-axis" d="M38 46h52"/><path class="mo-axis" d="M38 60h40"/><path class="mo-axis" d="M38 74h58"/><path class="mo-axis" d="M38 88h30"/>
+              <circle class="mo-dot" cx="90" cy="46" r="2.4"/><circle class="mo-dot" cx="78" cy="60" r="2.4"/><circle class="mo-dot" cx="96" cy="74" r="2.4"/><circle class="mo-dot" cx="68" cy="88" r="2.4"/>
+              <circle class="mo-human" cx="110" cy="88" r="5"/><circle class="mo-human-head" cx="110" cy="86.4" r="1.5"/><path class="mo-human-body" d="M107.6 90.8a2.6 2.6 0 0 1 4.8 0"/>
+            </svg>
+            <div class="map-card__copy">
+              <span class="map-card__label" data-en="The next step after the Sabbarah Scan">المرحلة التالية بعد فحص صبّارة</span>
+              <h3 data-en="Sabbarah Map — from diagnosis to solution">خريطة صبّارة — من التشخيص إلى الحل</h3>
+              <p data-en="The check shows you where the opportunities are. Sabbarah Map turns that result into a tailored plan: priorities, solution scope, required integrations, controls, and success metrics.">الفحص يوضح لك أين توجد الفرص. خريطة صبّارة تحوّل النتيجة إلى تصور مخصص يحدد الأولويات، نطاق الحل، التكاملات المطلوبة، الضوابط، ومؤشرات النجاح.</p>
+              <div class="map-card__actions">
+                <a class="button button--primary" href="pricing.html#sabbarah-map" data-en="See Sabbarah Map">اطّلع على خريطة صبّارة</a>
+                <button class="button button--ghost" id="scanRestart" data-en="Restart the check">أعد الفحص</button>
+              </div>
             </div>
           </div>
         </div>
@@ -304,25 +463,28 @@
     </div>
   </section>
 
-  <!-- ============ صبّارة تحمي ============ -->
-  <section class="section" id="guard">
+  <!-- ============ صبّارة تحمي — قبو الزجاج ============ -->
+  <section class="section section--field" id="guard">
     <div class="container guard reveal">
-      <div class="guard__copy">
-        <span class="eyebrow eyebrow--gold" data-en="We build it right">نبنيها صح</span>
-        <h2 data-en="AI alone is not enough.">الذكاء الاصطناعي وحده ما يكفي.</h2>
-        <p data-en="At Sabbarah, security, privacy, and governance are part of the design from day one — not an addition after launch. This is <b>صبّارة تحمي</b>.">في صبّارة، الأمن والخصوصية والحوكمة جزء من التصميم من البداية، وليس إضافة بعد التشغيل. هذا هو <b>صبّارة تحمي</b>.</p>
+      <span class="guard__display" aria-hidden="true" data-en="WE BUILD IT RIGHT">نبنيها صح</span>
+      <div class="guard__glass">
+        <div class="guard__copy">
+          <span class="eyebrow" data-en="We build it right">نبنيها صح</span>
+          <h2 data-en="AI alone is not enough.">الذكاء الاصطناعي وحده ما يكفي.</h2>
+          <p data-en="At Sabbarah, security, privacy, and governance are part of the design from day one — not an addition after launch. This is <b>صبّارة تحمي</b>.">في صبّارة، الأمن والخصوصية والحوكمة جزء من التصميم من البداية، وليس إضافة بعد التشغيل. هذا هو <b>صبّارة تحمي</b>.</p>
+        </div>
+        <ul class="guard__list">
+          <li tabindex="0"><i class="guard__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5l7 2.6v5.4c0 4.3-3 7.6-7 9-4-1.4-7-4.7-7-9V6.1z"/><path d="M9 12.2l2 2 4-4.2"/></svg></i><b data-en="Privacy by Design">الخصوصية من البداية</b><span data-en="الخصوصية من البداية">Privacy by Design</span><p class="guard__more" data-en="We decide from the start which data the solution really needs — and touch nothing beyond it.">نحدد من البداية وش البيانات اللي يحتاجها الحل فعلًا — ولا نلمس أكثر منها.</p></li>
+          <li tabindex="0"><i class="guard__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="14.5" r="4"/><path d="M11 11.5l8.5-8.5M16 6l2.5 2.5M13.5 8.5l2 2"/></svg></i><b data-en="Access Control">صلاحيات واضحة</b><span data-en="صلاحيات واضحة">Access Control</span><p class="guard__more" data-en="Least-privilege access and separated responsibilities inside the design, not added later.">أقل قدر من الوصول وفصل للمسؤوليات داخل التصميم، لا إضافة لاحقة.</p></li>
+          <li tabindex="0" class="guard__human"><i class="guard__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M4 20c0-3.3 2.7-6 6-6 1.2 0 2.3.3 3.2 1"/><path d="M14.5 17.5l2 2 3.5-4"/></svg></i><b data-en="Human Oversight">إشراف بشري</b><span data-en="إشراف بشري">Human Oversight</span><p class="guard__more" data-en="Sensitive cases go to a person, and the decision stays within clear permissions.">الحالات الحساسة تروح لإنسان، والقرار يبقى ضمن صلاحيات واضحة.</p></li>
+          <li tabindex="0"><i class="guard__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h4l2.5-6 4 12 2.5-6h5"/></svg></i><b data-en="Monitoring">مراقبة مستمرة</b><span data-en="مراقبة مستمرة">Monitoring</span><p class="guard__more" data-en="Continuous monitoring after launch and a monthly performance report, so nothing runs unseen.">مراقبة مستمرة بعد التشغيل وتقرير أداء شهري، فما يشتغل شيء بدون عين عليه.</p></li>
+          <li tabindex="0"><i class="guard__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v16M7 20h10M4 8h16"/><path d="M6.5 8l-3 6.5c1.5 1.4 4.5 1.4 6 0zM17.5 8l-3 6.5c1.5 1.4 4.5 1.4 6 0z"/></svg></i><b data-en="AI Governance">حوكمة الذكاء الاصطناعي</b><span data-en="حوكمة الذكاء الاصطناعي">AI Governance</span><p class="guard__more" data-en="Clear rules for what the AI may decide, what it may not, and who approves the rest.">قواعد واضحة لما يقدر الذكاء الاصطناعي يقرره، وما لا يقدر، ومن يعتمد الباقي.</p></li>
+        </ul>
       </div>
-      <ul class="guard__list">
-        <li><b data-en="Privacy by Design">الخصوصية من البداية</b><span data-en="الخصوصية من البداية">Privacy by Design</span></li>
-        <li><b data-en="Access Control">صلاحيات واضحة</b><span data-en="صلاحيات واضحة">Access Control</span></li>
-        <li><b data-en="Human Oversight">إشراف بشري</b><span data-en="إشراف بشري">Human Oversight</span></li>
-        <li><b data-en="Monitoring">مراقبة مستمرة</b><span data-en="مراقبة مستمرة">Monitoring</span></li>
-        <li><b data-en="AI Governance">حوكمة الذكاء الاصطناعي</b><span data-en="حوكمة الذكاء الاصطناعي">AI Governance</span></li>
-      </ul>
     </div>
   </section>
 
-  <!-- ============ المنتجات الجاهزة ============ -->
+  <!-- ============ المنتجات الجاهزة — شاشة على مكتب ============ -->
   <section class="section" id="ready-products">
     <div class="container">
       <div class="section-heading reveal">
@@ -346,6 +508,23 @@
         </div>
 
         <div class="ready-flag__pricebox">
+          <!-- معاينة المنتج: شذرات (ملف، رابط، صورة، منشور) تصير صفحة واحدة ومعها المساعد — أربع ثوانٍ، مرة واحدة -->
+          <div class="pf-mock" id="pfMock" aria-hidden="true">
+            <div class="pf-mock__frag pf-mock__frag--pdf"><i></i></div>
+            <div class="pf-mock__frag pf-mock__frag--link"><i></i></div>
+            <div class="pf-mock__frag pf-mock__frag--img"><i></i></div>
+            <div class="pf-mock__frag pf-mock__frag--post"><i></i></div>
+            <div class="pf-mock__page">
+              <div class="pf-mock__bar"><i></i><i></i><i></i></div>
+              <div class="pf-mock__profile"><i class="pf-mock__avatar"></i><div class="pf-mock__lines"><i style="--w:58%"></i><i style="--w:36%"></i></div></div>
+              <div class="pf-mock__tiles"><i></i><i></i><i></i></div>
+              <div class="pf-mock__chat">
+                <p class="pf-mock__q" data-en="What are your key projects?">وش أبرز مشاريعك؟</p>
+                <p class="pf-mock__a" data-en="Three projects — the latest is a full delivery system.">ثلاثة مشاريع — آخرها نظام توصيل كامل.</p>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="pf-mock__replay" aria-label="إعادة تشغيل المعاينة" data-en-aria-label="Replay the preview"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg></button>
           <span class="tag tag--offer" data-en="Limited-time offer">خصم لفترة محدودة</span>
           <span data-en="Fixed price">سعر ثابت</span>
           <b data-en="<s class='price-was'><span class='sr-only'>Was: </span>SAR 1,900</s> <span class='price-now'>SAR 499</span>"><s class="price-was"><span class="sr-only">السعر قبل الخصم: </span>1,900 ريال</s> <span class="price-now">499 ريال</span></b>
@@ -356,7 +535,7 @@
     </div>
   </section>
 
-  <!-- ============ كيف نعمل ============ -->
+  <!-- ============ كيف نعمل — أربع عقد على الخيط ============ -->
   <section class="section" id="process">
     <div class="container">
       <div class="section-heading reveal">
@@ -364,16 +543,16 @@
         <h2 data-en="From idea to operation">من الفكرة إلى التشغيل</h2>
         <p data-en="A clear path from understanding the problem to running and supporting the solution.">مسار واضح من فهم المشكلة إلى تشغيل الحل ودعمه.</p>
       </div>
-      <ol class="steps reveal">
-        <li><i>01</i><b data-en="Understand">نفهم</b><span data-en="Your needs, your operations, and where time is lost.">احتياجك وعملياتك وأين يضيع الوقت.</span></li>
-        <li><i>02</i><b data-en="Design">نصمم</b><span data-en="The solution, the flows, and the controls required.">الحل والمسارات والضوابط المطلوبة.</span></li>
-        <li><i>03</i><b data-en="Build &amp; test">نبني ونختبر</b><span data-en="Functionality, integrations, and security before launch.">الوظائف والتكاملات والأمان قبل التشغيل.</span></li>
-        <li><i>04</i><b data-en="Run &amp; support">نشغّل وندعم</b><span data-en="Launch, monitoring, and continuous improvement.">إطلاق، مراقبة، وتحسين مستمر.</span></li>
+      <ol class="steps reveal" id="steps">
+        <li id="step-1"><i>01</i><b data-en="Understand">نفهم</b><span data-en="Your needs, your operations, and where time is lost.">احتياجك وعملياتك وأين يضيع الوقت.</span></li>
+        <li id="step-2"><i>02</i><b data-en="Design">نصمم</b><span data-en="The solution, the flows, and the controls required.">الحل والمسارات والضوابط المطلوبة.</span></li>
+        <li id="step-3"><i>03</i><b data-en="Build &amp; test">نبني ونختبر</b><span data-en="Functionality, integrations, and security before launch.">الوظائف والتكاملات والأمان قبل التشغيل.</span></li>
+        <li id="step-4"><i>04</i><b data-en="Run &amp; support">نشغّل وندعم</b><span data-en="Launch, monitoring, and continuous improvement.">إطلاق، مراقبة، وتحسين مستمر.</span></li>
       </ol>
     </div>
   </section>
 
-  <!-- ============ FAQ ============ -->
+  <!-- ============ FAQ — أوراق مطوية ============ -->
   <section class="section" id="faq">
     <div class="container faq-wrap">
       <div class="section-heading reveal">
@@ -406,14 +585,38 @@
     </div>
   </section>
 
-  <!-- ============ FINAL CTA ============ -->
-  <section class="section cta-section" id="contact">
+  <!-- ============ قبل وبعد + النداء الأخير ============ -->
+  <section class="section cta-section section--field" id="contact">
     <div class="container">
+      <!-- يوم عمل واحد: مبعثر ثم منظّم — بلا أرقام، بلا وعود -->
+      <div class="shift reveal" id="shift">
+        <div class="shift__scene" aria-hidden="true">
+          <svg class="shift__before" viewBox="0 0 520 220">
+            <g class="sh-card"><rect x="36" y="42" width="78" height="30" rx="7" transform="rotate(-9 75 57)"/><rect x="60" y="120" width="78" height="30" rx="7" transform="rotate(7 99 135)"/><rect x="150" y="30" width="78" height="30" rx="7" transform="rotate(12 189 45)"/><rect x="190" y="150" width="78" height="30" rx="7" transform="rotate(-6 229 165)"/><rect x="280" y="70" width="78" height="30" rx="7" transform="rotate(-14 319 85)"/><rect x="330" y="160" width="78" height="30" rx="7" transform="rotate(9 369 175)"/><rect x="400" y="40" width="78" height="30" rx="7" transform="rotate(5 439 55)"/><rect x="250" y="110" width="78" height="30" rx="7" transform="rotate(-3 289 125)"/></g>
+            <g class="sh-dot"><circle cx="128" cy="96" r="4"/><circle cx="238" cy="60" r="4"/><circle cx="300" cy="182" r="4"/><circle cx="446" cy="130" r="4"/></g>
+          </svg>
+          <svg class="shift__after" viewBox="0 0 520 220">
+            <g class="sh-lane"><path d="M20 60H500"/><path d="M20 110H500"/><path d="M20 160H500"/></g>
+            <g class="sh-card sh-card--flow"><rect x="40" y="45" width="78" height="30" rx="7"/><rect x="150" y="45" width="78" height="30" rx="7"/><rect x="260" y="45" width="78" height="30" rx="7"/><rect x="40" y="95" width="78" height="30" rx="7"/><rect x="150" y="95" width="78" height="30" rx="7"/><rect x="40" y="145" width="78" height="30" rx="7"/><rect x="150" y="145" width="78" height="30" rx="7"/><rect x="260" y="145" width="78" height="30" rx="7"/></g>
+            <g class="sh-core"><circle cx="440" cy="110" r="14"/><path d="M338 60c40 0 50 50 102 50M338 110h88M338 160c40 0 50-50 102-50"/></g>
+          </svg>
+        </div>
+        <div class="shift__words" aria-live="polite">
+          <span class="shift__w shift__w--before" data-en="Scattered · Disconnected · Repetitive">مبعثر · منفصل · متكرّر</span>
+          <span class="shift__w shift__w--after" data-en="Organised · Connected · Automatic">منظّم · متصل · تلقائي</span>
+        </div>
+        <div class="shift__switch" role="group" aria-label="قبل وبعد" data-en-aria-label="Before and after">
+          <button type="button" data-shift="before" aria-pressed="true" data-en="Before">قبل</button>
+          <button type="button" data-shift="after" aria-pressed="false" data-en="After">بعد</button>
+        </div>
+      </div>
+
       <div class="cta-card reveal">
         <div>
-          <span class="eyebrow eyebrow--gold" data-en="Start with one step">ابدأ بخطوة</span>
+          <span class="eyebrow" data-en="Start with one step">ابدأ بخطوة</span>
           <h2 data-en="Got a process eating your time?">عندك عملية تستهلك وقتك؟</h2>
           <p data-en="Run the free check, or talk to us directly.">افحص نشاطك مجانًا، أو خلّنا نسمع منك مباشرة.</p>
+          <p class="cta-card__from" id="ctaFrom" hidden><span data-en="From your check, start with:">من نتيجة فحصك، ابدأ من:</span> <b id="ctaFromLabel"></b></p>
         </div>
         <div class="cta-card__actions">
           <a class="button button--primary" href="#scan" data-en="Run your free check">افحص نشاطك مجانًا</a>
@@ -424,11 +627,11 @@
   </section>
 </main>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
+<!-- ============ FOOTER — الوصول ============ -->
+<footer class="footer" id="footer">
   <div class="container footer__grid">
     <div class="footer__brand">
-      <svg class="footer__logo" aria-hidden="true"><use href="#logo"/></svg>
+      <svg class="footer__logo" id="footerLogo" aria-hidden="true"><use href="#logo"/></svg>
       <div>
         <strong data-en="SABBARAH AI">صبّارة AI</strong>
         <em data-en="صبّارة AI">SABBARAH AI</em>
@@ -488,10 +691,18 @@
   </div>
 </footer>
 
+<!-- على الجوال: الإجراءان تحت الإبهام بعد البطل -->
+<div class="actbar" id="actbar" hidden>
+  <a class="button button--primary" href="#scan" data-en="Free check">افحص نشاطك</a>
+  <a class="button button--ghost" href="https://calendar.app.google/QceQcMgBjPm7fMYY8" target="_blank" rel="noopener" data-en="Book">احجز استشارة</a>
+</div>
+
 <script src="js/i18n.js" defer></script>
 <script src="js/main.js" defer></script>
 <script src="js/scan.js" defer></script>
 <script src="js/glow.js" defer></script>
+<script src="js/depth.js" defer></script>
+<script src="js/journey.js" defer></script>
 <script src="js/assistant.js" defer></script>
 </body>
 </html>

@@ -8,37 +8,52 @@
       content="أسعار صبّارة AI — الحلول المخصصة تبدأ من نطاق أساسي واضح، والمنتجات الجاهزة بسعر ثابت. كل تكلفة إضافية تُوضح قبل التعاقد."
       data-en-content="SABBARAH AI pricing — custom solutions start from a clearly defined base scope, and ready products have fixed prices. Any additional cost is explained before engagement.">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://sabbarahai.com/pricing.html">
+<meta name="theme-color" content="#0B0F14">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SABBARAH AI">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:url" content="https://sabbarahai.com/pricing.html">
+<meta property="og:title" content="الأسعار | صبّارة AI">
+<meta property="og:description" content="أسعار صبّارة AI — الحلول المخصصة تبدأ من نطاق أساسي واضح، والمنتجات الجاهزة بسعر ثابت. كل تكلفة إضافية تُوضح قبل التعاقد.">
+<meta property="og:image" content="https://sabbarahai.com/assets/Logo_Avatar_512x512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@sabbarahai">
 
-<!-- اللغة المحفوظة تُطبّق قبل الرسم لمنع وميض النص -->
+<!-- اللغة والمظهر المحفوظان يُطبّقان قبل الرسم لمنع الوميض؛ والبطاقة المقصودة تحمل اسم الانتقال -->
 <script>
 (function(){
   var d=document.documentElement;
+  d.classList.add('js');
   try{
     if(localStorage.getItem('sabbarah-theme')==='light')d.setAttribute('data-theme','light');
     var l=localStorage.getItem('sabbarah-lang')==='en'?'en':'ar';
     d.setAttribute('data-lang',l);
     if(l==='en'){d.lang='en';d.dir='ltr';setTimeout(function(){d.classList.add('i18n-ready')},900);}
     else{d.classList.add('i18n-ready');}
+    var h=(location.hash||'').slice(1);
+    if(/^[a-z-]+$/.test(h))d.setAttribute('data-vt',h);
   }catch(e){d.classList.add('i18n-ready');}
 })();
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/plex-arabic-700-arab.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/plex-arabic-400-arab.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/zahra.css">
 <link rel="stylesheet" href="css/glow.css">
+<link rel="stylesheet" href="css/depth.css">
+<link rel="stylesheet" href="css/journey.css">
+<script type="speculationrules">{"prerender":[{"urls":["index.html"],"eagerness":"moderate"}]}</script>
 </head>
 <body>
 
 <div class="ambient" aria-hidden="true">
-  <div class="ambient__aurora"></div>
-  <div class="ambient__orb ambient__orb--one"></div>
-  <div class="ambient__orb ambient__orb--two"></div>
-  <div class="ambient__orb ambient__orb--three"></div>
-  <div class="ambient__grid"></div>
+  <div class="ambient__bake"></div>
+  <div class="ambient__caustic"></div>
 </div>
-<canvas class="glow-particles" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
 
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
   <defs>
@@ -47,13 +62,13 @@
       <stop offset="100%" stop-color="#08B987"/>
     </linearGradient>
     <symbol id="logo" viewBox="0 0 1000 1000">
-      <path d="M452 171 L500 123 L548 171" fill="none" stroke="#F2CF4A" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="500" cy="224" r="38" fill="#F2CF4A"/>
+      <path class="lg-apex" d="M452 171 L500 123 L548 171" fill="none" stroke="#F2CF4A" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle class="lg-apex" cx="500" cy="224" r="38" fill="#F2CF4A"/>
       <path fill="url(#logoGrad)" d="M318 328 C291 328 270 349 270 376 L270 576 C270 603 291 624 318 624 L478 624 L478 639 C478 655 491 668 507 668 L694 668 C721 668 742 647 742 620 L742 458 C742 431 721 410 694 410 C667 410 646 431 646 458 L646 572 L536 572 L536 529 C536 513 523 500 507 500 C491 500 478 513 478 529 L478 528 L366 528 L366 376 C366 349 345 328 318 328 Z"/>
-      <circle cx="505" cy="500" r="13" fill="none" stroke="#0C1219" stroke-width="7"/>
-      <circle cx="505" cy="548" r="15" fill="#0C1219"/>
-      <circle cx="505" cy="596" r="15" fill="#0C1219"/>
-      <circle cx="505" cy="644" r="15" fill="#0C1219"/>
+      <circle class="lg-ring" cx="505" cy="500" r="13" fill="none" stroke="#0C1219" stroke-width="7"/>
+      <circle class="lg-n1" cx="505" cy="548" r="15" fill="#0C1219"/>
+      <circle class="lg-n2" cx="505" cy="596" r="15" fill="#0C1219"/>
+      <circle class="lg-n3" cx="505" cy="644" r="15" fill="#0C1219"/>
       <g stroke="#16C99A" stroke-width="14" stroke-linecap="round" fill="none">
         <path d="M500 745 L500 826"/><path d="M360 826 L640 826"/>
       </g>
@@ -71,6 +86,7 @@
       <span class="brand__text">
         <strong data-en="SABBARAH AI">صبّارة AI</strong>
         <em data-en="صبّارة AI">SABBARAH AI</em>
+        <span class="brand__now" aria-hidden="true"></span>
       </span>
     </a>
 
@@ -99,7 +115,7 @@
   </div>
 </header>
 
-<main>
+<main id="main">
   <!-- ============ PRICING HERO ============ -->
   <section class="pricing-hero">
     <div class="container">
@@ -116,7 +132,7 @@
   </section>
 
   <!-- ============ الحلول المخصصة ============ -->
-  <section class="pricing-section" id="custom-solutions">
+  <section class="section pricing-section" id="custom-solutions">
     <div class="container">
       <div class="section-heading reveal">
         <span class="eyebrow" data-en="Custom Solutions">الحلول المخصصة</span>
@@ -132,7 +148,7 @@
           <h3 data-en="AI Customer Service Agent">وكيل ذكاء اصطناعي لخدمة العملاء<span class="price-card__en">AI Customer Service Agent</span></h3>
 
           <div class="price-card__amount">
-            <p class="price-card__price" data-en="<small>From</small> SAR 9,900"><small>يبدأ من</small> 9,900 ريال</p>
+            <p class="price-card__price" data-en="<small>From</small> <b>SAR 9,900</b>"><small>يبدأ من</small> <b>9,900</b> ريال</p>
             <p class="price-card__label" data-en="One-time setup and implementation">تأسيس وتنفيذ مرة واحدة</p>
             <p class="price-card__monthly" data-en="Operation and management from SAR 1,900/month">التشغيل والإدارة من 1,900 ريال شهريًا</p>
           </div>
@@ -146,6 +162,20 @@
             <li data-en="Escalation of complex or sensitive cases to your team">تحويل الحالات المعقدة أو الحساسة إلى الفريق</li>
             <li data-en="Monthly performance report and basic monitoring">تقرير أداء شهري ومراقبة أساسية</li>
           </ul>
+          <!-- شكل النطاق: قناة → وكيل → معرفة معتمدة → سقف المحادثات → تحويل لإنسان → تقرير (خطوط فقط) -->
+          <svg class="scope" viewBox="0 0 320 90" aria-hidden="true">
+            <path class="sc-fill" d="M18 34h28a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6H30l-8 7v-7h-4a6 6 0 0 1-6-6V40a6 6 0 0 1 6-6z"/>
+            <path class="sc-line" d="M56 45h22"/>
+            <circle class="sc-fill" cx="92" cy="45" r="13"/><circle class="sc-dot" cx="92" cy="45" r="3.5"/>
+            <path class="sc-line" d="M106 45h22"/>
+            <rect class="sc-soft" x="132" y="30" width="22" height="8" rx="4"/><rect class="sc-soft" x="132" y="41" width="22" height="8" rx="4"/><rect class="sc-soft" x="132" y="52" width="22" height="8" rx="4"/>
+            <path class="sc-line" d="M158 45h20"/>
+            <circle class="sc-soft" cx="196" cy="45" r="13"/><path class="sc-line" d="M196 32a13 13 0 1 1-12.3 17"/>
+            <path class="sc-line" d="M212 45h20"/>
+            <circle class="sc-line" cx="250" cy="39" r="5"/><path class="sc-line" d="M241 57a9 9 0 0 1 18 0"/>
+            <path class="sc-line" d="M266 45h18"/>
+            <path class="sc-fill" d="M290 30h13l7 7v23h-20z"/><path class="sc-line" d="M295 45h10M295 52h7"/>
+          </svg>
 
           <div class="price-card__example">
             <span data-en="Example">مثال</span>
@@ -163,7 +193,7 @@
           <h3 data-en="AI Sales &amp; Booking Agent">وكيل ذكاء اصطناعي للمبيعات والحجوزات<span class="price-card__en">AI Sales &amp; Booking Agent</span></h3>
 
           <div class="price-card__amount">
-            <p class="price-card__price" data-en="<small>From</small> SAR 13,900"><small>يبدأ من</small> 13,900 ريال</p>
+            <p class="price-card__price" data-en="<small>From</small> <b>SAR 13,900</b>"><small>يبدأ من</small> <b>13,900</b> ريال</p>
             <p class="price-card__label" data-en="One-time setup and implementation">تأسيس وتنفيذ مرة واحدة</p>
             <p class="price-card__monthly" data-en="Operation and management from SAR 2,400/month">التشغيل والإدارة من 2,400 ريال شهريًا</p>
           </div>
@@ -178,6 +208,20 @@
             <li data-en="One standard integration with a calendar or CRM">تكامل قياسي واحد مع تقويم أو CRM</li>
             <li data-en="Basic opportunity follow-up and a monthly report">متابعة أساسية للفرص وتقرير شهري</li>
           </ul>
+          <!-- قناة → وكيل → وسوم التأهيل → تقويم → موصل تكامل واحد → تقرير -->
+          <svg class="scope" viewBox="0 0 320 90" aria-hidden="true">
+            <path class="sc-fill" d="M18 34h28a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6H30l-8 7v-7h-4a6 6 0 0 1-6-6V40a6 6 0 0 1 6-6z"/>
+            <path class="sc-line" d="M56 45h22"/>
+            <circle class="sc-fill" cx="92" cy="45" r="13"/><circle class="sc-dot" cx="92" cy="45" r="3.5"/>
+            <path class="sc-line" d="M106 45h22"/>
+            <rect class="sc-fill" x="132" y="36" width="24" height="8" rx="4"/><rect class="sc-fill" x="132" y="48" width="18" height="8" rx="4"/>
+            <path class="sc-line" d="M160 45h18"/>
+            <rect class="sc-soft" x="182" y="33" width="28" height="24" rx="4"/><path class="sc-line" d="M182 41h28"/><rect class="sc-dot" x="196" y="45" width="6" height="6" rx="1.5"/>
+            <path class="sc-line" d="M214 45h26"/><circle class="sc-dot" cx="214" cy="45" r="2.5"/><circle class="sc-dot" cx="240" cy="45" r="2.5"/>
+            <rect class="sc-soft" x="244" y="35" width="20" height="20" rx="4"/>
+            <path class="sc-line" d="M268 45h16"/>
+            <path class="sc-fill" d="M290 30h13l7 7v23h-20z"/><path class="sc-line" d="M295 45h10M295 52h7"/>
+          </svg>
 
           <div class="price-card__example">
             <span data-en="Example">مثال</span>
@@ -195,7 +239,7 @@
           <h3 data-en="Specialized Professional AI Assistant">مساعد مهني متخصص بالذكاء الاصطناعي<span class="price-card__en">Specialized Professional AI Assistant</span></h3>
 
           <div class="price-card__amount">
-            <p class="price-card__price" data-en="<small>From</small> SAR 18,900"><small>يبدأ من</small> 18,900 ريال</p>
+            <p class="price-card__price" data-en="<small>From</small> <b>SAR 18,900</b>"><small>يبدأ من</small> <b>18,900</b> ريال</p>
             <p class="price-card__label" data-en="One-time design and implementation">تصميم وتنفيذ مرة واحدة</p>
             <p class="price-card__monthly" data-en="Operation and management from SAR 1,490/month">التشغيل والإدارة من 1,490 ريال شهريًا</p>
           </div>
@@ -210,6 +254,20 @@
             <li data-en="Human review and approval checkpoints">نقاط مراجعة واعتماد بشري</li>
             <li data-en="One user and a basic interface">مستخدم واحد وواجهة استخدام أساسية</li>
           </ul>
+          <!-- ملف يدخل → مساعد → مصادر معتمدة → ثلاث مخرجات → اعتماد بشري → واجهة أساسية -->
+          <svg class="scope" viewBox="0 0 320 90" aria-hidden="true">
+            <path class="sc-fill" d="M16 30h13l7 7v23H16z"/>
+            <path class="sc-line" d="M42 45h24"/>
+            <circle class="sc-fill" cx="80" cy="45" r="13"/><circle class="sc-dot" cx="80" cy="45" r="3.5"/>
+            <path class="sc-line" d="M94 45h22"/>
+            <rect class="sc-soft" x="120" y="30" width="22" height="8" rx="4"/><rect class="sc-soft" x="120" y="41" width="22" height="8" rx="4"/><rect class="sc-soft" x="120" y="52" width="22" height="8" rx="4"/>
+            <path class="sc-line" d="M146 45h20"/>
+            <rect class="sc-fill" x="170" y="32" width="30" height="7" rx="3.5"/><rect class="sc-fill" x="170" y="42" width="36" height="7" rx="3.5"/><rect class="sc-fill" x="170" y="52" width="24" height="7" rx="3.5"/>
+            <path class="sc-line" d="M212 45h20"/>
+            <circle class="sc-line" cx="250" cy="39" r="5"/><path class="sc-line" d="M241 57a9 9 0 0 1 18 0"/>
+            <path class="sc-line" d="M266 45h16"/>
+            <rect class="sc-fill" x="286" y="31" width="30" height="24" rx="4"/><path class="sc-line" d="M292 39h18M292 45h12M292 51h16"/>
+          </svg>
 
           <div class="price-card__example">
             <span data-en="Example">مثال</span>
@@ -227,7 +285,7 @@
           <h3 data-en="Workflow &amp; Process Automation">أتمتة العمليات وسير العمل<span class="price-card__en">Workflow &amp; Process Automation</span></h3>
 
           <div class="price-card__amount">
-            <p class="price-card__price" data-en="<small>From</small> SAR 9,900 <small>for a simple workflow</small>"><small>تبدأ من</small> 9,900 ريال <small>للمسار البسيط</small></p>
+            <p class="price-card__price" data-en="<small>From</small> <b>SAR 9,900</b> <small>for a simple workflow</small>"><small>تبدأ من</small> <b>9,900</b> ريال <small>للمسار البسيط</small></p>
             <p class="price-card__label" data-en="One-time setup and implementation">تأسيس وتنفيذ مرة واحدة</p>
             <p class="price-card__monthly" data-en="Monitoring and maintenance from SAR 990/month">المراقبة والصيانة من 990 ريال شهريًا</p>
           </div>
@@ -241,6 +299,17 @@
             <li data-en="Basic handling of failure cases">معالجة أساسية لحالات التعطل</li>
             <li data-en="Testing and documentation of how it runs">اختبار وتوثيق طريقة التشغيل</li>
           </ul>
+          <!-- نظام أ → رمز يعبر → نظام ب → حالة تتبدل → تنبيه → توثيق -->
+          <svg class="scope" viewBox="0 0 320 90" aria-hidden="true">
+            <rect class="sc-soft" x="14" y="33" width="48" height="24" rx="6"/><circle class="sc-dot" cx="26" cy="45" r="3"/>
+            <path class="sc-line" d="M66 45h60"/><circle class="sc-dot" cx="96" cy="45" r="4"/>
+            <rect class="sc-soft" x="130" y="33" width="48" height="24" rx="6"/><rect class="sc-fill" x="138" y="41" width="22" height="8" rx="4"/>
+            <path class="sc-line" d="M182 45h22"/>
+            <circle class="sc-line" cx="216" cy="45" r="8"/><circle class="sc-dot" cx="216" cy="45" r="2.5"/><path class="sc-line" d="M216 31v-5M228 34l3-3"/>
+            <path class="sc-line" d="M228 45h20"/>
+            <path class="sc-fill" d="M254 30h13l7 7v23h-20z"/><path class="sc-line" d="M259 45h10M259 52h7"/>
+            <path class="sc-line" d="M280 45h14"/><path class="sc-line" d="M300 38l4 4 8-8"/>
+          </svg>
 
           <div class="price-card__example">
             <span data-en="Example">مثال</span>
@@ -258,7 +327,7 @@
           <h3 data-en="Custom AI &amp; Automation Solution">حل ذكاء اصطناعي وأتمتة مخصص<span class="price-card__en">Custom AI &amp; Automation Solution</span></h3>
 
           <div class="price-card__amount">
-            <p class="price-card__price" data-en="<small>From</small> SAR 29,900"><small>يبدأ من</small> 29,900 ريال</p>
+            <p class="price-card__price" data-en="<small>From</small> <b>SAR 29,900</b>"><small>يبدأ من</small> <b>29,900</b> ريال</p>
             <p class="price-card__label" data-en="Design and implementation according to scope">تصميم وتنفيذ حسب النطاق</p>
             <p class="price-card__monthly" data-en="Managed operation from SAR 2,490/month">التشغيل المُدار من 2,490 ريال شهريًا</p>
           </div>
@@ -273,6 +342,22 @@
             <li data-en="Human oversight and operating controls">إشراف بشري وضوابط تشغيل</li>
             <li data-en="Phased launch and managed operation">إطلاق مرحلي وتشغيل مُدار</li>
           </ul>
+          <!-- عدة قنوات → منظومة واحدة بعدة وكلاء → لوحة تشغيل → أدوار وإشراف -->
+          <svg class="scope" viewBox="0 0 320 90" aria-hidden="true">
+            <path class="sc-fill" d="M14 20h18a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-9l-5 5v-5h-4a4 4 0 0 1-4-4v-6a4 4 0 0 1 4-4z"/>
+            <path class="sc-fill" d="M14 38h18a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-9l-5 5v-5h-4a4 4 0 0 1-4-4v-6a4 4 0 0 1 4-4z"/>
+            <path class="sc-fill" d="M14 56h18a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-9l-5 5v-5h-4a4 4 0 0 1-4-4v-6a4 4 0 0 1 4-4z"/>
+            <path class="sc-line" d="M40 27c20 0 30 18 50 18M40 45h50M40 63c20 0 30-18 50-18"/>
+            <circle class="sc-fill" cx="106" cy="45" r="14"/><circle class="sc-dot" cx="106" cy="45" r="4"/>
+            <path class="sc-line" d="M120 45c14 0 18-16 34-16M120 45c14 0 18 16 34 16"/>
+            <circle class="sc-fill" cx="164" cy="29" r="9"/><circle class="sc-dot" cx="164" cy="29" r="2.5"/>
+            <circle class="sc-fill" cx="164" cy="61" r="9"/><circle class="sc-dot" cx="164" cy="61" r="2.5"/>
+            <path class="sc-line" d="M174 29c12 0 14 16 28 16M174 61c12 0 14-16 28-16"/>
+            <rect class="sc-fill" x="206" y="31" width="34" height="28" rx="4"/><path class="sc-line" d="M212 52v-8M219 52v-13M226 52v-5M233 52v-10"/>
+            <path class="sc-line" d="M244 45h16"/>
+            <circle class="sc-line" cx="272" cy="34" r="4.5"/><path class="sc-line" d="M264 50a8 8 0 0 1 16 0"/>
+            <circle class="sc-line" cx="300" cy="46" r="4.5"/><path class="sc-line" d="M292 62a8 8 0 0 1 16 0"/>
+          </svg>
 
           <div class="price-card__example">
             <span data-en="Example">مثال</span>
@@ -289,7 +374,7 @@
   </section>
 
   <!-- ============ خريطة صبّارة ============ -->
-  <section class="pricing-section" id="sabbarah-map">
+  <section class="section pricing-section" id="sabbarah-map">
     <div class="container">
       <div class="map-strip reveal">
         <div class="map-strip__copy">
@@ -307,6 +392,15 @@
         </div>
 
         <div class="map-strip__scope">
+          <!-- أربع مجموعات مخرجات تتلاقى في التنفيذ، والخصم يعود سهمًا إلى الرسم -->
+          <svg class="scope" viewBox="0 0 320 110" aria-hidden="true">
+            <rect class="sc-soft" x="16" y="12" width="46" height="16" rx="6"/><rect class="sc-soft" x="16" y="36" width="46" height="16" rx="6"/><rect class="sc-soft" x="16" y="60" width="46" height="16" rx="6"/><rect class="sc-soft" x="16" y="84" width="46" height="16" rx="6"/>
+            <path class="sc-line" d="M64 20c40 0 60 36 100 36M64 44c40 0 60 12 100 12M64 68c40 0 60-12 100-12M64 92c40 0 60-36 100-36"/>
+            <rect class="sc-fill" x="168" y="34" width="66" height="44" rx="10"/><circle class="sc-dot" cx="201" cy="56" r="4"/><path class="sc-line" d="M184 56h10M208 56h10"/>
+            <path class="sc-line" d="M236 48c26-16 46-6 48 8"/><path class="sc-line" d="M279 50l5 6-7 2"/>
+            <circle class="sc-soft" cx="284" cy="84" r="14"/><circle class="sc-line" cx="284" cy="84" r="8"/>
+            <path class="sc-line" d="M284 62v8"/>
+          </svg>
           <ul class="price-list">
             <li data-en="Understanding the current process">فهم العملية الحالية</li>
             <li data-en="Setting priorities">تحديد الأولويات</li>
@@ -321,7 +415,7 @@
   </section>
 
   <!-- ============ المنتجات الجاهزة ============ -->
-  <section class="pricing-section" id="ready-products">
+  <section class="section pricing-section" id="ready-products">
     <div class="container">
       <div class="section-heading reveal">
         <span class="eyebrow" data-en="Ready Products">المنتجات الجاهزة</span>
@@ -350,6 +444,16 @@
             <li data-en="Two rounds of revisions">جولتان من التعديلات</li>
             <li data-en="Hosting and basic usage for the first year">الاستضافة والاستخدام الأساسي للسنة الأولى</li>
           </ul>
+          <!-- شذرات (ملف، رابط، صورة، منشور) تصير صفحة واحدة ومعها مساعد -->
+          <svg class="scope" viewBox="0 0 320 90" aria-hidden="true">
+            <path class="sc-soft" d="M16 22h12l6 6v16H16z"/><path class="sc-soft" d="M16 52h18v14H16z"/><path class="sc-line" d="M20 59h10"/>
+            <rect class="sc-soft" x="46" y="22" width="20" height="20" rx="4"/><circle class="sc-dot" cx="53" cy="29" r="2"/><path class="sc-line" d="M48 40l6-6 4 3 6-6"/>
+            <rect class="sc-soft" x="46" y="52" width="20" height="14" rx="4"/><path class="sc-line" d="M50 57h12M50 61h8"/>
+            <path class="sc-line" d="M70 30c30 0 40 15 70 15M70 60c30 0 40-15 70-15M38 32c20 0 30 13 102 13M38 58c20 0 30-13 102-13"/>
+            <rect class="sc-fill" x="146" y="20" width="94" height="52" rx="8"/><circle class="sc-dot" cx="162" cy="34" r="5"/><path class="sc-line" d="M172 31h30M172 38h20M156 50h26M156 58h26M188 50h40M188 58h40"/>
+            <path class="sc-line" d="M244 45h18"/>
+            <path class="sc-fill" d="M270 34h28a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6h-16l-8 7v-7h-4a6 6 0 0 1-6-6V40a6 6 0 0 1 6-6z"/><circle class="sc-dot" cx="278" cy="45" r="1.6"/><circle class="sc-dot" cx="284" cy="45" r="1.6"/><circle class="sc-dot" cx="290" cy="45" r="1.6"/>
+          </svg>
 
           <div class="price-card__example">
             <span data-en="Example">مثال</span>
@@ -371,11 +475,11 @@
   </section>
 
   <!-- ============ FINAL CTA ============ -->
-  <section class="section cta-section" id="contact">
+  <section class="section cta-section section--field" id="contact">
     <div class="container">
       <div class="cta-card reveal">
         <div>
-          <span class="eyebrow eyebrow--gold" data-en="Not sure where to start?">ما تدري من وين تبدأ؟</span>
+          <span class="eyebrow" data-en="Not sure where to start?">ما تدري من وين تبدأ؟</span>
           <h2 data-en="Let's define the scope together">خلّنا نحدد النطاق مع بعض</h2>
           <p data-en="Run the free check first, or book a consultation and we'll shape the right starting point with you.">ابدأ بالفحص المجاني، أو احجز استشارة ونحدد معك البداية المناسبة.</p>
         </div>
@@ -389,10 +493,10 @@
 </main>
 
 <!-- ============ FOOTER ============ -->
-<footer class="footer">
+<footer class="footer" id="footer">
   <div class="container footer__grid">
     <div class="footer__brand">
-      <svg class="footer__logo" aria-hidden="true"><use href="#logo"/></svg>
+      <svg class="footer__logo" id="footerLogo" aria-hidden="true"><use href="#logo"/></svg>
       <div>
         <strong data-en="SABBARAH AI">صبّارة AI</strong>
         <em data-en="صبّارة AI">SABBARAH AI</em>
@@ -455,6 +559,8 @@
 <script src="js/i18n.js" defer></script>
 <script src="js/main.js" defer></script>
 <script src="js/glow.js" defer></script>
+<script src="js/depth.js" defer></script>
+<script src="js/journey.js" defer></script>
 <script src="js/assistant.js" defer></script>
 </body>
 </html>

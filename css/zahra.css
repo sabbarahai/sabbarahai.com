@@ -7,31 +7,44 @@
    ============================================================ */
 :root{
   --bg:#0b0f14;                /* Obsidian — الأرضية الرسمية للهوية */
-  --bg-soft:#0e141b;
   --ink:#eef6f2;
   --white:#f5f7f6;             /* يستخدمه حقل إدخال المساعدة */
-  --sand:#f5f1e8;              /* Sand White */
-  --slate:#8a94a6;             /* Slate */
+  --sand:#f5f1e8;              /* Sand White — أرضية الوضع الفاتح */
   --muted:#9ab0ab;
   --muted-dim:#73897f;
   --teal:#16c99a;              /* أخضر الشعار — لا يتغير */
   --mint:#3fe8b6;
-  --gold:#f2cf4a;
+  --gold:#f2cf4a;              /* ذهب واحد لكل تكوين: نقطة التدخل البشري أو القمة */
   --line:rgba(255,255,255,.08);
   --line-strong:rgba(255,255,255,.13);
   --card:linear-gradient(180deg,rgba(20,38,36,.5),rgba(9,17,19,.42));
   --card-hover:linear-gradient(180deg,rgba(24,48,44,.62),rgba(10,19,21,.5));
+  --accent:var(--mint);        /* لون التمييز النصي — يصير Deep Jade على الفاتح */
   --radius-lg:24px;
   --radius:18px;
-  --radius-sm:12px;
   --container:1180px;
   --gutter:clamp(18px,4vw,40px);
   --section-pad:clamp(76px,8.5vw,128px);
   --grid-gap:clamp(16px,1.6vw,22px);
-  --green:#1fd9a0;--jade:#0e5c4a;   /* Sabbarah Green الرسمي + Deep Jade — يستخدمها css/glow.css */
-  --ff-ar:"IBM Plex Sans Arabic",system-ui,"Segoe UI",sans-serif;
-  --ff-lat:"Space Grotesk","IBM Plex Sans Arabic",sans-serif;
+  --green:#1fd9a0;--jade:#0e5c4a;   /* Sabbarah Green الرسمي + Deep Jade */
+  --ff-ar:"IBM Plex Sans Arabic","Plex Arabic Fallback",system-ui,"Segoe UI",sans-serif;
+  --ff-lat:"Space Grotesk","Grotesk Fallback","IBM Plex Sans Arabic",sans-serif;
+  /* الحركة: مجموعة واحدة مشتركة مع عدة الأفلام */
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-in-out:cubic-bezier(.65,0,.35,1);
+  --ease-in:cubic-bezier(.7,0,.84,0);
+  --t-1:120ms;--t-2:240ms;--t-3:480ms;--t-4:800ms;
+  --dir:-1;                    /* اتجاه الحركة الأفقية: -1 عربي، 1 إنجليزي */
+  /* الطباعة: العربية تقود في كل مقاس */
+  --fs-display:clamp(42px,5.8vw,88px);
+  --fs-readout:clamp(36px,3.6vw,56px);
+  --fs-h2:clamp(30px,3.8vw,52px);
+  --fs-h3:clamp(20px,1.7vw,24px);
+  --fs-body:17px;
+  --fs-body-s:15.5px;
+  --fs-label:12.5px;
 }
+html[dir="ltr"]{--dir:1}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
@@ -40,6 +53,8 @@ body{
   overflow-x:hidden;
 }
 h1,h2,h3,h4{margin:0;line-height:1.25;font-weight:700;letter-spacing:-.01em}
+/* الحروف العربية متصلة — لا تضييق للمسافات بين الحروف في العناوين العربية */
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] h4{letter-spacing:0}
 p{margin:0}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit}
@@ -50,22 +65,8 @@ img,svg{display:block;max-width:100%}
 [id]{scroll-margin-top:96px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* ============ ambient background ============ */
+/* ============ ambient background (see css/journey.css) ============ */
 .ambient{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
-.ambient__aurora{position:absolute;inset:-20% -10% auto -10%;height:70vh;
-  background:radial-gradient(60% 60% at 78% 12%,rgba(22,201,154,.20),transparent 70%),
-             radial-gradient(45% 45% at 12% 0%,rgba(22,201,154,.10),transparent 70%);
-  filter:blur(10px)}
-.ambient__orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5}
-.ambient__orb--one{width:520px;height:520px;top:-120px;right:-80px;background:rgba(22,201,154,.16)}
-.ambient__orb--two{width:420px;height:420px;top:52%;left:-140px;background:rgba(22,201,154,.09)}
-.ambient__orb--three{width:360px;height:360px;bottom:-140px;right:20%;background:rgba(242,207,74,.05)}
-.ambient__grid{position:absolute;inset:0;opacity:.16;
-  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(70% 55% at 50% 20%,#000 25%,transparent 80%)}
-.glow-particles{position:fixed;inset:0;z-index:-1;pointer-events:none}
 
 /* ============ buttons ============ */
 .button{
@@ -74,22 +75,23 @@ img,svg{display:block;max-width:100%}
   font-size:15.5px;font-weight:600;cursor:pointer;white-space:nowrap;
   transition:transform .18s ease,box-shadow .25s ease,background .25s ease,border-color .25s ease,color .2s ease;
 }
-.button:hover{transform:translateY(-2px)}
+.button{--mx:0px;--my:0px;transform:translate(var(--mx),var(--my))}
+.button:hover{--my:-2px}
 .button--primary{background:linear-gradient(135deg,var(--mint),var(--teal));color:#04120f;
   box-shadow:0 12px 34px -14px rgba(22,201,154,.85)}
 .button--primary:hover{box-shadow:0 18px 44px -14px rgba(63,232,182,.9)}
 .button--ghost{background:rgba(255,255,255,.02);border-color:var(--line-strong);color:var(--ink)}
 .button--ghost:hover{border-color:rgba(63,232,182,.5);background:rgba(22,201,154,.08)}
-.button--outline{background:transparent;border-color:rgba(242,207,74,.45);color:#f7e9b0;
+.button--outline{background:transparent;border-color:rgba(63,232,182,.42);color:var(--ink);
   min-height:44px;padding:0 20px;font-size:14.5px}
-.button--outline:hover{border-color:var(--gold);background:rgba(242,207,74,.08)}
+.button--outline:hover{border-color:var(--mint);background:rgba(22,201,154,.08)}
 
 /* ============ header ============ */
 .site-header{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
   background:rgba(5,15,14,.72);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;gap:20px;min-height:74px}
-.brand{display:flex;align-items:center;gap:11px}
-.brand__icon{width:38px;height:38px}
+.brand{display:flex;align-items:center;gap:11px;flex:none}
+.brand__icon{width:38px;height:38px;flex:none}
 .brand__text{display:flex;flex-direction:column;line-height:1.15}
 .brand__text strong,.brand__text em{white-space:nowrap}
 .brand__text strong{font-size:16.5px}
@@ -114,13 +116,13 @@ img,svg{display:block;max-width:100%}
 .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;
   gap:clamp(28px,4vw,64px);align-items:center}
 .kicker{display:inline-block;font-size:14px;font-weight:600;color:var(--mint);margin-bottom:20px}
-.hero h1{font-size:clamp(38px,5.6vw,70px);line-height:1.14;letter-spacing:-.02em}
-.hero h1 span{display:block;color:var(--mint)}
+.hero h1{font-size:var(--fs-display);line-height:1.1;letter-spacing:-.02em}
+.hero h1 span{display:block;color:var(--green)}
 .hero__copy>p{margin-top:22px;max-width:44ch;color:var(--muted);font-size:clamp(15.5px,1.25vw,18px)}
 .hero__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .trust-line{margin-top:24px;font-size:13.5px;color:var(--muted-dim);display:flex;
   flex-wrap:wrap;gap:10px;align-items:center}
-.trust-line i{color:var(--gold);font-style:normal}
+.trust-line i{color:var(--green);font-style:normal}
 
 /* live demo card */
 .demo{border:1px solid var(--line-strong);border-radius:var(--radius-lg);
@@ -136,8 +138,7 @@ img,svg{display:block;max-width:100%}
   border:1px solid var(--line-strong);padding:3px 10px;border-radius:999px}
 .demo__body{padding:20px 18px;min-height:266px;display:flex;flex-direction:column;gap:12px}
 .bubble{max-width:82%;padding:12px 15px;border-radius:16px;font-size:14.6px;line-height:1.7;
-  animation:rise .45s ease both}
-@keyframes rise{from{opacity:0;transform:translateY(10px)}}
+  animation:riseIn .45s var(--ease-out) both}
 .bubble--user{align-self:flex-end;background:rgba(255,255,255,.045);
   border:1px solid var(--line-strong);border-end-end-radius:6px}
 .bubble--bot{align-self:flex-start;background:linear-gradient(135deg,var(--mint),var(--teal));
@@ -154,14 +155,11 @@ img,svg{display:block;max-width:100%}
 /* ============ shared section heading (unified scale everywhere) ============ */
 .section-heading{max-width:640px;margin-bottom:clamp(30px,3.4vw,46px)}
 .eyebrow{display:block;font-size:13.5px;font-weight:600;color:var(--mint);margin-bottom:14px}
-.eyebrow--gold{color:var(--gold)}
-.section-heading h2{font-size:clamp(29px,3.7vw,46px)}
-.section-heading h2::after{content:"";display:block;width:58px;height:3px;border-radius:3px;
-  background:linear-gradient(90deg,var(--mint),rgba(63,232,182,0));margin-top:16px}
-.section-heading p{margin-top:16px;color:var(--muted);font-size:16px;max-width:52ch}
+.section-heading h2{font-size:var(--fs-h2);line-height:1.2}
+.section-heading p{margin-top:16px;color:var(--muted);font-size:var(--fs-body);max-width:52ch}
 
 /* ============ solutions ============ */
-@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+@keyframes riseIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gap)}
 .sol-card{position:relative;display:flex;flex-direction:column;
   padding:clamp(20px,2vw,26px);border:1px solid var(--line);border-radius:var(--radius-lg);
@@ -181,7 +179,6 @@ img,svg{display:block;max-width:100%}
 .sol-card__top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:auto}
 .sol-card__top .sol-card__icon{margin-bottom:0}
 .sol-card h3{font-size:20px;margin-top:26px}
-.sol-card__line{margin-top:10px;font-size:15.6px;font-weight:600;color:#dcece7;line-height:1.7}
 .sol-card p{margin-top:9px;font-size:14.4px;color:var(--muted);line-height:1.8}
 .tag{display:inline-flex;align-items:center;gap:6px;font-size:12.2px;font-weight:600;
   padding:5px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
@@ -202,7 +199,7 @@ img,svg{display:block;max-width:100%}
   box-shadow:0 40px 110px -70px rgba(22,201,154,.55);
   padding:clamp(22px,2.6vw,34px);min-height:376px;display:flex;flex-direction:column}
 .scan__stage[hidden]{display:none}
-.scan__stage{animation:fade .35s ease both;flex:1}
+.scan__stage{animation:riseIn .35s var(--ease-out) both;flex:1}
 /* intro is a 2-column panel so the card is never a tall empty box */
 .scan__intro{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(22px,3vw,44px);
   align-items:center;height:100%}
@@ -292,9 +289,9 @@ img,svg{display:block;max-width:100%}
 .compare__col--next .cbar--focus i::after{background:linear-gradient(90deg,var(--teal),var(--mint));
   box-shadow:0 0 12px rgba(63,232,182,.45)}
 .compare__note{margin-top:14px;font-size:13px;color:var(--muted-dim)}
-.map-card{margin-top:24px;border:1px solid rgba(242,207,74,.28);border-radius:var(--radius);
-  background:linear-gradient(140deg,rgba(242,207,74,.07),rgba(6,18,17,.2));padding:22px}
-.map-card__label{font-size:12.6px;color:var(--gold);font-weight:600}
+.map-card{margin-top:24px;border:1px solid rgba(63,232,182,.26);border-radius:var(--radius);
+  background:linear-gradient(140deg,rgba(22,201,154,.08),rgba(6,18,17,.2));padding:22px}
+.map-card__label{font-size:12.6px;color:var(--accent);font-weight:600}
 .map-card h3{margin-top:8px;font-size:20px}
 .map-card p{margin-top:10px;color:var(--muted);font-size:14.6px;max-width:70ch}
 .map-card__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
@@ -319,20 +316,7 @@ img,svg{display:block;max-width:100%}
 .guard__list span{display:block;margin-top:6px;font-family:var(--ff-lat);font-size:13px;
   color:var(--mint)}
 
-/* ============ البورتفوليو الذكي ============ */
-/* ============ كيف نعمل (kept as-is) ============ */
-.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);
-  gap:var(--grid-gap);position:relative}
-.steps::before{content:"";position:absolute;top:46px;inset-inline:8%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(242,207,74,.3),rgba(242,207,74,.3),transparent)}
-.steps li{position:relative;border:1px solid var(--line);border-radius:var(--radius-lg);
-  background:var(--card);padding:clamp(20px,2vw,26px);transition:.25s ease}
-.steps li:hover{border-color:rgba(242,207,74,.28);transform:translateY(-4px)}
-.steps li i{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
-  font-style:normal;font-family:var(--ff-lat);font-size:15px;font-weight:600;color:var(--gold);
-  border:1px solid rgba(242,207,74,.4);background:rgba(5,15,14,.95)}
-.steps li b{display:block;margin-top:20px;font-size:19px}
-.steps li span{display:block;margin-top:9px;font-size:14.4px;color:var(--muted);line-height:1.8}
+/* ============ كيف نعمل — أربع عقد على الخيط (css/journey.css) ============ */
 
 /* ============ FAQ ============ */
 .faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(26px,4vw,64px);align-items:start}
@@ -375,35 +359,23 @@ img,svg{display:block;max-width:100%}
   font-size:13px;color:var(--muted-dim)}
 
 /* ============ reveal ============ */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.reveal.is-visible{opacity:1;transform:none}
+/* الظهور عند التمرير يعمل فقط مع الجافاسكربت (html.js من سكربت الرأس) — بدونها يظهر كل شيء */
+html.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+html.js .reveal.is-visible{opacity:1;transform:none}
 
 /* ============ responsive ============ */
 @media (max-width:1024px){
   .hero__grid{grid-template-columns:1fr}
   .hero__copy{order:1}.hero__demo{order:2}
-  .sol-grid,.sol-grid--3,.sol-grid--2{grid-template-columns:repeat(2,1fr)}
+  .sol-grid,.sol-grid--2{grid-template-columns:repeat(2,1fr)}
   .guard,.faq-wrap{grid-template-columns:1fr}
-  .steps{grid-template-columns:repeat(2,1fr)}
-  .steps::before{display:none}
   .footer__grid{grid-template-columns:1fr 1fr}
   .scan__intro{grid-template-columns:1fr}
   .compare__grid{grid-template-columns:1fr}
   .scan__options--wide{grid-template-columns:repeat(2,1fr)}
 }
-@media (max-width:860px){
-  .nav-toggle{display:flex}
-  .nav-menu{position:absolute;inset-inline:var(--gutter);top:calc(100% + 10px);
-    flex-direction:column;align-items:stretch;gap:2px;padding:14px;border-radius:20px;
-    border:1px solid var(--line-strong);background:rgba(6,17,16,.98);
-    box-shadow:0 30px 70px -40px #000;display:none}
-  .nav-menu.is-open{display:flex}
-  .nav{position:relative;justify-content:space-between}
-  .nav-menu a{padding:11px 8px;border-radius:12px}
-  .site-header .button--outline{display:none}
-}
 @media (max-width:640px){
-  .sol-grid,.sol-grid--3,.sol-grid--2,.guard__list,.steps,.scan__options,
+  .sol-grid,.sol-grid--2,.guard__list,.scan__options,
   .scan__options--wide,.footer__grid{grid-template-columns:1fr}
   .guard__list li:last-child{grid-column:auto}
   .button{width:100%}
@@ -420,30 +392,30 @@ img,svg{display:block;max-width:100%}
    المساعدة صبّارة — منقولة كما هي من المشروع الأصلي
    ============================================================ */
 /* ---------- assistant (مساعدة صبّارة) ---------- */
-.sb-assistant{position:fixed;bottom:0;inset-inline-start:22px;z-index:90;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif}
+/* المساعدة تجلس في جهة النهاية (يسار العربية / يمين الإنجليزية) حتى لا تغطي نص البطل وأزراره */
+.sb-assistant{position:fixed;bottom:0;inset-inline-end:22px;z-index:90;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif}
 .sb-cactus{position:relative;border:0;background:transparent;padding:0;width:100px;height:114px;display:block;
 transform:translateY(130%);transition:transform .9s cubic-bezier(.22,1.15,.32,1);filter:drop-shadow(0 10px 26px rgba(31,217,160,.22))}
 .sb-cactus.sb-cactus--in{transform:translateY(6px)}
 .sb-cactus--in:hover{transform:translateY(0)}
 .sb-cactus svg{width:100%;height:100%;overflow:visible}
-.sb-cactus--in .sb-cactus__body{animation:sbBob 5.5s ease-in-out 1.4s infinite;transform-origin:50% 100%}
-@keyframes sbBob{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-3px) rotate(-1deg)}65%{transform:translateY(-1px) rotate(1deg)}}
+.sb-cactus__body{transform-origin:50% 100%;transition:transform .5s var(--ease-out)}
+.sb-cactus--in:hover .sb-cactus__body{transform:translateY(-3px)}
 .sb-cactus__arm-wave{transform-box:fill-box;transform-origin:12% 88%}
 .sb-cactus--waving .sb-cactus__arm-wave{animation:sbWave 1.8s ease-in-out .2s 2}
 @keyframes sbWave{0%,100%{transform:rotate(0)}20%{transform:rotate(-38deg)}40%{transform:rotate(-10deg)}60%{transform:rotate(-38deg)}80%{transform:rotate(-6deg)}}
 .sb-cactus__eye{transform-box:fill-box;transform-origin:center;animation:sbBlink 4.6s ease-in-out infinite}
 @keyframes sbBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
-.sb-cactus::before{content:"";position:absolute;inset:12% 6% 0 6%;border-radius:50%;z-index:-1;
-background:radial-gradient(circle,rgba(31,217,160,.26),transparent 68%);filter:blur(14px);animation:sbAura 5s ease-in-out infinite}
-@keyframes sbAura{0%,100%{opacity:.55}50%{opacity:.95}}
-.sb-bubble{position:absolute;bottom:108px;inset-inline-start:8px;min-width:210px;max-width:260px;
+.sb-cactus::before{content:"";position:absolute;inset:8% -4% -6% -4%;border-radius:50%;z-index:-1;
+background:radial-gradient(circle at 50% 62%,rgba(31,217,160,.22),transparent 66%)}
+.sb-bubble{position:absolute;bottom:108px;inset-inline-end:8px;min-width:210px;max-width:260px;
 background:linear-gradient(160deg,rgba(14,92,74,.32),rgba(11,15,20,.96));border:1px solid rgba(107,245,206,.28);
-border-radius:18px;border-end-start-radius:4px;padding:12px 16px;font-size:13px;line-height:1.65;
+border-radius:18px;border-end-end-radius:4px;padding:12px 16px;font-size:13px;line-height:1.65;
 box-shadow:0 18px 44px rgba(5,7,10,.6);opacity:0;transform:translateY(14px) scale(.92);transform-origin:bottom;
 transition:.45s cubic-bezier(.2,.9,.3,1.2);pointer-events:none}
 .sb-bubble--show{opacity:1;transform:none}
 .sb-bubble strong{color:var(--mint);display:block}
-.sb-panel{position:fixed;bottom:24px;inset-inline-start:22px;z-index:95;width:min(370px,calc(100vw - 32px));height:min(560px,calc(100dvh - 48px));
+.sb-panel{position:fixed;bottom:24px;inset-inline-end:22px;z-index:95;width:min(370px,calc(100vw - 32px));height:min(560px,calc(100dvh - 48px));
 display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,rgba(13,19,26,.98),rgba(8,12,17,.99));
 border:1px solid rgba(107,245,206,.22);border-radius:24px;box-shadow:0 32px 90px rgba(5,7,10,.75),0 0 44px rgba(31,217,160,.1);
 opacity:0;transform:translateY(28px) scale(.94);transform-origin:bottom;pointer-events:none;transition:.4s cubic-bezier(.2,.9,.3,1.1)}
@@ -485,16 +457,18 @@ padding:7px 14px;font-size:12px;font-weight:700;transition:.2s ease;font-family:
 
 /* ---------- responsive ---------- */
 @media(max-width:1040px){
-.sol-grid,.sol-grid--3{grid-template-columns:repeat(2,1fr)}
-.nav-menu{display:none;position:absolute;top:74px;inset-inline:20px;padding:16px;border-radius:18px;border:1px solid var(--line);
-background:rgba(11,15,20,.97);backdrop-filter:blur(18px);flex-direction:column;align-items:stretch}
+.sol-grid{grid-template-columns:repeat(2,1fr)}
+.nav{position:relative;justify-content:space-between}
+.nav-menu{display:none;position:absolute;top:calc(100% + 8px);inset-inline:var(--gutter);padding:14px;border-radius:20px;border:1px solid var(--line-strong);
+background:rgba(8,14,16,.98);flex-direction:column;align-items:stretch;gap:2px;box-shadow:0 30px 70px -40px #000;z-index:70}
 .nav-menu.is-open{display:flex}
+.nav-menu a{padding:11px 10px;border-radius:12px}
 .nav-toggle{display:flex}
+.site-header .button--outline{display:none}
 .hero__grid{grid-template-columns:1fr;text-align:center;gap:44px}
 .hero__copy p{margin-inline:auto}
 .hero__actions{justify-content:center}
 .guard{grid-template-columns:1fr;gap:30px}
-.steps{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:720px){
 .container{width:min(100%,var(--container))}
@@ -503,20 +477,20 @@ background:rgba(11,15,20,.97);backdrop-filter:blur(18px);flex-direction:column;a
 .nav-actions .button{min-height:40px;padding:0 14px;font-size:13px}
 .hero{padding:52px 0 64px}
 .section{padding:70px 0}
-.sol-grid,.sol-grid--3{grid-template-columns:1fr}
+.sol-grid{grid-template-columns:1fr}
 .sol-card{min-height:0}
 .scan{padding:26px 22px}
 .guard{padding:28px 24px}
-.steps{grid-template-columns:1fr}
 .cta-card{flex-direction:column;align-items:flex-start;padding:28px}
 .cta-card__actions{width:100%}
 .cta-card__actions .button{flex:1 1 160px}
 .footer__grid{grid-template-columns:1fr 1fr}
 .footer__brand{grid-column:1/-1}
 .demo{width:min(360px,94vw)}
-.sb-assistant{inset-inline-start:14px}
-.sb-cactus{width:86px;height:98px}
-.sb-panel{inset-inline-start:12px;bottom:12px}
+.sb-assistant{inset-inline-end:14px}
+.sb-cactus{width:64px;height:74px}
+.sb-bubble{display:none} /* على الجوال فقاعة الترحيب تغطي أزرار البطل — الصبّارة نفسها تكفي دعوةً */
+.sb-panel{inset-inline-end:12px;bottom:12px}
 }
 
 /* ============================================================
@@ -557,6 +531,11 @@ html[lang="en"] .guard__list span{font-family:var(--ff-ar);letter-spacing:0;font
    فيبقى «كيف نعمل» في الفوتر وقائمة الجوال فقط. */
 @media (min-width:1041px){
   html[lang="en"] .nav-menu a[data-nav-optional]{display:none}
+}
+/* بين 1041 و1200 بكسل لا تتسع الروابط الإنجليزية الستة مع زر الهيدر — يبقى الزر في البطل وقسم التواصل */
+@media (min-width:1041px) and (max-width:1200px){
+  html[lang="en"] .site-header .button--outline{display:none}
+  html[lang="en"] .nav-menu{gap:14px}
 }
 
 /* ============================================================
@@ -685,7 +664,7 @@ html[dir="rtl"] .price-list li::after{inset-inline-start:6.5px}
 
 .price-card__example{margin-top:24px;border:1px solid var(--line);border-radius:var(--radius);
   background:rgba(4,14,13,.42);padding:16px 18px}
-.price-card__example span{display:block;font-size:12.4px;font-weight:600;color:var(--gold);
+.price-card__example span{display:block;font-size:12.4px;font-weight:600;color:var(--accent);
   margin-bottom:8px}
 .price-card__example p{font-size:14.2px;color:var(--muted);line-height:1.8}
 .price-card__actions{margin-top:26px;padding-top:4px;display:flex;flex-wrap:wrap;gap:12px}
@@ -793,11 +772,10 @@ html[lang="en"] .eyebrow,html[lang="en"] .kicker{
 .eyebrow::before,.kicker::before{
   content:"";flex:none;width:24px;height:2px;border-radius:2px;
   background:var(--green);box-shadow:0 0 10px rgba(31,217,160,.5)}
-.eyebrow--gold::before{background:var(--gold);box-shadow:0 0 10px rgba(201,162,39,.4)}
 
 /* ---------- 4) الأزرار ---------- */
 .button{-webkit-tap-highlight-color:transparent}
-.button:active{transform:translateY(0) scale(.98)}
+.button:active{transform:translate(var(--mx),var(--my)) scale(.98)}
 .button--primary{
   background:linear-gradient(135deg,var(--mint),var(--green) 60%,var(--teal));
   color:#05221a;
@@ -831,17 +809,13 @@ html[lang="en"] .eyebrow,html[lang="en"] .kicker{
 .sol-grid--2>.sol-card:hover::before{color:var(--mint);border-color:rgba(63,232,182,.35)}
 
 /* ---------- 6) ظهور متدرج لعناصر الشبكات ---------- */
-.sol-grid.reveal,.pricing-grid.reveal,.steps.reveal{opacity:1;transform:none;transition:none}
-.sol-grid.reveal>*,.pricing-grid.reveal>*,.steps.reveal>li{opacity:0}
-.sol-grid.reveal.is-visible>*,.pricing-grid.reveal.is-visible>*,.steps.reveal.is-visible>li{
-  opacity:1;animation:cardIn .6s cubic-bezier(.2,.7,.25,1) backwards}
-@keyframes cardIn{from{opacity:0;transform:translateY(20px)}}
-.sol-grid.reveal.is-visible>*:nth-child(2),.pricing-grid.reveal.is-visible>*:nth-child(2),
-.steps.reveal.is-visible>li:nth-child(2){animation-delay:.08s}
-.sol-grid.reveal.is-visible>*:nth-child(3),.pricing-grid.reveal.is-visible>*:nth-child(3),
-.steps.reveal.is-visible>li:nth-child(3){animation-delay:.16s}
-.sol-grid.reveal.is-visible>*:nth-child(4),.pricing-grid.reveal.is-visible>*:nth-child(4),
-.steps.reveal.is-visible>li:nth-child(4){animation-delay:.24s}
+html.js .sol-grid.reveal,html.js .pricing-grid.reveal{opacity:1;transform:none;transition:none}
+html.js .sol-grid.reveal>*,html.js .pricing-grid.reveal>*{opacity:0}
+html.js .sol-grid.reveal.is-visible>*,html.js .pricing-grid.reveal.is-visible>*{
+  opacity:1;animation:riseIn .6s var(--ease-out) backwards}
+.sol-grid.reveal.is-visible>*:nth-child(2),.pricing-grid.reveal.is-visible>*:nth-child(2){animation-delay:.08s}
+.sol-grid.reveal.is-visible>*:nth-child(3),.pricing-grid.reveal.is-visible>*:nth-child(3){animation-delay:.16s}
+.sol-grid.reveal.is-visible>*:nth-child(4),.pricing-grid.reveal.is-visible>*:nth-child(4){animation-delay:.24s}
 .sol-grid.reveal.is-visible>*:nth-child(5),.pricing-grid.reveal.is-visible>*:nth-child(5){animation-delay:.32s}
 
 /* ---------- 7) الفوتر ---------- */
@@ -867,193 +841,78 @@ html[lang="en"] .footer__grid h3{
 
 /* ---------- 9) حركة مخفّضة — الطبقة الجديدة تهدأ كليًا ---------- */
 @media (prefers-reduced-motion:reduce){
-  .sol-grid.reveal>*,.pricing-grid.reveal>*,.steps.reveal>li{opacity:1;animation:none}
+  .sol-grid.reveal>*,.pricing-grid.reveal>*{opacity:1;animation:none}
   .sol-card__icon,.price-card__icon{transition:none}
 }
 
 /* ============================================================
-   ⬥ الوضع الفاتح — LIGHT THEME
-   يُفعّل عبر html[data-theme="light"] (زر التبديل في الهيدر)
-   ويُحفظ في localStorage تحت المفتاح sabbarah-theme.
+   ⬥ الوضع الفاتح — «ضوء النهار» LIGHT THEME · Sand and Jade Daylight
+   يُفعّل عبر html[data-theme="light"] ويُحفظ في localStorage (sabbarah-theme).
    الوضع الداكن يبقى الافتراضي؛ لا تُحذف أي قاعدة داكنة.
+   هنا الرموز فقط (الأرضية، سلّم الدرجات، الحبر، الظلال الخمسة)؛
+   المواد والغرف التسع في css/journey.css.
    ============================================================ */
 html[data-theme="light"]{
-  --bg:#f5f7f6;
-  --bg-soft:#ebefed;
-  --ink:#101a1c;
-  --muted:#526560;
-  --muted-dim:#6e807a;
-  --line:rgba(11,15,20,.08);
-  --line-strong:rgba(11,15,20,.15);
-  --card:linear-gradient(180deg,#ffffff,#f8faf9);
-  --card-hover:linear-gradient(180deg,#ffffff,#f1f7f4);
+  --bg:#f5f1e8;                        /* Sand White — الأرضية */
+  --sand-0:#f5f1e8;--sand-1:#eeede3;--sand-2:#e7e8de;--sand-3:#dee2d8;--sand-4:#d0d9cf;
+  --ink:#0b0f14;                       /* Obsidian — الحبر */
+  --white:#ffffff;
+  --muted:#3d514b;
+  --muted-dim:#5c6f69;
+  --accent:#0e5c4a;                    /* Deep Jade — التمييز النصي */
+  --mint:#0e5c4a;                      /* على الورق: الأخضر لا يحمل نصًا؛ الرموز النصية تصير Jade */
+  --line:rgba(14,92,74,.14);
+  --line-strong:rgba(14,92,74,.22);
+  --card:linear-gradient(180deg,#fbf9f4,#f3f0e7);
+  --card-hover:linear-gradient(180deg,#fdfcf9,#f6f3ea);
+  /* الظل: خمس طبقات بلون اليشم، مصدر ضوء واحد من أعلى جهة البداية */
+  --shadow-e1:0 1px 0 rgba(14,92,74,.05),calc(var(--dir)*1px) 1px 2px -1px rgba(14,92,74,.06),calc(var(--dir)*2px) 4px 8px -4px rgba(14,92,74,.07),calc(var(--dir)*4px) 8px 16px -8px rgba(14,92,74,.09),calc(var(--dir)*8px) 17px 34px -17px rgba(14,92,74,.11);
+  --shadow-e2:0 1px 0 rgba(14,92,74,.06),calc(var(--dir)*1px) 2px 4px -2px rgba(14,92,74,.08),calc(var(--dir)*3px) 6px 12px -6px rgba(14,92,74,.10),calc(var(--dir)*7px) 14px 28px -14px rgba(14,92,74,.14),calc(var(--dir)*14px) 28px 56px -28px rgba(14,92,74,.18);
+  --shadow-e3:0 1px 0 rgba(14,92,74,.07),calc(var(--dir)*2px) 3px 6px -3px rgba(14,92,74,.10),calc(var(--dir)*4px) 8px 17px -8px rgba(14,92,74,.13),calc(var(--dir)*10px) 20px 40px -20px rgba(14,92,74,.18),calc(var(--dir)*20px) 40px 78px -40px rgba(14,92,74,.24);
+  --glass:rgba(255,255,255,.62);
+  --glass-edge:rgba(255,255,255,.9);
 }
-
-/* --- الخلفية المحيطة تهدأ على الفاتح --- */
-html[data-theme="light"] .ambient__aurora{opacity:.55}
-html[data-theme="light"] .ambient__orb{opacity:.16}
-html[data-theme="light"] .ambient__grid{
-  background-image:linear-gradient(rgba(11,15,20,.05) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(11,15,20,.05) 1px,transparent 1px)}
-html[data-theme="light"] .glow-particles{opacity:.35}
-
-/* --- الهيدر الأبيض (كان الافتراضي سابقًا — الآن خاص بالوضع الفاتح) --- */
-html[data-theme="light"] .site-header{
-  background:rgba(252,253,253,.86);
-  -webkit-backdrop-filter:blur(18px) saturate(1.5);
-  backdrop-filter:blur(18px) saturate(1.5);
-  border-bottom-color:rgba(11,15,20,.08);
-}
-html[data-theme="light"] .site-header.is-scrolled{
-  background:rgba(255,255,255,.93);
-  box-shadow:0 12px 32px -20px rgba(11,15,20,.28);
-}
-html[data-theme="light"] .site-header .brand__text strong{color:#0b0f14}
-html[data-theme="light"] .site-header .brand__text em{color:#67727f}
-html[data-theme="light"] .nav-menu a{color:#414d59}
-html[data-theme="light"] .nav-menu a:hover{color:#0b0f14}
-html[data-theme="light"] .nav-menu a[aria-current="page"]{color:#0b0f14}
-html[data-theme="light"] .site-header .lang-switch{border-color:rgba(11,15,20,.12);background:rgba(11,15,20,.045)}
-html[data-theme="light"] .site-header .lang-switch button{color:#5b6672}
-html[data-theme="light"] .site-header .lang-switch button:hover{color:#0b0f14}
-html[data-theme="light"] .site-header .theme-toggle{border-color:rgba(11,15,20,.14);background:rgba(11,15,20,.04);color:#4b5860}
-html[data-theme="light"] .site-header .theme-toggle:hover{color:#0b0f14;border-color:rgba(14,92,74,.4)}
-html[data-theme="light"] .site-header .button--outline{
-  background:#0b0f14;border-color:#0b0f14;color:#fff;font-weight:600;
+/* الحبر على الورق: كل ما ثُبّت فاتحًا بالكود يصير حبرًا */
+html[data-theme="light"] :is(.price-list li,.disclaimer p,
+.map-strip__sub,.ready-flag__lead,.jump-pill,.price-card__scope,.scan-head__badge b,.nav-menu a,
+.guard__copy b,.faq details p b){color:#22332f}
+html[data-theme="light"] :is(.price-block__main,.price-card__price,.ready-flag__pricebox b,
+.map-strip__amount b,.nav-menu a:hover,.nav-menu a[aria-current="page"],
+.faq summary,.price-block__main b,.price-card__price b){color:var(--ink)}
+html[data-theme="light"] .site-header .brand__text strong{color:var(--ink)}
+html[data-theme="light"] .site-header .brand__text em{color:var(--muted-dim)}
+html[data-theme="light"] .site-header .button--outline{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600;
   box-shadow:0 10px 26px -14px rgba(11,15,20,.55)}
-html[data-theme="light"] .site-header .button--outline:hover{
-  background:#10231f;border-color:#10231f;color:#fff;
-  box-shadow:0 16px 34px -16px rgba(14,92,74,.55)}
+html[data-theme="light"] .site-header .button--outline:hover{background:#10231f;border-color:#10231f;color:#fff}
 html[data-theme="light"] .site-header .nav-toggle{border-color:rgba(11,15,20,.16);background:rgba(255,255,255,.6)}
-html[data-theme="light"] .site-header .nav-toggle span{background:#0b0f14}
-html[data-theme="light"] .site-header :focus-visible{outline-color:var(--jade)}
-@media (max-width:1040px){
-  html[data-theme="light"] .nav-menu{
-    background:rgba(255,255,255,.98);border-color:rgba(11,15,20,.1);
-    -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
-    box-shadow:0 34px 70px -34px rgba(11,15,20,.4)}
-  html[data-theme="light"] .nav-menu a{color:#39434e}
-  html[data-theme="light"] .nav-menu a:hover{background:rgba(14,92,74,.07);color:#0b0f14}
-}
-
-/* --- نصوص التمييز: أخضر/ذهبي أغمق ليقرأ على الأبيض --- */
-html[data-theme="light"] :is(.eyebrow,.kicker,.price-block__sub,.ready-flag__renew,
-.scan__lead>span,.scan__badge b,.scan__why b,.compare__col--next>span,
-.compare__col--next .cbar span,.compare__col--now .cbar--ok span,.solutions__note a,
-.guard__list span,.jump-pill i){color:#0b8a67}
-html[data-theme="light"] .faq summary::before{color:#0b8a67}
-html[data-theme="light"] .faq summary:hover{color:#0b8a67}
-html[data-theme="light"] .price-block__cta{color:#0b8a67;border-bottom-color:rgba(11,138,103,.4)}
-html[data-theme="light"] .price-block__cta:hover{color:#0b0f14;border-bottom-color:#0b8a67}
-html[data-theme="light"] .footer__grid a:hover{color:#0b8a67}
-html[data-theme="light"] .scan__back:hover{color:#0b8a67}
-html[data-theme="light"] .price-card__monthly{color:#0b7a5c;border-color:rgba(11,138,103,.3);background:rgba(22,201,154,.08)}
-html[data-theme="light"] :is(.eyebrow--gold,.trust-line i,.map-card__label,
-.map-strip__label,.price-card__example span){color:#8a6c12}
+html[data-theme="light"] .site-header .nav-toggle span{background:var(--ink)}
+html[data-theme="light"] :focus-visible{outline-color:var(--accent)}
+html[data-theme="light"] .lang-switch{border-color:rgba(14,92,74,.18);background:rgba(14,92,74,.05)}
+html[data-theme="light"] .lang-switch button{color:var(--muted-dim)}
+html[data-theme="light"] .lang-switch button[aria-pressed="true"]{color:#fff;background:linear-gradient(135deg,#0e5c4a,#0b4a3b);box-shadow:0 8px 20px -12px rgba(14,92,74,.9)}
+html[data-theme="light"] .theme-toggle{border-color:rgba(14,92,74,.2);background:rgba(255,255,255,.55);color:var(--muted)}
+html[data-theme="light"] .theme-toggle:hover{color:var(--ink);border-color:rgba(14,92,74,.45)}
+html[data-theme="light"] .button--primary{color:#04120f}
+html[data-theme="light"] .button--ghost{background:rgba(255,255,255,.55);border-color:rgba(14,92,74,.22);color:var(--ink)}
+html[data-theme="light"] .button--ghost:hover{background:rgba(255,255,255,.85);border-color:rgba(14,92,74,.45)}
+html[data-theme="light"] .price-block__cta{color:var(--accent);border-bottom-color:rgba(14,92,74,.35)}
+html[data-theme="light"] .price-block__cta:hover{color:var(--ink);border-bottom-color:var(--accent)}
+html[data-theme="light"] .price-card__monthly{color:var(--accent);border-color:rgba(14,92,74,.28);background:rgba(14,92,74,.06)}
+html[data-theme="light"] .price-card__en{color:var(--muted-dim)}
+html[data-theme="light"] .tag--offer{color:var(--accent);background:rgba(14,92,74,.08);border-color:rgba(14,92,74,.3)}
+html[data-theme="light"] :is(.ready-flag__pricebox b,.price-card__price) .price-was{color:var(--muted-dim)}
+html[data-theme="light"] .map-strip__label{color:#8a6c12}
 html[data-theme="light"] .map-strip__credit{background:rgba(201,162,39,.09);border-color:rgba(201,162,39,.35);color:#6f5a12}
+html[data-theme="light"] .demo__dot{background:var(--green)}
+html[data-theme="light"] .faq summary::before{color:var(--accent)}
+html[data-theme="light"] .faq summary:hover{color:var(--accent)}
+html[data-theme="light"] .footer__grid a:hover{color:var(--accent)}
+html[data-theme="light"] .scan__back:hover{color:var(--accent)}
 html[data-theme="light"] .eyebrow,html[data-theme="light"] .kicker{text-shadow:none}
-
-/* --- نصوص فاتحة مثبتة بالكود → داكنة --- */
-html[data-theme="light"] :is(.sol-card__line,.price-list li,.scan__opt,.scan__preview li,
-.scan__why,.cbar b,.disclaimer p,.map-strip__sub,.ready-flag__lead,.jump-pill,
-.price-card__scope,.scan__human b,.scan-head__badge b){color:#22332f}
-html[data-theme="light"] :is(.scan__lead b,.price-block__main,.price-card__price,
-.ready-flag__pricebox b,.map-strip__amount b,.compare__col--next .cbar--focus b){color:#0b0f14}
-
-/* --- الأسطح الداكنة المثبتة بالكود → بيضاء --- */
-html[data-theme="light"] .demo{
-  background:#ffffff;border-color:var(--line-strong);animation:none;
-  box-shadow:0 30px 70px -45px rgba(11,15,20,.35)}
-html[data-theme="light"] .bubble--user{background:#f0f3f1;border-color:rgba(11,15,20,.08);color:#22332f}
-html[data-theme="light"] .scan{
-  background:linear-gradient(150deg,#ffffff,#f3f8f5);
-  box-shadow:inset 0 1px 0 #fff,0 34px 80px -55px rgba(11,15,20,.3)}
-html[data-theme="light"] .scan__preview{background:#f6f8f7}
-html[data-theme="light"] .scan__opt{background:#fff}
-html[data-theme="light"] .scan__opt:hover,html[data-theme="light"] .scan__opt.is-picked{background:rgba(22,201,154,.09)}
-html[data-theme="light"] .scan__bar{background:rgba(11,15,20,.08)}
-html[data-theme="light"] .scan__lead{
-  border-color:rgba(11,138,103,.4);
-  background:radial-gradient(120% 150% at 100% 0%,rgba(22,201,154,.12),transparent 62%),#ffffff;
-  box-shadow:0 26px 60px -45px rgba(11,138,103,.5)}
-html[data-theme="light"] .scan__badge{background:#fff}
-html[data-theme="light"] .compare__col{background:#fafcfb}
-html[data-theme="light"] .compare__col--next{background:linear-gradient(160deg,rgba(22,201,154,.08),#fafcfb)}
-html[data-theme="light"] .cbar i{background:rgba(11,15,20,.07)}
-html[data-theme="light"] .map-card{background:linear-gradient(140deg,rgba(201,162,39,.08),#ffffff)}
-html[data-theme="light"] .guard{
-  background:radial-gradient(120% 120% at 100% 0%,rgba(22,201,154,.08),transparent 55%),
-             linear-gradient(180deg,#ffffff,#f6faf8)}
-html[data-theme="light"] .guard__list li{background:#ffffff}
-html[data-theme="light"] .steps li i{background:#ffffff;color:#8a6c12}
-html[data-theme="light"] .cta-card{
-  background:radial-gradient(110% 130% at 0% 0%,rgba(22,201,154,.10),transparent 60%),
-             linear-gradient(180deg,#ffffff,#f5f9f7)}
-html[data-theme="light"] :is(.sol-card--wide,.price-card--wide,.ready-flag){
-  background:radial-gradient(120% 150% at 100% 0%,rgba(22,201,154,.10),transparent 58%),
-             linear-gradient(180deg,#ffffff,#f5faf7)}
-html[data-theme="light"] .ready-flag__pricebox{background:#f7faf8}
-html[data-theme="light"] .price-card__example{background:#f8faf9}
-html[data-theme="light"] .disclaimer{background:linear-gradient(180deg,#ffffff,#f7faf8)}
-html[data-theme="light"] .map-strip{
-  background:radial-gradient(120% 130% at 0% 0%,rgba(201,162,39,.09),transparent 58%),
-             linear-gradient(160deg,#fffdf5,#f7f9f7)}
-html[data-theme="light"] :is(.scan-head__badge,.jump-pill,.social-link,.button--ghost){background:#ffffff}
-html[data-theme="light"] .jump-pill:hover{background:rgba(22,201,154,.09);color:#0b0f14}
-html[data-theme="light"] .button--ghost:hover{background:rgba(22,201,154,.08)}
-html[data-theme="light"] .social-link:hover{color:#0b8a67;background:rgba(22,201,154,.08)}
-html[data-theme="light"] .footer{background:rgba(240,243,241,.85)}
-html[data-theme="light"] .sol-grid--2>.sol-card::before{
-  color:rgba(11,15,20,.4);border-color:rgba(11,15,20,.12)}
-html[data-theme="light"] .sol-grid--2>.sol-card:hover::before{color:#0b8a67;border-color:rgba(11,138,103,.4)}
-html[data-theme="light"] :is(.sol-card,.price-card){box-shadow:0 1px 2px rgba(11,15,20,.04)}
-html[data-theme="light"] :is(.sol-card,.price-card):hover{box-shadow:0 26px 60px -40px rgba(11,138,103,.4)}
-
-/* --- عنوان البطل: أخضر أعمق يقرأ على الفاتح (يتفوق على css/glow.css) --- */
-html[data-theme="light"] .hero h1 span{
-  background:linear-gradient(100deg,#0d8f6b 0%,#0d8f6b 38%,var(--green) 50%,#0d8f6b 62%,#0d8f6b 100%);
-  background-size:240% 100%;
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-
-/* --- المساعدة صبّارة: محادثة فاتحة متسقة مع الوضع الفاتح --- */
-html[data-theme="light"] .sb-bubble{
-  background:linear-gradient(160deg,rgba(22,201,154,.10),#ffffff);
-  border-color:rgba(11,138,103,.32);color:#22332f;
-  box-shadow:0 18px 44px rgba(11,15,20,.18)}
-html[data-theme="light"] .sb-bubble strong{color:#0b8a67}
-html[data-theme="light"] .sb-panel{
-  background:linear-gradient(180deg,#ffffff,#f6f9f7);
-  border-color:rgba(11,15,20,.12);
-  box-shadow:0 32px 90px rgba(11,15,20,.28),0 0 44px rgba(31,217,160,.08)}
-html[data-theme="light"] .sb-panel__head{
-  border-bottom-color:rgba(11,15,20,.08);
-  background:linear-gradient(120deg,rgba(22,201,154,.13),rgba(255,255,255,.5))}
-html[data-theme="light"] .sb-panel__title strong{color:#101a1c}
-html[data-theme="light"] .sb-panel__title span{color:#0b8a67}
-html[data-theme="light"] .sb-panel__close{
-  border-color:rgba(11,15,20,.12);background:#ffffff;color:#526560}
-html[data-theme="light"] .sb-panel__close:hover{color:#0b8a67}
-html[data-theme="light"] .sb-panel__body{scrollbar-color:rgba(11,138,103,.35) transparent}
-html[data-theme="light"] .sb-msg--bot{
-  background:#eef5f1;border-color:rgba(11,15,20,.08);color:#22332f}
-html[data-theme="light"] .sb-msg--bot b{color:#0b8a67}
-html[data-theme="light"] .sb-input{
-  border-top-color:rgba(11,15,20,.08);background:#fbfcfb}
-html[data-theme="light"] .sb-input input{
-  border-color:rgba(11,15,20,.14);background:#ffffff;color:#101a1c}
-html[data-theme="light"] .sb-input input::placeholder{color:#6e807a}
-html[data-theme="light"] .sb-input input:focus{
-  border-color:rgba(11,138,103,.55);box-shadow:0 0 0 3px rgba(31,217,160,.14)}
-html[data-theme="light"] .sb-acts button{
-  border-color:rgba(11,138,103,.35);background:rgba(22,201,154,.08);color:#0b7a5c}
-html[data-theme="light"] .sb-acts button:hover{
-  background:rgba(22,201,154,.16);border-color:rgba(11,138,103,.55)}
-
-/* --- تفاصيل عامة للوضع الفاتح --- */
-html[data-theme="light"] ::selection{background:rgba(14,92,74,.18);color:#0b0f14}
-html[data-theme="light"] ::-webkit-scrollbar-track{background:#ebefed}
-html[data-theme="light"] ::-webkit-scrollbar-thumb{background:#c3d0ca;border-color:#ebefed}
-html[data-theme="light"] ::-webkit-scrollbar-thumb:hover{background:#9fb5ac}
+html[data-theme="light"] ::selection{background:rgba(14,92,74,.18);color:var(--ink)}
+html[data-theme="light"] ::-webkit-scrollbar-track{background:#eeede3}
+html[data-theme="light"] ::-webkit-scrollbar-thumb{background:#c9cfc3;border-color:#eeede3}
+html[data-theme="light"] ::-webkit-scrollbar-thumb:hover{background:#a9b8ad}
 
 /* ============================================================
    ⬥ عرض مخفّض — البورتفوليو الذكي (2026-08-09)
@@ -1075,14 +934,29 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb:hover{background:#9fb5ac}
   font-size:1em;font-weight:700;color:inherit;white-space:nowrap}
 
 /* وسم الخصم — نمط .tag نفسه بلون الذهب */
-.tag--offer{color:var(--gold);background:rgba(242,207,74,.10);
-  border-color:rgba(242,207,74,.34)}
+.tag--offer{color:var(--mint);background:rgba(31,217,160,.10);
+  border-color:rgba(31,217,160,.34)}
 /* داخل صندوق السعر توجد قاعدة span عامة (display/لون/حجم) — نرفع التخصيص لاستعادة نمط الوسم */
 .ready-flag__pricebox .tag--offer{display:inline-flex;margin-bottom:14px;
-  font-size:12.2px;font-weight:600;color:var(--gold)}
+  font-size:12.2px;font-weight:600;color:var(--mint)}
 .price-card__amount .tag--offer{margin-bottom:14px}
 
 /* الوضع الفاتح — تباين كافٍ للسعر المشطوب وللوسم */
 html[data-theme="light"] :is(.ready-flag__pricebox b,.price-card__price) .price-was{color:#5b6672}
 html[data-theme="light"] .tag--offer{color:#6f5a12;background:rgba(201,162,39,.10);
   border-color:rgba(201,162,39,.38)}
+
+/* ============================================================
+   الشاشات الضيقة جدًا (≤400px) — صف الهيدر يبقى في سطر واحد بلا تمرير أفقي
+   ============================================================ */
+@media (max-width:400px){
+  .nav{gap:8px}
+  .brand{gap:9px}
+  .brand__icon{width:34px;height:34px}
+  .brand__text strong{font-size:15px}
+  .brand__text em{font-size:9.5px;letter-spacing:.12em}
+  .nav-actions{gap:6px}
+  .theme-toggle{width:34px;height:34px}
+  .lang-switch button{padding:0 8px;min-height:28px}
+  .nav-toggle{width:40px;height:38px}
+}

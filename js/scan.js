@@ -353,9 +353,33 @@
     }
   }
 
+  /* أثناء التحليل: المحاور الأربعة تُرسم نوعيًا كما ستظهر في النتيجة (بلا أرقام) */
+  function drawAxes(r) {
+    var box = document.getElementById("scanAxes");
+    if (!box) return;
+    box.innerHTML = "";
+    r.compare.now.forEach(function (row, i) {
+      var w = document.createElement("div");
+      w.className = "scan__axis";
+      var name = document.createElement("b");
+      name.textContent = T("dim." + row.key);
+      var lvl = document.createElement("span");
+      lvl.textContent = T("level." + row.level);
+      var bar = document.createElement("i");
+      bar.style.setProperty("--v", (LEVEL_BAR[row.level] / 100).toFixed(2));
+      bar.style.setProperty("--d", (i * 0.18).toFixed(2) + "s");
+      w.appendChild(name);
+      w.appendChild(lvl);
+      w.appendChild(bar);
+      box.appendChild(w);
+    });
+  }
+
   function analyze() {
     stage("load");
     var p = 0;
+    lastResult = evaluate(answers);
+    drawAxes(lastResult);
     elPhase.textContent = T("scan.phase.1");
     var iv = setInterval(function () {
       p++;
@@ -363,7 +387,6 @@
     }, 760);
     setTimeout(function () {
       clearInterval(iv);
-      lastResult = evaluate(answers);
       show(lastResult);
     }, 3000);
   }
@@ -387,11 +410,28 @@
 
     drawBars(elNow, r.compare.now);
     drawBars(elNext, r.compare.next);
+
+    /* الخيط والبطاقات والنداء الأخير يستجيبون للنتيجة (js/journey.js) — محليًا فقط */
+    document.dispatchEvent(new CustomEvent("sb:scanresult", {
+      detail: { type: r.type, topKey: r.topKey, band: r.band, topLabel: L(r.topLabel) },
+    }));
+  }
+
+  /* القطاع المختار في البطل يسبق اختيار نوع النشاط — يبقى قابلًا للتغيير */
+  var SECTOR_TYPE = { clinic: "clinic", store: "ecom", estate: "realestate" };
+  function preselect() {
+    var sec = window.SB && window.SB.sector;
+    var type = sec && SECTOR_TYPE[sec];
+    if (!type) return;
+    Q[0].a.forEach(function (opt) {
+      if (opt[1].type === type) answers[0] = opt[1];
+    });
   }
 
   document.getElementById("scanStart").addEventListener("click", function () {
     idx = 0;
     answers = [];
+    preselect();
     stage("quiz");
     render();
     panel.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -409,6 +449,7 @@
     answers = [];
     lastResult = null;
     stage("intro");
+    document.dispatchEvent(new CustomEvent("sb:scanreset"));
     panel.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 
