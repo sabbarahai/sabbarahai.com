@@ -455,14 +455,15 @@ html[dir="ltr"] .scan__axis i::after{--origin:left}
 /* ---------- 8. the guard as a jade glass vault ---------- */
 .guard{display:block;border:0;background:none;padding:0;overflow:visible;position:relative}
 .guard::before,.guard::after{display:none}
-/* the display line sits astride the glass: crisp above the panel, softened through it */
-.guard__display{position:absolute;inset-inline-start:-2%;top:-.72em;z-index:0;pointer-events:none;user-select:none;white-space:nowrap;
-  font-size:clamp(96px,15vw,210px);font-weight:700;line-height:1;letter-spacing:0;color:transparent;
-  -webkit-text-stroke:1.2px rgba(31,217,160,.38);opacity:0;transform:translateY(24px);transition:opacity var(--t-4) var(--ease-out),transform var(--t-4) var(--ease-out)}
-html[lang="en"] .guard__display{font-family:var(--ff-lat);letter-spacing:-.02em;font-size:clamp(60px,9.4vw,140px);top:-.68em;inset-inline-start:0}
-#guard{padding-top:calc(var(--section-pad) + clamp(40px,6vw,90px))}
+/* the display line is centred above the glass with its full ink clear of the panel; the section's top padding reserves its room */
+.guard__display{position:absolute;left:50%;translate:-50% 0;bottom:calc(100% + .22em);z-index:0;pointer-events:none;user-select:none;white-space:nowrap;
+  font-size:var(--guard-display);font-weight:700;line-height:1;letter-spacing:0;color:transparent;
+  -webkit-text-stroke:1.5px rgba(31,217,160,.58);opacity:0;transform:translateY(24px);transition:opacity var(--t-4) var(--ease-out),transform var(--t-4) var(--ease-out)}
+html[lang="en"] .guard__display{font-family:var(--ff-lat);letter-spacing:-.02em;bottom:calc(100% + .07em)}
+#guard{--guard-display:clamp(96px,15vw,210px);padding-top:calc(var(--section-pad) + var(--guard-display)*1.15)}
+html[lang="en"] #guard{--guard-display:clamp(60px,9.4vw,140px)}
 .guard.is-visible .guard__display,html:not(.js) .guard__display{opacity:1;transform:none}
-html[data-theme="light"] .guard__display{color:#fbf9f3;-webkit-text-stroke:1px rgba(14,92,74,.16);opacity:0}
+html[data-theme="light"] .guard__display{color:#fbf9f3;-webkit-text-stroke:1.2px rgba(14,92,74,.3);opacity:0}
 html[data-theme="light"] .guard.is-visible .guard__display{opacity:1}
 .guard__glass{position:relative;z-index:1;display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(26px,3.6vw,56px);align-items:center;
   padding:clamp(24px,3.2vw,46px);border-radius:28px;border:1px solid rgba(255,255,255,.1);
@@ -755,8 +756,8 @@ html[data-vt="custom-ai-solution"] #custom-ai-solution,html[data-vt="smart-portf
   .station{min-height:0}
   .steps{padding-inline-start:44px;gap:20px}
   .steps li b{font-size:21px}
-  .guard__display{font-size:78px;top:-.72em}
-  html[lang="en"] .guard__display{font-size:46px}
+  #guard{--guard-display:78px}
+  html[lang="en"] #guard{--guard-display:min(46px,11vw)}
   .guard__list{grid-template-columns:1fr 1fr}
   .guard__list li{grid-template-columns:36px 1fr;padding:14px}
   .guard__list li:last-child{grid-column:1/-1}
